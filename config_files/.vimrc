@@ -13,7 +13,6 @@ filetype plugin indent on
 " -------------------------------------------
 " Personal Customization
 " -------------------------------------------
-let python_highlight_all " adds in python highlighting
 syntax enable 
 set background=dark
 set tabstop=4
@@ -24,6 +23,7 @@ set showcmd " show previous command
 set cursorline  " highlights current line
 set incsearch " search as characters are entered
 set hlsearch "highlight matches"
+set virtualedit=onemore
 
 Plugin 'badwolf'
 colorscheme badwolf " trying it out
