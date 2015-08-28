@@ -1,10 +1,6 @@
 " -------------------------------------------
 " Non-Plugin Personal Customization
 " -------------------------------------------
-syntax enable 
-set background=dark
-set tabstop=4
-set softtabstop=4
 set expandtab " tabs are spaces
 " set number " shows line number
 set showcmd " show previous command
@@ -14,14 +10,21 @@ set hlsearch "highlight matches"
 set virtualedit=onemore
 
 " -------------------------------------------
-" Below is for Vundle Package
+" Vundle Package
 " -------------------------------------------
+" Fix incompatibilities
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
+
 call vundle#begin()
 Plugin 'gmarik/vundle'
+Plugin 'tomasr/molokai'
 call vundle#end()
-" Now we can turn our filetype functionality back on
 filetype plugin indent on
 
+" syntax enable 
+set t_Co=256 " sets color count for terminal
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
