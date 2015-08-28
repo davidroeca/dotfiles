@@ -5,41 +5,30 @@
 # ------------------------------------------------
 # Script used to copy vimrc file to and from
 # personal home directory.
-#
-# Could be scaled later to provide further
-# functionality with different home paths and 
-# potentially an array of files other than vimrc
-# as well.
 # ------------------------------------------------
 
 # ------------------------------------------------
 # Handle command line args and set env variables
 # ------------------------------------------------
 
-MACHINE_WRITE=true
-echo $1
-if [ "$#" -lt 1 ]
-then
-    echo 'Not enough args.'
-else
-    if [ "$1" == '-torepo' ]
-    then
-        MACHINE_WRITE=false
-    elif [ "$1" != '-tohome' ]
-    then
-        echo 'Bad first flag.'
-        exit 0
-    fi 
-fi
 if [ "$#" -ge 2 ]
 then
-    MACHINE_DIR=$2
+    HOME_DIR=$2
 else
-    MACHINE_DIR='/home/david/'
+    HOME_DIR='/home/david/'
+fi
+if [ "$#" -ge 1 ]
+then
+    SCRIPTS_DIR=${HOME_DIR}$1
+else
+    SCRIPTS_DIR=${HOME_DIR}'Scripts/'
 fi
 
 FILE_NAME='.vimrc'
-REPO_DIR=${MACHINE_DIR}'Scripts/myconfig/config_files/'
+REPO_DIR=${SCRIPTS_DIR}'myconfig/config_files/'
+
+SOURCE=${REPO_DIR}${FILE_NAME}
+DESTINATION=${HOME_DIR}${FILE_NAME}
 
 # ------------------------------------------------
 # Function definition 
@@ -70,18 +59,17 @@ function confirm {
 # Prompt user and write files 
 # ------------------------------------------------
 
-if [ $MACHINE_WRITE == false  ] # -o represents overwrite
+# handle case where we want to write to the repo
+echo 'Create symbolic link of '${SOURCE}' to '${DESTINATION}'?'
+echo '(Run <ln -s '${SOURCE} ${DESTINATION}'>)'
+confirm
+if [ -e ${DESTINATION} ]
 then
-    # handle case where we want to write to the repo
-    echo 'Write '${MACHINE_DIR}${FILE_NAME}' to '${REPO_DIR}${FILE_NAME}'?'
+    echo ${DESTINATION} 'exists. Delete?'
+    echo '(Run <rm ${DESTINATION}>)'
     confirm
-    cp ${MACHINE_DIR}${FILE_NAME} ${REPO_DIR}${FILE_NAME}
-    echo 'wrote '${MACHINE_DIR}${FILE_NAME}' to '${REPO_DIR}${FILE_NAME}'.'
-else
-    # handle default case where we write repo to machine
-    echo 'Write '${REPO_DIR}${FILE_NAME}' to '${MACHINE_DIR}${FILE_NAME}'?'
-    confirm
-    cp ${REPO_DIR}${FILE_NAME} ${MACHINE_DIR}${FILE_NAME}
-    echo 'wrote '${REPO_DIR}${FILE_NAME}' to '${MACHINE_DIR}${FILE_NAME}'.'
+    rm ${DESTINATION}
 fi
+ln -s ${SOURCE} ${DESTINATION}
+echo 'Created symbolic link of '${SOURCE}' to '${DESTINATION}'.'
 exit 0
