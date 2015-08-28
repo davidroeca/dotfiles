@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # ------------------------------------------------
+# Work in progress.
+# ------------------------------------------------
 # Script used to copy vimrc file to and from
 # personal home directory.
 #
@@ -10,9 +12,38 @@
 # as well.
 # ------------------------------------------------
 
+# ------------------------------------------------
+# Handle command line args and set env variables
+# ------------------------------------------------
+
+MACHINE_WRITE=true
+echo $1
+if [ "$#" -lt 1 ]
+then
+    echo 'Not enough args.'
+else
+    if [ "$1" == '-torepo' ]
+    then
+        MACHINE_WRITE=false
+    elif [ "$1" != '-tohome' ]
+    then
+        echo 'Bad first flag.'
+        exit 0
+    fi 
+fi
+if [ "$#" -ge 2 ]
+then
+    MACHINE_DIR=$2
+else
+    MACHINE_DIR='/home/david/'
+fi
+
 FILE_NAME='.vimrc'
-MACHINE_DIR='/home/david/' # directory on machine
 REPO_DIR=${MACHINE_DIR}'Scripts/myconfig/config_files/'
+
+# ------------------------------------------------
+# Function definition 
+# ------------------------------------------------
 
 function confirm {
 # this function follows a yes/no question
@@ -30,13 +61,16 @@ function confirm {
             echo 'Abort.'
             exit 0 
         else
-            echo ${BAD_INPUT}
             echo 'Please try again.'
         fi
     done
 }
 
-if [ "$#" -ge 1 ] && [ "$1" == '-o' ] # -o represents overwrite
+# ------------------------------------------------
+# Prompt user and write files 
+# ------------------------------------------------
+
+if [ $MACHINE_WRITE == false  ] # -o represents overwrite
 then
     # handle case where we want to write to the repo
     echo 'Write '${MACHINE_DIR}${FILE_NAME}' to '${REPO_DIR}${FILE_NAME}'?'

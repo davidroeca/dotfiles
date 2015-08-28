@@ -1,17 +1,5 @@
 " -------------------------------------------
-" Below is for Vundle Package
-" -------------------------------------------
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Plugin 'gmarik/vundle'
-
-" Now we can turn our filetype functionality back on
-filetype plugin indent on
-
-" -------------------------------------------
-" Personal Customization
+" Non-Plugin Personal Customization
 " -------------------------------------------
 syntax enable 
 set background=dark
@@ -25,5 +13,15 @@ set incsearch " search as characters are entered
 set hlsearch "highlight matches"
 set virtualedit=onemore
 
-Plugin 'badwolf'
-colorscheme badwolf " trying it out
+" -------------------------------------------
+" Below is for Vundle Package
+" -------------------------------------------
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+Plugin 'gmarik/vundle'
+call vundle#end()
+" Now we can turn our filetype functionality back on
+filetype plugin indent on
+
