@@ -11,11 +11,13 @@
 # Handle command line args and set env variables
 # ------------------------------------------------
 
+# General argument structure: [SCRIPTS_DIR [HOME_DIR]]
+
 if [ "$#" -ge 2 ]
 then
     HOME_DIR=$2
 else
-    HOME_DIR='/home/david/'
+    HOME_DIR=$HOME/
 fi
 if [ "$#" -ge 1 ]
 then
