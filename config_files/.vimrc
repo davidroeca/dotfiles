@@ -5,6 +5,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab " tabs are spaces
+set ruler " shows line and column number
 " set number " shows line number
 set showcmd " show previous command
 set cursorline  " highlights current line
