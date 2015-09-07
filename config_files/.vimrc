@@ -24,6 +24,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'tomasr/molokai'
+Plugin 'wting/rust.vim'
 call vundle#end()
 filetype plugin indent on
 
