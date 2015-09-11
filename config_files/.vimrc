@@ -24,6 +24,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'tomasr/molokai'
 Plugin 'wting/rust.vim'
+Plugin 'elzr/vim-json'
 call vundle#end()
 filetype plugin indent on
 " }}}
@@ -33,4 +34,10 @@ set t_Co=256 " sets color count for terminal
 let g:molokai_original = 1
 let g:rehash256 = 1
 colorscheme molokai
+" }}}
+" Filetype-specific settings {{{
+augroup indentation_DR
+    autocmd!
+    autocmd Filetype dot :setlocal autoindent cindent
+augroup END
 " }}}
