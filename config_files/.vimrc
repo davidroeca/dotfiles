@@ -1,4 +1,17 @@
 " vim:fdm=marker
+" Vundle Package {{{
+" Fix incompatibilities
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tomasr/molokai'
+Plugin 'wting/rust.vim'
+Plugin 'elzr/vim-json'
+call vundle#end()
+filetype plugin indent on
+" }}}
 " Non-Plugin Personal Customization {{{
 set tabstop=4
 set softtabstop=4
@@ -14,19 +27,6 @@ set virtualedit=onemore " gives you access to one more space on a line
 set wildmenu " allows graphical cycling through command options
 set lazyredraw " redraw screen only when necessary
 set showmatch " highlight matching [{()}]
-" }}}
-" Vundle Package {{{
-" Fix incompatibilities
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
-Plugin 'gmarik/vundle'
-Plugin 'tomasr/molokai'
-Plugin 'wting/rust.vim'
-Plugin 'elzr/vim-json'
-call vundle#end()
-filetype plugin indent on
 " }}}
 " Colorschemes {{{
 syntax enable 
