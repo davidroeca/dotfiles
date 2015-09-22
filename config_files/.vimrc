@@ -9,6 +9,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomasr/molokai'
 Plugin 'wting/rust.vim'
 Plugin 'elzr/vim-json'
+Plugin 'autowitch/hive.vim'
 call vundle#end()
 filetype plugin indent on
 " }}}
@@ -39,5 +40,11 @@ colorscheme molokai
 augroup indentation_DR
     autocmd!
     autocmd Filetype dot :setlocal autoindent cindent
+augroup END
+
+augroup hive_files
+    autocmd!
+    autocmd BufNewFile,BufRead *.hql set filetype=hive expandtab
+    autocmd BufNewFile,BufRead *.q set filetype=hive expandtab
 augroup END
 " }}}
