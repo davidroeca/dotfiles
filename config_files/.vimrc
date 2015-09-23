@@ -28,6 +28,8 @@ set virtualedit=onemore " gives you access to one more space on a line
 set wildmenu " allows graphical cycling through command options
 set lazyredraw " redraw screen only when necessary
 set showmatch " highlight matching [{()}]
+set number " show line number
+let &colorcolumn=join(range(81, 1000), ",") " highlight line 81-on
 " }}}
 " Colorschemes {{{
 syntax enable 
