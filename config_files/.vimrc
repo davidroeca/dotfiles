@@ -10,6 +10,7 @@ Plugin 'tomasr/molokai'
 Plugin 'wting/rust.vim'
 Plugin 'elzr/vim-json'
 Plugin 'autowitch/hive.vim'
+Plugin 'scrooloose/nerdcommenter' " for quick commenting
 call vundle#end()
 filetype plugin indent on
 " }}}
@@ -30,6 +31,7 @@ set lazyredraw " redraw screen only when necessary
 set showmatch " highlight matching [{()}]
 set number " show line number
 let &colorcolumn=join(range(81, 1000), ",") " highlight line 81-on
+let mapleader="," " change command leader from \ to ,
 " }}}
 " Colorschemes {{{
 syntax enable 
