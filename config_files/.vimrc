@@ -15,9 +15,9 @@ call vundle#end()
 filetype plugin indent on
 " }}}
 " Non-Plugin Personal Customization {{{
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab " tabs are spaces
 set ruler " shows line and column number
 " set number " shows line number
@@ -43,7 +43,8 @@ colorscheme molokai
 " Filetype-specific settings {{{
 augroup indentation_DR
     autocmd!
-    autocmd Filetype dot :setlocal autoindent cindent
+    autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+    autocmd Filetype dot setlocal autoindent cindent
 augroup END
 
 augroup hive_files
