@@ -7,6 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tomasr/molokai'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'wting/rust.vim'
 Plugin 'elzr/vim-json'
 Plugin 'autowitch/hive.vim'
@@ -53,3 +54,7 @@ augroup hive_files
     autocmd BufNewFile,BufRead *.q set filetype=hive expandtab
 augroup END
 " }}}
+" Plugin settings for powerline ----------------- {{{
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9                               
+set laststatus=2                                                                
+" }}}   
