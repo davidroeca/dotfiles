@@ -12,6 +12,7 @@ Plugin 'wting/rust.vim'
 Plugin 'elzr/vim-json'
 Plugin 'autowitch/hive.vim'
 Plugin 'scrooloose/nerdcommenter' " for quick commenting
+Plugin 'hashivim/vim-terraform' " for terraform highlights
 call vundle#end()
 filetype plugin indent on
 " }}}
@@ -57,4 +58,4 @@ augroup END
 " Plugin settings for powerline ----------------- {{{
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9                               
 set laststatus=2                                                                
-" }}}   
+" }}}
