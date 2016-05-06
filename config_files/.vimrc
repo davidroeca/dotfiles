@@ -1,20 +1,21 @@
 " vim:fdm=marker
-" Vundle Package {{{
-" Fix incompatibilities
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tomasr/molokai'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'wting/rust.vim'
-Plugin 'elzr/vim-json'
-Plugin 'autowitch/hive.vim'
-Plugin 'scrooloose/nerdcommenter' " for quick commenting
-Plugin 'hashivim/vim-terraform' " for terraform highlights
-call vundle#end()
 filetype plugin indent on
+" Vundle Package {{{
+call plug#begin()
+Plug 'tomasr/molokai'
+Plug 'vim-airline/vim-airline'
+Plug 'wting/rust.vim'
+Plug 'elzr/vim-json'
+Plug 'autowitch/hive.vim'
+Plug 'scrooloose/nerdcommenter' " for quick commenting
+Plug 'hashivim/vim-terraform' " for terraform highlights
+Plug 'pearofducks/ansible-vim' " Ansible highlights
+Plug 'godlygeek/tabular' " needed for vim-markdown
+Plug 'plasticboy/vim-markdown'
+Plug 'hynek/vim-python-pep8-indent' " For python
+Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
+                                       " FixWhitespace fixes this
+call plug#end()
 " }}}
 " Non-Plugin Personal Customization {{{
 set tabstop=2
@@ -36,7 +37,7 @@ let &colorcolumn=join(range(81, 1000), ",") " highlight line 81-on
 let mapleader="," " change command leader from \ to ,
 " }}}
 " Colorschemes {{{
-syntax enable 
+syntax enable
 set t_Co=256 " sets color count for terminal
 let g:molokai_original = 1
 let g:rehash256 = 1
@@ -51,11 +52,22 @@ augroup END
 
 augroup hive_files
     autocmd!
-    autocmd BufNewFile,BufRead *.hql set filetype=hive expandtab
-    autocmd BufNewFile,BufRead *.q set filetype=hive expandtab
+    autocmd BufNewFile,BufFilePre,BufRead *.hql set filetype=hive expandtab
+    autocmd BufNewFile,BufFilePre,BufRead *.q set filetype=hive expandtab
+augroup END
+
+augroup md_markdown
+    autocmd!
+    autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+augroup END
+
+augroup fix_whitespace_save
+    let blacklist = ['markdown']
+    autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
 augroup END
 " }}}
-" Plugin settings for powerline ----------------- {{{
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9                               
-set laststatus=2                                                                
+" Plugin settings ----------------- {{{
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+set laststatus=2
+let g:vim_markdown_folding_disabled=1
 " }}}
