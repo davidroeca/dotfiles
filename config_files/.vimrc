@@ -1,7 +1,4 @@
 filetype plugin indent on
-" {{{
-hi
-" }}}
 " Vundle Package {{{
 call plug#begin()
 Plug 'tomasr/molokai'
@@ -45,7 +42,7 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 colorscheme molokai
 " }}}
-" Filetype-specific settings {{{
+ "Filetype-specific settings {{{
 augroup vim_folding
   autocmd!
   autocmd Filetype vim setlocal foldmethod=marker
