@@ -1,5 +1,7 @@
-" vim:fdm=marker
 filetype plugin indent on
+" {{{
+hi
+" }}}
 " Vundle Package {{{
 call plug#begin()
 Plug 'tomasr/molokai'
@@ -14,7 +16,7 @@ Plug 'godlygeek/tabular' " needed for vim-markdown
 Plug 'plasticboy/vim-markdown'
 Plug 'hynek/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
-                                       " FixWhitespace fixes this
+" FixWhitespace fixes this
 call plug#end()
 " }}}
 " Non-Plugin Personal Customization {{{
@@ -44,26 +46,31 @@ let g:rehash256 = 1
 colorscheme molokai
 " }}}
 " Filetype-specific settings {{{
+augroup vim_folding
+  autocmd!
+  autocmd Filetype vim setlocal foldmethod=marker
+augroup END
+
 augroup indentation_DR
-    autocmd!
-    autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
-    autocmd Filetype dot setlocal autoindent cindent
+  autocmd!
+  autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd Filetype dot setlocal autoindent cindent
 augroup END
 
 augroup hive_files
-    autocmd!
-    autocmd BufNewFile,BufFilePre,BufRead *.hql set filetype=hive expandtab
-    autocmd BufNewFile,BufFilePre,BufRead *.q set filetype=hive expandtab
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.hql set filetype=hive expandtab
+  autocmd BufNewFile,BufFilePre,BufRead *.q set filetype=hive expandtab
 augroup END
 
 augroup md_markdown
-    autocmd!
-    autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 augroup END
 
 augroup fix_whitespace_save
-    let blacklist = ['markdown']
-    autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
+  let blacklist = ['markdown']
+  autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
 augroup END
 " }}}
 " Plugin settings ----------------- {{{
