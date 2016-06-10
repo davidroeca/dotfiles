@@ -1,5 +1,5 @@
 filetype plugin indent on
-" Vundle Package {{{
+" Vim-Plug {{{
 call plug#begin()
 Plug 'tomasr/molokai'
 Plug 'vim-airline/vim-airline'
@@ -13,6 +13,9 @@ Plug 'godlygeek/tabular' " needed for vim-markdown
 Plug 'plasticboy/vim-markdown'
 Plug 'hynek/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
+Plug 'pangloss/vim-javascript', {'branch': 'develop'}
+Plug 'mxw/vim-jsx'
+Plug 'othree/javascript-libraries-syntax.vim'
 " FixWhitespace fixes this
 call plug#end()
 " }}}
@@ -43,6 +46,12 @@ let g:rehash256 = 1
 colorscheme molokai
 " }}}
  "Filetype-specific settings {{{
+let g:used_javascript_libs = 'jquery,requirejs,react'
+let g:jsx_ext_required = 0
+augroup jsx_recognition
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
+augroup END
 augroup vim_folding
   autocmd!
   autocmd Filetype vim setlocal foldmethod=marker
