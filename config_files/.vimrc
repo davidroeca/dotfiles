@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'tomasr/molokai'
 Plug 'vim-airline/vim-airline'
 Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
 Plug 'elzr/vim-json'
 Plug 'autowitch/hive.vim'
 Plug 'scrooloose/nerdcommenter' " for quick commenting
