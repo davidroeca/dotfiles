@@ -3,7 +3,7 @@ filetype plugin indent on
 call plug#begin()
 Plug 'tomasr/molokai'
 Plug 'vim-airline/vim-airline'
-Plug 'wting/rust.vim'
+Plug 'rust-lang/rust.vim'
 Plug 'elzr/vim-json'
 Plug 'autowitch/hive.vim'
 Plug 'scrooloose/nerdcommenter' " for quick commenting
@@ -15,6 +15,7 @@ Plug 'hynek/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript', {'branch': 'develop'}
 Plug 'mxw/vim-jsx'
+Plug 'groenewege/vim-less'
 Plug 'othree/javascript-libraries-syntax.vim'
 " FixWhitespace fixes this
 call plug#end()
@@ -72,6 +73,11 @@ augroup END
 augroup md_markdown
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+augroup END
+
+augroup md_markdown
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.less set filetype=less
 augroup END
 
 augroup fix_whitespace_save
