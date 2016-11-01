@@ -26,14 +26,15 @@ else
     SCRIPTS_DIR=${HOME_DIR}'Scripts/'
 fi
 
-FILE_NAME='.vimrc'
-REPO_DIR=${SCRIPTS_DIR}'myconfig/config_files/'
+FILE_ORIGIN='vimrc'
+FILE_DEST=".$FILE_ORIGIN"
+REPO_DIR=${SCRIPTS_DIR}'myconfig/dotfiles/'
 
-SOURCE=${REPO_DIR}${FILE_NAME}
-DESTINATION=${HOME_DIR}${FILE_NAME}
+SOURCE=${REPO_DIR}${FILE_ORIGIN}
+DESTINATION="${HOME_DIR}${FILE_DEST}"
 
 # ------------------------------------------------
-# Function definition 
+# Function definition
 # ------------------------------------------------
 
 function confirm {
@@ -50,7 +51,7 @@ function confirm {
         elif [ "$INPUT" == 'n' ]
         then
             echo 'Abort.'
-            exit 0 
+            exit 0
         else
             echo 'Please try again.'
         fi
@@ -58,7 +59,7 @@ function confirm {
 }
 
 # ------------------------------------------------
-# Prompt user and write files 
+# Prompt user and write files
 # ------------------------------------------------
 
 # handle case where we want to write to the repo
