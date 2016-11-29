@@ -1,4 +1,8 @@
 alias tmux='tmux -2'
+alias ta='tmux attach -t'
+
+alias vn='virutalenv -p python3 venv'
+alias va='source venv/bin/activate'
 
 include () {
   [[ -f "$1" ]] && source "$1"
