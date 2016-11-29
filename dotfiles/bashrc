@@ -1,0 +1,9 @@
+alias tmux='tmux -2'
+
+include () {
+  [[ -f "$1" ]] && source "$1"
+}
+
+LOCALPATH=~/.bashrc_local
+include $LOCALPATH
+

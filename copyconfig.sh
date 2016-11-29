@@ -13,30 +13,6 @@
 
 # General argument structure: [SCRIPTS_DIR [HOME_DIR]]
 
-if [ "$#" -ge 2 ]
-then
-    HOME_DIR=$2
-else
-    HOME_DIR=$HOME/
-fi
-if [ "$#" -ge 1 ]
-then
-    SCRIPTS_DIR=${HOME_DIR}$1
-else
-    SCRIPTS_DIR=${HOME_DIR}'Scripts/'
-fi
-
-FILE_ORIGIN='vimrc'
-FILE_DEST=".$FILE_ORIGIN"
-REPO_DIR=${SCRIPTS_DIR}'myconfig/dotfiles/'
-
-SOURCE=${REPO_DIR}${FILE_ORIGIN}
-DESTINATION="${HOME_DIR}${FILE_DEST}"
-
-# ------------------------------------------------
-# Function definition
-# ------------------------------------------------
-
 function confirm {
 # this function follows a yes/no question
 # proceeds upon 'y' and exits upon 'n'
@@ -58,21 +34,27 @@ function confirm {
     done
 }
 
-# ------------------------------------------------
-# Prompt user and write files
-# ------------------------------------------------
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# handle case where we want to write to the repo
-echo 'Create symbolic link of '${SOURCE}' to '${DESTINATION}'?'
-echo '(Run <ln -s '${SOURCE} ${DESTINATION}'>)'
-confirm
-if [ -e ${DESTINATION} ]
-then
-    echo ${DESTINATION} 'exists. Delete?'
-    echo '(Run <rm ${DESTINATION}>)'
+DOTFILES="$DIR/dotfiles"
+for f in $(ls $DOTFILES); do
+  # handle case where we want to write to the repo
+  SOURCE="$DOTFILES/$f"
+  DESTINATION="$HOME/.$f"
+
+  echo '-----------------------------------------------------------'
+  echo 'Create symbolic link of '${SOURCE}' to '${DESTINATION}'?'
+  echo '(Run <ln -s '${SOURCE} ${DESTINATION}'>)'
+  confirm
+  if [ -L ${DESTINATION} ] || [ -e ${DESTINATION}]
+  then
+    echo "${DESTINATION} exists. Delete?"
+    echo "(Run <rm ${DESTINATION}>)"
     confirm
     rm ${DESTINATION}
-fi
-ln -s ${SOURCE} ${DESTINATION}
-echo 'Created symbolic link of '${SOURCE}' to '${DESTINATION}'.'
+  fi
+  ln -s ${SOURCE} ${DESTINATION}
+  echo "Created symbolic link of ${SOURCE} to ${DESTINATION}."
+done
+echo '-----------------------------------------------------------'
 exit 0
