@@ -1,5 +1,7 @@
 alias tmux='tmux -2'
+alias tn='tmux new -s'
 alias ta='tmux attach -t'
+alias tk='tmux kill-session -t'
 
 alias vn='virtualenv -p python3 venv'
 alias va='source venv/bin/activate'
