@@ -13,12 +13,10 @@ apt-get update -y
 ${INSTALL_COMMAND} gtk-redshift
 
 # Install all useful text editing and document editing tools
-${INSTALL_COMMAND} atom
-${INSTALL_COMMAND} vim sublime-text
+${INSTALL_COMMAND} vim
 
 # Basic command-line environment tools
-${INSTALL_COMMAND} htop tree graphviz
-${INSTALL_COMMAND} tmux terminator
+${INSTALL_COMMAND} htop tree graphviz tmux
 
 
 # Install python/development tools
