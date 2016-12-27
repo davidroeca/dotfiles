@@ -34,6 +34,8 @@ function confirm {
     done
 }
 
+set -e
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 DOTFILES="$DIR/dotfiles"
@@ -46,7 +48,7 @@ for f in $(ls $DOTFILES); do
   echo 'Create symbolic link of '${SOURCE}' to '${DESTINATION}'?'
   echo '(Run <ln -s '${SOURCE} ${DESTINATION}'>)'
   confirm
-  if [ -L ${DESTINATION} ] || [ -e ${DESTINATION}]
+  if [ -L ${DESTINATION} ] || [ -e ${DESTINATION} ]
   then
     echo "${DESTINATION} exists. Delete?"
     echo "(Run <rm ${DESTINATION}>)"
