@@ -1,9 +1,24 @@
+# Coloring of bash prompt
+BLUE="\033[0;34m"
+GREEN="\033[0;32m"
+BOLD="$(tput bold)"
+
+export PS1="${GREEN}${BOLD}\u:${BLUE}${BOLD}\w/ $ \e[0m"
+
+# Coloring of ls
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
 alias vn='virtualenv -p python3 venv'
 alias va='source venv/bin/activate'
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 include () {
   [[ -f "$1" ]] && source "$1"
@@ -11,5 +26,6 @@ include () {
 
 LOCALPATH=~/.bashrc_local
 include $LOCALPATH
+
 
 [[ $TERM != screen* ]] && exec tmux -2
