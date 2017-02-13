@@ -7,7 +7,7 @@ MINTDEFAULT=~/.bashrc_mint
 include $LOCALPATH
 include $MINTDEFAULT
 
-alias vn='virtualenv -p python3 venv'
+alias vn='python3 -m venv venv'
 alias va='source venv/bin/activate'
 
 alias tmux='tmux -2'
