@@ -19,6 +19,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'groenewege/vim-less'
 Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'airblade/vim-rooter' " roots directory at git repo
+Plug 'scrooloose/nerdtree' " file browsing
 
 " FixWhitespace fixes this
 call plug#end()
@@ -29,7 +31,6 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab " tabs are spaces
 set ruler " shows line and column number
-" set number " shows line number
 set showcmd " show previous command
 set cursorline  " highlights current line
 set incsearch " search as characters are entered
@@ -39,8 +40,31 @@ set wildmenu " allows graphical cycling through command options
 set lazyredraw " redraw screen only when necessary
 set showmatch " highlight matching [{()}]
 set number " show line number
-let &colorcolumn=join(range(81, 1000), ",") " highlight line 81-on
+let &colorcolumn=join(range(80, 81), ",") " highlight line 81-on
 let mapleader="," " change command leader from \ to ,
+" }}}
+" Command aliases {{{
+cabbrev bt tab sb
+cabbrev bv vert sb
+cabbrev bs sbuffer
+
+" move tab to number
+cabbrev t tabn
+"  close help menu
+cabbrev hc helpclose
+" }}}
+" Selected search {{{
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <expr> // 'y/\V'.escape(@",'\').'<CR>'
 " }}}
 " Colorschemes {{{
 syntax enable
@@ -93,4 +117,16 @@ augroup END
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 set laststatus=2
 let g:vim_markdown_folding_disabled=1
+" }}}
+" NERDTree {{{
+let g:NERDTreeMapOpenInTab = '<C-t>'
+let g:NERDTreeMapOpenSplit = '<C-s>'
+let g:NERDTreeMapOpenVSplit = '<C-v>'
+let g:NERDTreeShowLineNumbers = 1
+let g:NERDTreeCaseSensitiveSort = 0
+let g:NERDTreeWinPos = 'left'
+let g:NERDTreeWinSize = 31
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeIgnore=['venv$[[dir]]', '__pycache__$[[dir]]', 'node_modules$[[dir]]']
+nnoremap <silent> <space>j :NERDTreeToggle %<CR>
 " }}}

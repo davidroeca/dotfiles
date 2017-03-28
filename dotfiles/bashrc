@@ -6,6 +6,7 @@ LOCALPATH=~/.bashrc_local
 MINTDEFAULT=~/.bashrc_mint
 include $LOCALPATH
 include $MINTDEFAULT
+stty -ixon
 
 alias vn='python3 -m venv venv'
 alias va='source venv/bin/activate'
