@@ -66,6 +66,12 @@ vnoremap <silent> # :<C-U>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 vnoremap <expr> // 'y/\V'.escape(@",'\').'<CR>'
 " }}}
+" Key Remappings {{{
+nnoremap tn :tabnext<CR>
+nnoremap tp :tabprev<CR>
+nnoremap tc :tabnew<CR>
+nnoremap td :tabclose<CR>
+" }}}
 " Colorschemes {{{
 syntax enable
 set t_Co=256 " sets color count for terminal
