@@ -130,3 +130,10 @@ let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeIgnore=['venv$[[dir]]', '__pycache__$[[dir]]', 'node_modules$[[dir]]']
 nnoremap <silent> <space>j :NERDTreeToggle %<CR>
 " }}}
+" Pre-startup commands {{{
+function! StartUp()
+  NERDTree
+  NERDTreeToggle
+endfunction
+autocmd VimEnter * call StartUp()
+" }}}
