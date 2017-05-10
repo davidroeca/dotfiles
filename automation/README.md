@@ -19,3 +19,4 @@ So tasks that must be run on the pre-specified daily intervals will be verified 
 * realpath
 * dirname
 * python3
+* xdg-open
