@@ -2,7 +2,9 @@
 
 This contains automated tasks at predefined intervals for use by cron/anacron.
 
-In order for them to work, add the following line to crontab (`crontab -e`):
+Run the `move_anacron.sh` script.
+
+In order for the automated tasks to run, add the following line to crontab (`crontab -e`):
 
 ```crontab
 # Check personal anacrons every hour at the 15th minute
