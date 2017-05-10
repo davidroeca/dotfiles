@@ -18,3 +18,4 @@ So tasks that must be run on the pre-specified daily intervals will be verified 
 * cron daemon
 * realpath
 * dirname
+* python3
