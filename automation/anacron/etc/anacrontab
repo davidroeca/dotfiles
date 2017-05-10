@@ -3,4 +3,4 @@ SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 # period  delay  job-identifier  command
-3 5 cron.every_3_days run-parts --report /home/david/.anacron/every_3_days
+3 5 cron.daily run-parts --report /home/david/.anacron/daily
