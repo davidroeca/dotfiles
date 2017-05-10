@@ -7,4 +7,5 @@ then
   echo "${DESTINATION_PATH} already exists; please move it safely or delete it"
 else
   ln -s $SOURCE_PATH $DESTINATION_PATH
+  echo "ran 'ln -s $SOURCE_PATH ${DESTINATION_PATH}' successfully"
 fi
