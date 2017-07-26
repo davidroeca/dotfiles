@@ -1,4 +1,28 @@
 filetype plugin indent on
+ "Non-Plugin Personal Customization {{{
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab " tabs are spaces
+set ruler " shows line and column number
+set showcmd " show previous command
+set cursorline  " highlights current line
+set incsearch " search as characters are entered
+set hlsearch " highlight matches
+set virtualedit=onemore " gives you access to one more space on a line
+set wildmenu " allows graphical cycling through command options
+set lazyredraw " redraw screen only when necessary
+set showmatch " highlight matching [{()}]
+set number " show line number
+let &colorcolumn=join(range(80, 81), ",") " highlight line 81-on
+let mapleader="," " change command leader from \ to ,
+" Powerline
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+set laststatus=2
+" easygrep
+set grepprg=git\ grep\ -n\ $*
+set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
+" }}}
 " Vim-Plug {{{
 call plug#begin()
 Plug 'tomasr/molokai'
@@ -29,24 +53,6 @@ Plug 'jmcantrell/vim-virtualenv'
 
 " FixWhitespace fixes this
 call plug#end()
-" }}}
-" Non-Plugin Personal Customization {{{
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab " tabs are spaces
-set ruler " shows line and column number
-set showcmd " show previous command
-set cursorline  " highlights current line
-set incsearch " search as characters are entered
-set hlsearch " highlight matches
-set virtualedit=onemore " gives you access to one more space on a line
-set wildmenu " allows graphical cycling through command options
-set lazyredraw " redraw screen only when necessary
-set showmatch " highlight matching [{()}]
-set number " show line number
-let &colorcolumn=join(range(80, 81), ",") " highlight line 81-on
-let mapleader="," " change command leader from \ to ,
 " }}}
 " Command aliases {{{
 cabbrev bt tab sb
@@ -133,8 +139,6 @@ augroup fix_whitespace_save
 augroup END
 " }}}
 " Plugin settings ----------------- {{{
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
-set laststatus=2
 let g:vim_markdown_folding_disabled=1
 " }}}
 " NERDTree {{{
@@ -159,15 +163,15 @@ let g:ctrlp_use_caching = 0
 " Auto-completion configuration {{{
 " Remapping - defenition jump = <C-]>
 " Return - <C-o>
+let g:jedi#smart_auto_mappings = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 0
 "let g:jedi#auto_close_doc = 0
 let g:jedi#auto_vim_configuration = 0
-set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
 let g:jedi#goto_command = "<C-]>"
+"let g:jedi#virtualenv_auto_activate = 1
 " }}}
 " easy grep {{{
-set grepprg=git\ grep\ -n\ $*
 let g:EasyGrepCommand = 1 " use grep, NOT vimgrep
 let g:EasyGrepJumpToMatch = 0 " Do not jump to the first match
 " }}}
