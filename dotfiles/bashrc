@@ -16,3 +16,20 @@ alias tn='tmux new-session'
 alias tl='tmux ls'
 alias ta='tmux attach -t'
 alias tk='tmux kill-session -t'
+
+PYENV_ROOT="$HOME/.pyenv"
+if [ -d "$PYENV_ROOT" ]
+then
+  export PYENV_ROOT
+  PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
+
+RUST_CARGO="$HOME/.cargo/bin"
+
+if [ -d "$RUST_CARGO" ]
+then
+  PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+export PATH
