@@ -25,6 +25,14 @@ then
   eval "$(pyenv init -)"
 fi
 
+NODENV_ROOT="$HOME/.nodenv"
+if [ -d "$NODENV_ROOT" ]
+then
+  export NODENV_ROOT
+  PATH="$NODENV_ROOT/bin:$PATH"
+  eval "$(nodenv init -)"
+fi
+
 RUST_CARGO="$HOME/.cargo/bin"
 
 if [ -d "$RUST_CARGO" ]
