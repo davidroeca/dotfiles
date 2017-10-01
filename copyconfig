@@ -13,7 +13,7 @@
 
 # General argument structure: [SCRIPTS_DIR [HOME_DIR]]
 
-function confirm {
+confirm () {
 # this function follows a yes/no question
 # proceeds upon 'y' and exits upon 'n'
     BAD_INPUT=true
