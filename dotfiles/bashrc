@@ -8,15 +8,6 @@ include $LOCALPATH
 include $MINTDEFAULT
 stty -ixon
 
-alias vn='python3 -m venv venv'
-alias va='source venv/bin/activate'
-
-alias tmux='tmux -2'
-alias tn='tmux new-session'
-alias tl='tmux ls'
-alias ta='tmux attach -t'
-alias tk='tmux kill-session -t'
-
 ############################################################
 # Mac OS options
 ############################################################
@@ -31,3 +22,19 @@ else
   NEW_PS1=$PS1
 fi
 export PS1=$NEW_PS1
+
+############################################################
+# Standard alias options
+############################################################
+alias vn='python3 -m venv venv'
+alias va='source venv/bin/activate'
+
+alias tmux='tmux -2'
+alias tn='tmux new-session'
+alias tl='tmux ls'
+alias ta='tmux attach -t'
+alias tk='tmux kill-session -t'
+
+alias l='ls'
+alias ll='ls -l'
+alias la='ls -la'
