@@ -17,35 +17,13 @@ alias tl='tmux ls'
 alias ta='tmux attach -t'
 alias tk='tmux kill-session -t'
 
-PYENV_ROOT="$HOME/.pyenv"
-if [ -d "$PYENV_ROOT" ]
-then
-  export PYENV_ROOT
-  PATH="$PATH:$PYENV_ROOT/bin"
-  eval "$(pyenv init -)"
-fi
-
-NODENV_ROOT="$HOME/.nodenv"
-if [ -d "$NODENV_ROOT" ]
-then
-  export NODENV_ROOT
-  PATH="$PATH:$NODENV_ROOT/bin"
-  eval "$(nodenv init -)"
-fi
-
-RUST_CARGO="$HOME/.cargo/bin"
-
-if [ -d "$RUST_CARGO" ]
-then
-  PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-export PATH
-
 ############################################################
 # Mac OS options
 ############################################################
-if [[ "$(uname -s)" -eq "Darwin" ]]; then
-  export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  NEW_PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
   alias ls='ls -G'
+else
+  NEW_PS1=$PS1
 fi
+export PS1=$NEW_PS1
