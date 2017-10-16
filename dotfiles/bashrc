@@ -2,10 +2,10 @@ include () {
   [[ -f "$1" ]] && source "$1"
 }
 
-LOCALPATH=~/.bashrc_local
-MINTDEFAULT=~/.bashrc_mint
-include $LOCALPATH
-include $MINTDEFAULT
+include ~/.profile
+include ~/.bashrc_local
+include ~/.bashrc_mint
+
 stty -ixon
 
 ############################################################
