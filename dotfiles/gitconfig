@@ -1,13 +1,13 @@
 [user]
-	email = david.roeca@gmail.com
-	name = davidroeca
+  email = david.roeca@gmail.com
+  name = davidroeca
 [core]
   editor = vim
 [alias]
   hist = log --pretty=format:'%h %ad | %s%d[%an]' --graph --date=short
 [credential "https://github.com"]
-	username = davidroeca
+  username = davidroeca
 [credential "https://bitbucket.org"]
   username = davidroeca
 [credential]
-	helper = cache
+  helper = cache
