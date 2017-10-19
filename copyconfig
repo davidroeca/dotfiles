@@ -39,10 +39,12 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 DOTFILES="$DIR/dotfiles"
-for f in $(ls $DOTFILES); do
+for f in $(find $DOTFILES -type f); do
   # handle case where we want to write to the repo
-  SOURCE="$DOTFILES/$f"
-  DESTINATION="$HOME/.$f"
+  SOURCE=$f
+  DESTINATION="$HOME/$(basename $f)"
+  echo $SOURCE
+  echo $DESTINATION
 
   echo '-----------------------------------------------------------'
   echo 'Create symbolic link of '${SOURCE}' to '${DESTINATION}'?'
