@@ -1,9 +1,10 @@
+#/bin/sh
 include () {
   [[ -f "$1" ]] && source "$1"
 }
 
 include ~/.profile
-include ~/.bashrc_local
+include ~/.shrc_local
 include ~/.bashrc_mint
 
 stty -ixon
