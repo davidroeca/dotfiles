@@ -436,7 +436,7 @@ PROMPT='%{$fg_bold[green]%}%n@%m% %{$fg_bold[green]%}%p %{$fg[blue]%}%~ %{$fg_bo
 ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[cyan]%}) %{$fg_bold[yellow]%}🔥%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[cyan]%}) %{$fg_bold[green]%}👌%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[cyan]%}) %{$fg_bold[green]%}🖏%{$reset_color%}"
 
 #########################################################}}}
 # Preferred editor for local and remote sessions
