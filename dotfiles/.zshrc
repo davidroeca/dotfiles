@@ -429,12 +429,14 @@ function parse_git_dirty() {
 #########################################################{{{
 # Currently a fork of kafeiatu
 
-PROMPT='%{$fg_bold[red]%}➜ %{$fg_bold[green]%}%n%{$fg[cyan]%}@%{$fg_bold[green]%}%m %{$fg_bold[green]%}%p %{$fg[cyan]%}%~ %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+
+NEWLINE=$'\n'
+PROMPT='%{$fg_bold[green]%}%n@%m% %{$fg_bold[green]%}%p %{$fg[blue]%}%~ %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[red]%}$NEWLINE➤➤➤%{$fg_bold[blue]%} % %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[cyan]%}) %{$fg_bold[yellow]%}🔥%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[cyan]%}) %{$fg_bold[green]%}👌{$reset_color%}"
 
 #########################################################}}}
 # Preferred editor for local and remote sessions
