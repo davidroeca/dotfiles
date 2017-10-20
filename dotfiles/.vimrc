@@ -106,9 +106,10 @@ augroup jsx_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
 augroup END
-augroup vim_folding
+augroup marker_folding
   autocmd!
   autocmd Filetype vim setlocal foldmethod=marker
+  autocmd Filetype zsh setlocal foldmethod=marker
 augroup END
 
 augroup indentation_DR
