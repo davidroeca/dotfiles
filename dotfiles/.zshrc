@@ -431,12 +431,19 @@ function parse_git_dirty() {
 
 
 NEWLINE=$'\n'
-PROMPT='%{$fg_bold[green]%}%n@%m% %{$fg_bold[green]%}%p %{$fg[blue]%}%~ %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[red]%}$NEWLINE➤➤➤%{$fg_bold[blue]%} % %{$reset_color%}'
+
+FIRE="🔥"
+OKHAND="🖏"
+PROMPT='%{$fg_bold[green]%}%n@%m% %{$fg_bold[green]%}%p %{$fg[blue]%}%~ %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%}$NEWLINE➤➤➤%{$fg_bold[blue]%} % %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[cyan]%}) %{$fg_bold[yellow]%}🔥%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[cyan]%}) %{$fg_bold[green]%}🖏%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[cyan]%}) %{$fg_bold[yellow]%}$FIRE%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[cyan]%}) %{$fg_bold[green]%}$OKHAND%{$reset_color%}"
+
+# clean up
+unset FIRE
+unset OKHAND
 
 #########################################################}}}
 # Preferred editor for local and remote sessions
