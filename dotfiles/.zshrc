@@ -433,7 +433,7 @@ function parse_git_dirty() {
 NEWLINE=$'\n'
 
 FIRE="🔥"
-OKHAND="🖏"
+OKHAND="👌"
 PROMPT='%{$fg_bold[green]%}%n@%m% %{$fg_bold[green]%}%p %{$fg[blue]%}%~ %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%}$NEWLINE➤➤➤%{$fg_bold[blue]%} % %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
