@@ -14,6 +14,13 @@ if [ ! -e "$ZSH_CACHE_DIR" ]; then
 fi
 
 #########################################################}}}
+# Turn off zsh corrections
+#########################################################{{{
+DISABLE_CORRECTION="true"
+unsetopt correct
+unsetopt correct_all
+
+#########################################################}}}
 # Modify fpath to autoload custom functions
 #########################################################{{{
 autoload -U compinit
@@ -44,20 +51,6 @@ setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
 setopt share_history # share command history data
-
-#########################################################}}}
-# Corrections
-#########################################################{{{
-alias ebuild='nocorrect ebuild'
-alias gist='nocorrect gist'
-alias heroku='nocorrect heroku'
-alias hpodder='nocorrect hpodder'
-alias man='nocorrect man'
-alias mkdir='nocorrect mkdir'
-alias mv='nocorrect mv'
-alias mysql='nocorrect mysql'
-alias sudo='nocorrect sudo'
-setopt correct_all
 
 #########################################################}}}
 # Clipboard functions
@@ -483,12 +476,12 @@ alias ta='tmux attach -t'
 alias tk='tmux kill-session -t'
 
 alias -g ...='../../'
-alias -g ...='../../../'
-alias -g ....='../../../../'
-alias -g .....='../../../../../'
-alias -g ......='../../../../../../'
-alias -g .......='../../../../../../../'
-alias -g ........='../../../../../../../../'
+alias -g ....='../../'
+alias -g .....='../../../../'
+alias -g ......='../../../../../'
+alias -g .......='../../../../../../'
+alias -g ........='../../../../../../../'
+alias -g .........='../../../../../../../../'
 
 #########################################################}}}
 # Run compinit
