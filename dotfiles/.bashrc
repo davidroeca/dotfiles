@@ -13,15 +13,14 @@ stty -ixon
 # Mac OS options
 ############################################################
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  NEW_PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
   alias ls='ls -G'
   # Add Bash completion
   if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
   fi
-else
-  NEW_PS1=$PS1
 fi
+
+NEW_PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\$\[\033[00m\] '
 export PS1=$NEW_PS1
 
 ############################################################
