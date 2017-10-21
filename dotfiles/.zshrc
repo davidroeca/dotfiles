@@ -455,7 +455,7 @@ else
 fi
 
 #########################################################}}}
-# Custom bash aliases
+# Custom aliases
 #########################################################{{{
 include () {
   [[ -f "$1" ]] && source "$1"
@@ -464,13 +464,14 @@ include ~/.shrc_local
 
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-  alias ll='ls -alF'
-  alias la='ls -A'
-  alias l='ls -CF'
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
 fi
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 alias vn='python3 -m venv venv'
 alias va='source venv/bin/activate'
