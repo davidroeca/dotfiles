@@ -207,7 +207,7 @@ unset VCS_FOLDERS
 unfunction grep-flag-available
 
 #########################################################}}}
-# Grep
+# Key Bindings
 #########################################################{{{
 
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
@@ -280,7 +280,7 @@ bindkey '\C-x\C-e' edit-command-line
 bindkey "^[m" copy-prev-shell-word
 
 #########################################################}}}
-# Grep
+# Coloring of prompt
 #########################################################{{{
 
 # A script to make using 256 colors in zsh less painful.
