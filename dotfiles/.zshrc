@@ -432,7 +432,10 @@ NEWLINE=$'\n'
 
 FIRE="🔥"
 OKHAND="👌"
-PROMPT='%{$fg_bold[green]%}%n@%m% %{$fg_bold[green]%}%p %{$fg[blue]%}%~ %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%}$NEWLINE➤➤➤%{$fg_bold[blue]%} % %{$reset_color%}'
+ARROWS="🢚🢚🢚"
+#ARROWS="➤➤➤"
+
+PROMPT='%{$fg_bold[green]%}%n@%m% %{$fg_bold[green]%}%p %{$fg[blue]%}%~ %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%}$NEWLINE$ARROWS%{$fg_bold[blue]%} % %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
