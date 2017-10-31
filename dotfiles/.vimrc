@@ -27,7 +27,8 @@ set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
 call plug#begin()
 Plug 'tomasr/molokai'
 Plug 'vim-airline/vim-airline'
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim' " Rust highlights
+Plug 'derekwyatt/vim-scala' " Scala highlights
 Plug 'cespare/vim-toml'
 Plug 'elzr/vim-json'
 Plug 'autowitch/hive.vim'
