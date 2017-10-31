@@ -454,13 +454,14 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
  export EDITOR='mvim'
 fi
-
 #########################################################}}}
-# Custom aliases
+# Custom aliases/sources
 #########################################################{{{
 include () {
   [[ -f "$1" ]] && source "$1"
 }
+
+include ~/.profile
 include ~/.shrc_local
 
 if [ -x /usr/bin/dircolors ]; then

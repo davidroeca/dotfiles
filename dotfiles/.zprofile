@@ -1,3 +1,3 @@
-emulate sh
-. ~/.profile
-emulate zsh
+if [ -f ~/.zshrc ]; then
+  source ~/.zshrc
+fi

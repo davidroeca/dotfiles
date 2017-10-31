@@ -36,10 +36,7 @@ then
   eval "$(nodenv init -)"
 fi
 
-RUST_CARGO="$HOME/.cargo/bin"
+path_ladd "$HOME/.cargo/bin"
+path_ladd "$HOME/bin" # Personal binary files
 
-if [ -d "$RUST_CARGO" ]
-then
-  path_ladd "$HOME/.cargo/bin"
-fi
 export PATH
