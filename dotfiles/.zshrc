@@ -5,29 +5,24 @@
 # bloat involved with oh-my-zsh. I plan to prune this file
 # of most features I don't use; this is a step in that
 # direction.
-############################################################
-# zsh cache directory
-#########################################################{{{
+
+# zsh cache directory {{{
 ZSH_CACHE_DIR=$HOME/.zsh_cache
 if [ ! -e "$ZSH_CACHE_DIR" ]; then
   mkdir $ZSH_CACHE_DIR
 fi
-
-#########################################################}}}
-# Turn off zsh corrections
-#########################################################{{{
+# }}}
+# Turn off zsh corrections {{{
 DISABLE_CORRECTION="true"
 unsetopt correct
 unsetopt correct_all
 
-#########################################################}}}
-# Modify fpath to autoload custom functions
-#########################################################{{{
+# }}}
+# Modify fpath to autoload custom functions {{{
 autoload -U compinit
 
-#########################################################}}}
-# Set up history prompts
-#########################################################{{{
+#}}}
+# Set up history prompts {{{
 if [ -z "$HISTFILE" ]; then
     HISTFILE=$HOME/.zsh_history
 fi
@@ -52,9 +47,8 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history # share command history data
 
-#########################################################}}}
-# Clipboard functions
-#########################################################{{{
+# }}}
+# Clipboard functions {{{
 
 # clipcopy - Copy data to clipboard
 #
@@ -134,9 +128,8 @@ function clippaste() {
   fi
 }
 
-#########################################################}}}
-# Completion
-#########################################################{{{
+# }}}
+# Completion {{{
 WORDCHARS=''
 unsetopt menu_complete   # do not autoselect the first completion entry
 unsetopt flowcontrol
@@ -178,9 +171,8 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 # Ignore full glob
 zstyle '*' single-ignored show
 
-#########################################################}}}
-# Grep
-#########################################################{{{
+# }}}
+# Grep {{{
 
 # is x grep argument available?
 grep-flag-available() {
@@ -211,9 +203,8 @@ unset GREP_OPTIONS
 unset VCS_FOLDERS
 unfunction grep-flag-available
 
-#########################################################}}}
-# Key Bindings
-#########################################################{{{
+# }}}
+# Key Bindings {{{
 
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
   function zle-line-init() {
@@ -284,9 +275,8 @@ bindkey '\C-x\C-e' edit-command-line
 # file rename magick
 bindkey "^[m" copy-prev-shell-word
 
-#########################################################}}}
-# Coloring of prompt
-#########################################################{{{
+# }}}
+# Coloring of prompt {{{
 
 # A script to make using 256 colors in zsh less painful.
 # P.C. Shyamshankar <sykora@lucentbeing.com>
@@ -325,15 +315,13 @@ function spectrum_bls() {
   done
 }
 
-#########################################################}}}
-# Miscellaneous
-#########################################################{{{
+# }}}
+# Miscellaneous {{{
 alias please='sudo' # for the lols
 setopt interactivecomments # recognizes comments
 
-#########################################################}}}
-# Theme compatibility
-#########################################################{{{
+# }}}
+# Theme compatibility {{{
 # ls colors
 autoload -U colors && colors
 
@@ -391,9 +379,8 @@ ZSH_THEME_GIT_PROMPT_DIRTY="*"              # Text to display if the branch is d
 ZSH_THEME_GIT_PROMPT_CLEAN=""               # Text to display if the branch is clean
 
 
-#########################################################}}}
-# Git Helpers
-#########################################################{{{
+# }}}
+# Git Helpers {{{
 # Outputs current branch info in prompt format
 function git_prompt_info() {
   local ref
@@ -422,11 +409,8 @@ function parse_git_dirty() {
 }
 
 
-#########################################################}}}
-# Take chosen theme
-#########################################################{{{
-# Currently a fork of kafeiatu
-
+# }}}
+# Take chosen theme {{{
 
 NEWLINE=$'\n'
 
@@ -446,17 +430,16 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[cyan]%}) %{$fg_bold[green]%}$OKHAND%{$reset_co
 unset FIRE
 unset OKHAND
 
-#########################################################}}}
-# Preferred editor for local and remote sessions
-#########################################################{{{
+# }}}
+# Preferred editor for local and remote sessions {{{
 if [[ -n $SSH_CONNECTION ]]; then
  export EDITOR='vim'
 else
  export EDITOR='mvim'
 fi
-#########################################################}}}
-# Custom aliases/sources
-#########################################################{{{
+
+# }}}
+# Custom aliases/sources {{{
 include () {
   [[ -f "$1" ]] && source "$1"
 }
@@ -492,7 +475,7 @@ alias -g .......='../../../../../../'
 alias -g ........='../../../../../../../'
 alias -g .........='../../../../../../../../'
 
-#########################################################}}}
-# Run compinit
-#########################################################{{{
+# }}}
+# Run compinit {{{
 compinit
+# }}}
