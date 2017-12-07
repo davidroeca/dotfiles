@@ -462,7 +462,7 @@ alias vn='python3 -m venv venv'
 alias va='source venv/bin/activate'
 
 alias tmux='tmux -2'
-alias tn='tmux new-session'
+alias tn='tmux new-session \; rename-window "Source Code"'
 alias tl='tmux ls'
 alias ta='tmux attach -t'
 alias tk='tmux kill-session -t'
