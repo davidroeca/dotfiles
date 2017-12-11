@@ -48,6 +48,7 @@ Plug 'airblade/vim-rooter' " roots directory at git repo
 Plug 'scrooloose/nerdtree' " file browsing
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy file search (like find)
 Plug 'dkprice/vim-easygrep' " find/replace across files (like grep/awk)
+Plug 'othree/eregex.vim' " needed for perl usage
 " Autocompletion installs
 Plug 'davidhalter/jedi-vim'
 Plug 'jmcantrell/vim-virtualenv'
@@ -176,6 +177,10 @@ let g:jedi#goto_command = "<C-]>"
 " easy grep {{{
 let g:EasyGrepCommand = 1 " use grep, NOT vimgrep
 let g:EasyGrepJumpToMatch = 0 " Do not jump to the first match
+let g:EasyGrepPerlStyle = 1
+" }}}
+" eregex {{{
+let g:eregex_default_enable = 0
 " }}}
 " Pre-startup commands {{{
 function! StartUp()
