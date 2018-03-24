@@ -22,6 +22,8 @@ set laststatus=2
 " easygrep
 set grepprg=git\ grep\ -n\ $*
 set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
+" For rust-racer
+set hidden
 " }}}
 " Vim-Plug {{{
 call plug#begin()
@@ -51,8 +53,9 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy file search (like find)
 Plug 'dkprice/vim-easygrep' " find/replace across files (like grep/awk)
 Plug 'othree/eregex.vim' " needed for perl usage
 " Autocompletion installs
-Plug 'davidhalter/jedi-vim'
-Plug 'jmcantrell/vim-virtualenv'
+Plug 'davidhalter/jedi-vim' " Python autocompletion
+Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
+Plug 'racer-rust/vim-racer' " rust autocompletion
 
 " FixWhitespace fixes this
 call plug#end()
@@ -174,6 +177,9 @@ let g:jedi#show_call_signatures = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#goto_command = "<C-]>"
 "let g:jedi#virtualenv_auto_activate = 1
+" Rust/Racer config
+let g:racer_cmd = "~/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
 " }}}
 " easy grep {{{
 let g:EasyGrepCommand = 1 " use grep, NOT vimgrep
