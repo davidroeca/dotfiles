@@ -37,8 +37,8 @@ Plug 'autowitch/hive.vim'
 Plug 'scrooloose/nerdcommenter' " for quick commenting
 Plug 'hashivim/vim-terraform' " for terraform highlights
 Plug 'pearofducks/ansible-vim' " Ansible highlights
-Plug 'godlygeek/tabular' " needed for vim-markdown
-Plug 'plasticboy/vim-markdown'
+"Plug 'godlygeek/tabular' " needed for vim-markdown
+"Plug 'plasticboy/vim-markdown'
 Plug 'ekalinin/Dockerfile.vim' " docker highlights
 Plug 'hynek/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
@@ -56,6 +56,7 @@ Plug 'othree/eregex.vim' " needed for perl usage
 Plug 'davidhalter/jedi-vim' " Python autocompletion
 Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
 Plug 'racer-rust/vim-racer' " rust autocompletion
+Plug 'vim-pandoc/vim-pandoc-syntax' " pandoc syntax  highlighting
 
 " FixWhitespace fixes this
 call plug#end()
@@ -132,16 +133,16 @@ augroup END
 
 augroup md_markdown
   autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
 
-augroup md_markdown
+augroup md_less
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.less set filetype=less
 augroup END
 
 augroup fix_whitespace_save
-  let blacklist = ['markdown']
+  let blacklist = ['markdown', 'markdown.pandoc']
   autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
 augroup END
 " }}}

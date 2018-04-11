@@ -11,3 +11,5 @@
   username = davidroeca
 [credential]
   helper = cache
+[pull]
+  rebase = true
