@@ -57,6 +57,10 @@ Plug 'davidhalter/jedi-vim' " Python autocompletion
 Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
 Plug 'racer-rust/vim-racer' " rust autocompletion
 Plug 'vim-pandoc/vim-pandoc-syntax' " pandoc syntax  highlighting
+" Plugins for plantuml
+Plug 'aklt/plantuml-syntax'
+Plug 'tyru/open-browser.vim'
+Plug 'weirongxu/plantuml-previewer.vim'
 
 " FixWhitespace fixes this
 call plug#end()
