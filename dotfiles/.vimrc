@@ -39,6 +39,7 @@ Plug 'hashivim/vim-terraform' " for terraform highlights
 Plug 'pearofducks/ansible-vim' " Ansible highlights
 "Plug 'godlygeek/tabular' " needed for vim-markdown
 "Plug 'plasticboy/vim-markdown'
+Plug 'martinda/Jenkinsfile-vim-syntax' " For jenkinsfiles
 Plug 'ekalinin/Dockerfile.vim' " docker highlights
 Plug 'hynek/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
