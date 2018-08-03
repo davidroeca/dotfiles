@@ -40,6 +40,7 @@ Plug 'pearofducks/ansible-vim' " Ansible highlights
 "Plug 'godlygeek/tabular' " needed for vim-markdown
 "Plug 'plasticboy/vim-markdown'
 Plug 'martinda/Jenkinsfile-vim-syntax' " For jenkinsfiles
+Plug 'vim-scripts/groovyindent-unix' " For groovy indentation
 Plug 'ekalinin/Dockerfile.vim' " docker highlights
 Plug 'hynek/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
