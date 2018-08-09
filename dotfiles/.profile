@@ -36,6 +36,14 @@ then
   eval "$(nodenv init -)"
 fi
 
+SDKMAN_DIR="$HOME/.sdkman"
+if [ -d "$SDKMAN_DIR" ]
+then
+  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && \
+    source "$SDKMAN_DIR/bin/sdkman-init.sh"
+fi
+
+
 path_ladd "$HOME/.cargo/bin"
 path_ladd "$HOME/bin" # Personal binary files
 
