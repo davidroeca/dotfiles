@@ -6,9 +6,6 @@ link_dotfiles:
 link_anacron:
 	stow -t ~ anacron
 
-~/.anacron:
-	mkdir ~/.anacron
-
 # Find a better way to achieve this; consider ansible
 .PHONY:
 linux_bootstrap:
