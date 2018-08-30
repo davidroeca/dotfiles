@@ -67,6 +67,9 @@ Plug 'weirongxu/plantuml-previewer.vim'
 " Nginx
 Plug 'nginx/nginx', { 'rtp': 'contrib/vim' }
 
+" Vagrant
+Plug 'hashivim/vim-vagrant'
+
 " FixWhitespace fixes this
 call plug#end()
 " }}}
