@@ -7,7 +7,7 @@ link_anacron:
 	stow -t ~ anacron
 
 # Find a better way to achieve this; consider ansible
-.PHONY:
+.PHONY: linux_bootstrap
 linux_bootstrap:
 	apt install \
 		stow \
