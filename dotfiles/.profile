@@ -43,6 +43,13 @@ then
     source "$SDKMAN_DIR/bin/sdkman-init.sh"
 fi
 
+TFENV_ROOT="$HOME/.tfenv"
+if [ -d "$TFENV_ROOT" ]
+then
+  export TFENV_ROOT
+  path_radd "$TFENV_ROOT/bin"
+fi
+
 
 path_ladd "$HOME/.cargo/bin"
 path_ladd "$HOME/bin" # Personal binary files
