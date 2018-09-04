@@ -118,9 +118,15 @@ let g:rehash256 = 1
 colorscheme molokai
 " }}}
  "Filetype-specific settings {{{
+
+ " Terraform globals
+let g:terraform_align = 1
+
+ " JS globals
 let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'jquery,requirejs,react'
 let g:jsx_ext_required = 0
+
 augroup jsx_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
@@ -134,6 +140,7 @@ augroup END
 augroup indentation_DR
   autocmd!
   autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd Filetype terraform setlocal shiftwidth=4 softtabstop=4 tabstop=4
   autocmd Filetype dot setlocal autoindent cindent
 augroup END
 
