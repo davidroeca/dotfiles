@@ -28,7 +28,7 @@ set hidden
 " Vim-Plug {{{
 call plug#begin()
 Plug 'tomasr/molokai'
-Plug 'vim-airline/vim-airline'
+Plug 'powerline/powerline' " Airline replacement
 Plug 'rust-lang/rust.vim' " Rust highlights
 Plug 'derekwyatt/vim-scala' " Scala highlights
 Plug 'cespare/vim-toml'
