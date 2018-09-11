@@ -14,7 +14,7 @@ set wildmenu " allows graphical cycling through command options
 set lazyredraw " redraw screen only when necessary
 set showmatch " highlight matching [{()}]
 set number " show line number
-let &colorcolumn=join(range(80, 81), ",") " highlight line 81-on
+let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
 let mapleader="," " change command leader from \ to ,
 " Powerline
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
