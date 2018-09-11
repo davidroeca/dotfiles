@@ -9,9 +9,11 @@ link_anacron:
 # Find a better way to achieve this; consider ansible
 .PHONY: linux_bootstrap
 linux_bootstrap:
+	add-apt-repository ppa:neovim-ppa/unstable && \
 	apt install \
 		stow \
 		gtk-redshift \
+		nvim \
 		vim \
 		htop \
 		tree \

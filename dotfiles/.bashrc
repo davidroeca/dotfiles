@@ -26,6 +26,8 @@ export PS1=$NEW_PS1
 ############################################################
 # Standard alias options
 ############################################################
+alias oldvim="$(which vim)"
+alias vim="nvim"
 alias vn='python3 -m venv venv'
 alias va='source venv/bin/activate'
 

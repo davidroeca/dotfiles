@@ -426,6 +426,9 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+alias oldvim="$(which vim)"
+alias vim='nvim'
+
 alias vn='python3 -m venv venv'
 alias va='source venv/bin/activate'
 
