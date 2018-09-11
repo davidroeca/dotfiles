@@ -6,7 +6,12 @@ link_dotfiles:
 link_anacron:
 	stow -t ~ anacron
 
-# Find a better way to achieve this; consider ansible
+# TODO: Find a better way to achieve this; consider ansible
+# TODO: Automate installation of vim-plug https://github.com/junegunn/vim-plug
+#   * For vim
+#   * For nvim
+# TODO: Stow symlink to ~/.vimrc in ~/.config/nvim/init.vim
+# TODO: Add vim8 ppa and installation automation
 .PHONY: linux_bootstrap
 linux_bootstrap:
 	add-apt-repository ppa:neovim-ppa/unstable && \

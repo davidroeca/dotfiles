@@ -59,6 +59,7 @@ Plug 'davidhalter/jedi-vim' " Python autocompletion
 Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
 Plug 'racer-rust/vim-racer' " rust autocompletion
 Plug 'vim-pandoc/vim-pandoc-syntax' " pandoc syntax  highlighting
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " for js
 " Plugins for plantuml
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
