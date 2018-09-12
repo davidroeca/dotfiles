@@ -1,6 +1,15 @@
+DOT_CONFIG_DIRS_REL = $(wildcard dotfiles/.config/*)
+DOT_CONFIG_DIRS_LINK = $(subst dotfiles, ~, $(DOT_CONFIG_DIRS_REL))
+
+.PHONY: dot_config
+dot_config: $(DOT_CONFIG_DIRS_LINK)
+
+~/.config/%: dotfiles/.config/%
+	mkdir -p $@
+
 .PHONY: link_dotfiles
-link_dotfiles:
-	stow -t ~ dotfiles
+link_dotfiles: dot_config
+	stow -t ~ -R dotfiles
 
 .PHONY: link_anacron
 link_anacron:
@@ -10,7 +19,6 @@ link_anacron:
 # TODO: Automate installation of vim-plug https://github.com/junegunn/vim-plug
 #   * For vim
 #   * For nvim
-# TODO: Stow symlink to ~/.vimrc in ~/.config/nvim/init.vim
 # TODO: Add vim8 ppa and installation automation
 .PHONY: linux_bootstrap
 linux_bootstrap:
