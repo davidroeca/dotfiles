@@ -13,7 +13,7 @@ link_dotfiles: dot_config
 
 .PHONY: link_anacron
 link_anacron:
-	stow -t ~ anacron
+	stow -t ~ -R anacron
 
 # TODO: Find a better way to achieve this; consider ansible
 # TODO: Automate installation of vim-plug https://github.com/junegunn/vim-plug
