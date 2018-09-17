@@ -447,10 +447,6 @@ alias -g ........='../../../../../../../'
 alias -g .........='../../../../../../../../'
 
 # }}}
-# Terminal coloring {{{
-# For consistent vim/neovim compatibility
-export TERM=xterm
-# }}}
 # Run compinit {{{
 compinit
 # }}}
