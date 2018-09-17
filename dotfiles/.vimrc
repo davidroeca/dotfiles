@@ -27,7 +27,8 @@ set hidden
 " }}}
 " Vim-Plug {{{
 call plug#begin()
-Plug 'tomasr/molokai'
+Plug 'NLKNguyen/papercolor-theme' " color scheme
+"Plug 'tomasr/molokai'
 Plug 'powerline/powerline' " Airline replacement
 Plug 'rust-lang/rust.vim' " Rust highlights
 Plug 'derekwyatt/vim-scala' " Scala highlights
@@ -114,9 +115,13 @@ nnoremap <silent> <C-c> :cclose <BAR> lclose<CR>
 " Colorschemes {{{
 syntax enable
 set t_Co=256 " sets color count for terminal
-let g:molokai_original = 1
-let g:rehash256 = 1
-colorscheme molokai
+set background=dark
+colorscheme PaperColor
+
+" Old molokai stuff
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+"colorscheme molokai
 " }}}
  "Filetype-specific settings {{{
 
