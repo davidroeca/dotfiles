@@ -43,6 +43,7 @@ Plug 'pearofducks/ansible-vim' " Ansible highlights
 Plug 'martinda/Jenkinsfile-vim-syntax' " For jenkinsfiles
 Plug 'vim-scripts/groovyindent-unix' " For groovy indentation
 Plug 'ekalinin/Dockerfile.vim' " docker highlights
+Plug 'hdima/python-syntax' " Python highlight improvements
 Plug 'hynek/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript'
@@ -116,6 +117,14 @@ nnoremap <silent> <C-c> :cclose <BAR> lclose<CR>
 syntax enable
 set t_Co=256 " sets color count for terminal
 set background=dark
+let g:PaperColor_Theme_Options = {
+      \ 'language': {
+      \   'python': {
+      \     'highlight_builtins': 1
+      \    }
+      \  }
+      \ }
+
 colorscheme PaperColor
 
 " Old molokai stuff
