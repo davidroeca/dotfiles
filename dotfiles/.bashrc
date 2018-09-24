@@ -21,12 +21,16 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
 fi
 
 NEW_PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\$\[\033[00m\] '
+
+############################################################
+# Variable Exports
+############################################################
 export PS1=$NEW_PS1
+export EDITOR=vim
 
 ############################################################
 # Standard alias options
 ############################################################
-alias oldvim="$(which vim)"
 alias vim="nvim"
 alias vn='python3 -m venv venv'
 alias va='source venv/bin/activate'

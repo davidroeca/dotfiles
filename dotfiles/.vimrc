@@ -42,6 +42,7 @@ Plug 'pearofducks/ansible-vim' " Ansible highlights
 "Plug 'plasticboy/vim-markdown'
 Plug 'martinda/Jenkinsfile-vim-syntax' " For jenkinsfiles
 Plug 'vim-scripts/groovyindent-unix' " For groovy indentation
+
 Plug 'ekalinin/Dockerfile.vim' " docker highlights
 Plug 'hdima/python-syntax' " Python highlight improvements
 Plug 'hynek/vim-python-pep8-indent' " For python

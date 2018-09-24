@@ -399,12 +399,9 @@ unset FIRE
 unset OKHAND
 
 # }}}
-# Preferred editor for local and remote sessions {{{
-if [[ -n $SSH_CONNECTION ]]; then
- export EDITOR='vim'
-else
- export EDITOR='mvim'
-fi
+# Preferred editor {{{
+
+export EDITOR='vim'
 
 # }}}
 # Custom aliases/sources {{{
@@ -426,7 +423,6 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias oldvim="$(which vim)"
 alias vim='nvim'
 
 alias vn='python3 -m venv venv'
