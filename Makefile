@@ -20,6 +20,8 @@ link_anacron:
 #   * For vim
 #   * For nvim
 # TODO: Add vim8 ppa and installation automation
+# TODO: Handle installation of tern `npm install -g tern`
+# TODO: Handle installation of racer `cargo install racer`
 .PHONY: linux_bootstrap
 linux_bootstrap:
 	add-apt-repository ppa:neovim-ppa/unstable && \

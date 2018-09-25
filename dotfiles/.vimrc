@@ -108,6 +108,8 @@ nnoremap td :tabclose<CR>
 " Omnicompletion
 " <C-@> actually means ctrl+space
 inoremap <C-@> <C-x><C-o>
+" Needed for neovim
+inoremap <C-space> <C-x><C-o>
 inoremap <silent> <C-c> <Esc>:pclose <BAR> helpclose<CR>a
 nnoremap <silent> <C-c> :pclose <BAR> helpclose<CR>
 inoremap <silent> <C-c> <Esc>:cclose <BAR> lclose<CR>a
@@ -143,6 +145,10 @@ let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'jquery,requirejs,react'
 let g:jsx_ext_required = 0
 
+augroup js_recognition
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.gs set filetype=javascript
+augroup END
 augroup jsx_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
@@ -216,6 +222,15 @@ let g:jedi#goto_command = "<C-]>"
 " Rust/Racer config
 let g:racer_cmd = "~/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
+
+" Javascript edits
+let g:tern_show_argument_hints = 'on_move'
+let g:show_signature_in_pum = 1
+
+augroup javascript_complete
+  autocmd!
+  autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
+augroup END
 " }}}
 " easy grep {{{
 let g:EasyGrepCommand = 1 " use grep, NOT vimgrep
