@@ -225,7 +225,7 @@ let g:racer_experimental_completer = 1
 
 " Javascript edits
 let g:tern_show_argument_hints = 'on_move'
-let g:show_signature_in_pum = 1
+let g:tern_show_signature_in_pum = 1
 
 augroup javascript_complete
   autocmd!
