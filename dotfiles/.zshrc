@@ -285,7 +285,6 @@ function spectrum_bls() {
 
 # }}}
 # Miscellaneous {{{
-alias please='sudo' # for the lols
 setopt interactivecomments # recognizes comments
 
 # }}}
@@ -397,11 +396,6 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[cyan]%}) %{$fg_bold[green]%}$OKHAND%{$reset_co
 # clean up
 unset FIRE
 unset OKHAND
-
-# }}}
-# Preferred editor {{{
-
-export EDITOR='vim'
 
 # }}}
 # Custom aliases/sources {{{
