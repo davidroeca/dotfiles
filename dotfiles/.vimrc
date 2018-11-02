@@ -153,15 +153,21 @@ augroup jsx_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
 augroup END
+augroup c_inc_recognition
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.c.inc set filetype=c
+augroup END
 augroup marker_folding
   autocmd!
   autocmd Filetype vim setlocal foldmethod=marker
   autocmd Filetype zsh setlocal foldmethod=marker
 augroup END
 
+
 augroup indentation_DR
   autocmd!
   autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd Filetype c setlocal shiftwidth=4 softtabstop=4 tabstop=4
   autocmd Filetype terraform setlocal shiftwidth=4 softtabstop=4 tabstop=4
   autocmd Filetype dot setlocal autoindent cindent
 augroup END
