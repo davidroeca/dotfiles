@@ -65,6 +65,12 @@ then
 fi
 
 
+POETRY_PATH="$HOME/.poetry/bin"
+if [ -d "$POETRY_PATH" ]
+then
+  path_radd $POETRY_PATH
+fi
+
 path_ladd "$HOME/.cargo/bin"
 path_ladd "$HOME/bin" # Personal binary files
 
