@@ -437,6 +437,12 @@ alias -g ........='../../../../../../../'
 alias -g .........='../../../../../../../../'
 
 # }}}
+# Custom completions {{{
+if [ -d ~/.zfunc ]
+then
+  fpath+=~/.zfunc
+fi
+# }}}
 # Run compinit {{{
 compinit
 # }}}
