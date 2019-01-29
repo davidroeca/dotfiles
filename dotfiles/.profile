@@ -50,6 +50,14 @@ then
   eval "$(nodenv init -)"
 fi
 
+GOENV_ROOT="$HOME/.goenv"
+if [ -d "$GOENV_ROOT" ]
+then
+  export GOENV_ROOT
+  path_radd "$GOENV_ROOT/bin"
+  eval "$(goenv init -)"
+fi
+
 SDKMAN_DIR="$HOME/.sdkman"
 if [ -d "$SDKMAN_DIR" ]
 then
@@ -73,5 +81,11 @@ fi
 
 path_ladd "$HOME/.cargo/bin"
 path_ladd "$HOME/bin" # Personal binary files
+
+GOPATH="$HOME/go"
+if [ -d $GOPATH ]
+then
+  export GOPATH
+fi
 
 export PATH
