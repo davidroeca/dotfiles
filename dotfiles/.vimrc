@@ -195,6 +195,8 @@ augroup END
 " }}}
 " Plugin settings ----------------- {{{
 let g:vim_markdown_folding_disabled=1
+" silence the cwd
+let g:rooter_silent_chdir = 1
 " }}}
 " NERDTree {{{
 let g:NERDTreeMapOpenInTab = '<C-t>'
