@@ -1,13 +1,3 @@
-if [ -z $DR_PROFILE_SOURCED ]
-then
-  # profile hasn't been sourced; prevent this from happening twice
-  export DR_PROFILE_SOURCED='1'
-else
-  # a second call to "source" just exits
-  return
-fi
-
-
 path_ladd() {
   # Takes 1 argument and adds it to the beginning of the PATH
   if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then

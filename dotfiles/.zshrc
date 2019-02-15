@@ -28,7 +28,7 @@ then
   zplug "lib/completion", from:oh-my-zsh
   # Hitting up arrow key gives most recent hist command
   zplug "lib/key-bindings", from:oh-my-zsh
-  zplug "plugins/history", from:oh-my-zsh
+  zplug "lib/history", from:oh-my-zsh
   zplug "mafredri/zsh-async", from:github
   zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
   if zplug check || zplug install
@@ -37,6 +37,9 @@ then
   fi
 fi
 
+# }}}
+# History settings {{{
+setopt append_history
 # }}}
 # ls settings {{{
 if [[ "$OSTYPE" == darwin* ]]
