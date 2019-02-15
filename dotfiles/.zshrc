@@ -20,7 +20,6 @@ unsetopt correct_all
 # }}}
 # Modify fpath to autoload custom functions {{{
 autoload -U compinit
-
 #}}}
 # Set up history prompts {{{
 if [ -z "$HISTFILE" ]; then
@@ -384,7 +383,6 @@ NEWLINE=$'\n'
 FIRE="🔥"
 OKHAND="👌"
 ARROWS="🢚🢚🢚"
-#ARROWS="➤➤➤"
 
 PROMPT='%{$fg_bold[green]%}%n@%m% %{$fg_bold[green]%}%p %{$fg[blue]%}%~ %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%}$NEWLINE$ARROWS%{$fg_bold[blue]%} % %{$reset_color%}'
 
@@ -396,6 +394,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[cyan]%}) %{$fg_bold[green]%}$OKHAND%{$reset_co
 # clean up
 unset FIRE
 unset OKHAND
+unset ARROWS
 
 # }}}
 # Custom aliases/sources {{{
