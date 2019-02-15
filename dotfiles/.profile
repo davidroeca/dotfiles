@@ -1,3 +1,13 @@
+if [ -z $DR_PROFILE_SOURCED ]
+then
+  # profile hasn't been sourced; prevent this from happening twice
+  export DR_PROFILE_SOURCED='1'
+else
+  # a second call to "source" just exits
+  return
+fi
+
+
 path_ladd() {
   # Takes 1 argument and adds it to the beginning of the PATH
   if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
@@ -86,6 +96,12 @@ GOPATH="$HOME/go"
 if [ -d $GOPATH ]
 then
   export GOPATH
+fi
+
+ZPLUG_HOME="$HOME/.zplug"
+if [ -d $ZPLUG_HOME ]
+then
+  export ZPLUG_HOME
 fi
 
 export PATH
