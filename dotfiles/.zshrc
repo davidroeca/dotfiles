@@ -20,9 +20,10 @@ setopt interactivecomments
 setopt auto_cd
 # }}}
 # plugins {{{
-if [ ! -z ~/.zplug ]
+export ZPLUG_HOME="$HOME/.zplug"
+if [ -f $ZPLUG_HOME/init.zsh ]
 then
-  source ~/.zplug/init.zsh
+  source $ZPLUG_HOME/init.zsh
   zplug "lib/clipboard", from:oh-my-zsh
   # Handle completion from oh-my-zsh
   zplug "lib/completion", from:oh-my-zsh
@@ -59,9 +60,7 @@ fi
 include () {
   [[ -f "$1" ]] && source "$1"
 }
-
 include ~/.shrc_local
-
 # }}}
 # Custom aliases/sources {{{
 

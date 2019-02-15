@@ -88,10 +88,4 @@ then
   export GOPATH
 fi
 
-ZPLUG_HOME="$HOME/.zplug"
-if [ -d $ZPLUG_HOME ]
-then
-  export ZPLUG_HOME
-fi
-
 export PATH
