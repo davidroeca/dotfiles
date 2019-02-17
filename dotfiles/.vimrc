@@ -1,30 +1,4 @@
 filetype plugin indent on
- "Non-Plugin Personal Customization {{{
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab " tabs are spaces
-set ruler " shows line and column number
-set showcmd " show previous command
-set cursorline  " highlights current line
-set incsearch " search as characters are entered
-set hlsearch " highlight matches
-set virtualedit=onemore " gives you access to one more space on a line
-set wildmenu " allows graphical cycling through command options
-set lazyredraw " redraw screen only when necessary
-set showmatch " highlight matching [{()}]
-set number " show line number
-let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
-let mapleader="," " change command leader from \ to ,
-" Powerline
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
-set laststatus=2
-" easygrep
-set grepprg=git\ grep\ -n\ $*
-set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
-" For rust-racer
-set hidden
-" }}}
 " Vim-Plug {{{
 call plug#begin()
 Plug 'NLKNguyen/papercolor-theme' " color scheme
@@ -135,66 +109,18 @@ colorscheme PaperColor
 "let g:rehash256 = 1
 "colorscheme molokai
 " }}}
- "Filetype-specific settings {{{
-
- " Terraform globals
+" Vim terraform {{{
 let g:terraform_align = 1
-
- " JS globals
+" }}}
+" Vim JS {{{
 let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'jquery,requirejs,react'
 let g:jsx_ext_required = 0
-
-augroup js_recognition
-  autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.gs set filetype=javascript
-augroup END
-augroup jsx_recognition
-  autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
-augroup END
-augroup c_inc_recognition
-  autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.c.inc set filetype=c
-augroup END
-augroup marker_folding
-  autocmd!
-  autocmd Filetype vim setlocal foldmethod=marker
-  autocmd Filetype zsh setlocal foldmethod=marker
-augroup END
-
-
-augroup indentation_DR
-  autocmd!
-  autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
-  autocmd Filetype c setlocal shiftwidth=4 softtabstop=4 tabstop=4
-  autocmd Filetype terraform setlocal shiftwidth=4 softtabstop=4 tabstop=4
-  autocmd Filetype dot setlocal autoindent cindent
-augroup END
-
-augroup hive_files
-  autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.hql set filetype=hive expandtab
-  autocmd BufNewFile,BufFilePre,BufRead *.q set filetype=hive expandtab
-augroup END
-
-augroup md_markdown
-  autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-augroup END
-
-augroup md_less
-  autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.less set filetype=less
-augroup END
-
-augroup fix_whitespace_save
-  let blacklist = ['markdown', 'markdown.pandoc']
-  autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
-augroup END
 " }}}
-" Plugin settings ----------------- {{{
+" Vim Markdown ----------------- {{{
 let g:vim_markdown_folding_disabled=1
+" }}}
+" Vim Rooter {{{
 " silence the cwd
 let g:rooter_silent_chdir = 1
 " }}}
@@ -248,6 +174,87 @@ let g:EasyGrepPerlStyle = 1
 " }}}
 " eregex {{{
 let g:eregex_default_enable = 0
+" }}}
+ "Non-Plugin Personal Customization {{{
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab " tabs are spaces
+set ruler " shows line and column number
+set showcmd " show previous command
+set cursorline  " highlights current line
+set incsearch " search as characters are entered
+set hlsearch " highlight matches
+set virtualedit=onemore " gives you access to one more space on a line
+set wildmenu " allows graphical cycling through command options
+set lazyredraw " redraw screen only when necessary
+set showmatch " highlight matching [{()}]
+
+" Combining these two commands sets number for current line and rnu for the
+" rest
+set number " show line number
+set relativenumber " show relative numbers
+
+let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
+let mapleader="," " change command leader from \ to ,
+" Powerline
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+set laststatus=2
+" easygrep
+set grepprg=git\ grep\ -n\ $*
+set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
+" For rust-racer
+set hidden
+" }}}
+ "Filetype-specific settings {{{
+
+augroup js_recognition
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.gs set filetype=javascript
+augroup END
+augroup jsx_recognition
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+augroup c_inc_recognition
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.c.inc set filetype=c
+augroup END
+augroup marker_folding
+  autocmd!
+  autocmd Filetype vim setlocal foldmethod=marker
+  autocmd Filetype zsh setlocal foldmethod=marker
+augroup END
+
+
+augroup indentation_DR
+  autocmd!
+  autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd Filetype c setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd Filetype terraform setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd Filetype dot setlocal autoindent cindent
+augroup END
+
+augroup hive_files
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.hql set filetype=hive expandtab
+  autocmd BufNewFile,BufFilePre,BufRead *.q set filetype=hive expandtab
+augroup END
+
+augroup md_markdown
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+
+augroup md_less
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.less set filetype=less
+augroup END
+
+augroup fix_whitespace_save
+  let blacklist = ['markdown', 'markdown.pandoc']
+  autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
+augroup END
 " }}}
 " Pre-startup commands {{{
 function! StartUp()
