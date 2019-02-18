@@ -36,6 +36,12 @@ then
   then
     zplug load
   fi
+else
+  echo "------------------------------------------------------------"
+  echo "Please install zplug with the following command:"
+  echo ""
+  echo "git clone https://github.com/zplug/zplug ${ZPLUG_HOME}"
+  echo "------------------------------------------------------------"
 fi
 
 # }}}
