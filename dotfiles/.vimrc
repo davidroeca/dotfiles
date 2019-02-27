@@ -3,7 +3,7 @@ filetype plugin indent on
 call plug#begin()
 Plug 'NLKNguyen/papercolor-theme' " color scheme
 "Plug 'tomasr/molokai'
-Plug 'powerline/powerline' " Airline replacement
+Plug 'itchyny/lightline.vim' " Airline/Powerline replacement
 Plug 'rust-lang/rust.vim' " Rust highlights
 Plug 'derekwyatt/vim-scala' " Scala highlights
 Plug 'cespare/vim-toml'
@@ -116,6 +116,11 @@ colorscheme PaperColor
 "let g:molokai_original = 1
 "let g:rehash256 = 1
 "colorscheme molokai
+" }}}
+" lightline config {{{
+let g:lightline = {
+  \ 'colorscheme': 'PaperColor'
+  \ }
 " }}}
 " Vim terraform {{{
 let g:terraform_align = 1
