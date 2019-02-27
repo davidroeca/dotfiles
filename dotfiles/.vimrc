@@ -22,7 +22,7 @@ Plug 'hdima/python-syntax' " Python highlight improvements
 Plug 'hynek/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
 Plug 'jparise/vim-graphql' " graphql highlights
 Plug 'groenewege/vim-less'
 Plug 'othree/javascript-libraries-syntax.vim'
@@ -95,12 +95,20 @@ syntax enable
 set t_Co=256 " sets color count for terminal
 set background=dark
 let g:PaperColor_Theme_Options = {
-      \ 'language': {
-      \   'python': {
-      \     'highlight_builtins': 1
-      \    }
-      \  }
-      \ }
+  \ 'theme': {
+  \   'default.dark': {
+  \     'override': {
+  \       'color00': ['#000a1c', ''],
+  \       'linenumber_bg': ['#000a1c', ''],
+  \     }
+  \   }
+  \ },
+  \ 'language': {
+  \   'python': {
+  \     'highlight_builtins': 1
+  \    }
+  \  }
+  \ }
 
 colorscheme PaperColor
 
@@ -115,7 +123,8 @@ let g:terraform_align = 1
 " Vim JS {{{
 let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'jquery,requirejs,react'
-let g:jsx_ext_required = 0
+" Used for vim-jsx-prettier
+let g:vim_jsx_pretty_colorful_config = 1
 " }}}
 " Vim Markdown ----------------- {{{
 let g:vim_markdown_folding_disabled=1
