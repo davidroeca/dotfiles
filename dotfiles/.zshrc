@@ -67,6 +67,7 @@ include () {
   [[ -f "$1" ]] && source "$1"
 }
 include ~/.shrc_local
+include ~/.profile
 # }}}
 # Custom aliases/sources {{{
 
