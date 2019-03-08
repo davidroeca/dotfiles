@@ -30,6 +30,8 @@ Plug 'airblade/vim-rooter' " roots directory at git repo
 Plug 'scrooloose/nerdtree' " file browsing
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy file search (like find)
 Plug 'dkprice/vim-easygrep' " find/replace across files (like grep/awk)
+Plug 'wincent/ferret' " find/replace
+
 Plug 'othree/eregex.vim' " needed for perl usage
 " Autocompletion installs
 Plug 'davidhalter/jedi-vim' " Python autocompletion
