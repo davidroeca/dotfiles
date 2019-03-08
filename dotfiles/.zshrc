@@ -32,6 +32,7 @@ then
   zplug "lib/history", from:oh-my-zsh
   zplug "mafredri/zsh-async", from:github
   zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+  zplug "docker/compose", use:"contrib/completion/zsh", as:plugin
   if zplug check || zplug install
   then
     zplug load
@@ -102,11 +103,25 @@ alias -g ........='../../../../../../../'
 alias -g .........='../../../../../../../../'
 
 # }}}
-# Custom completions {{{
+# Custom external completions {{{
 if [ -d ~/.zfunc ]
 then
   fpath+=~/.zfunc
 fi
+# }}}
+# custom completions {{{
+
+# Python compiled files
+zstyle ":completion:*" ignored-patterns "(*/)#__pycache__"
+zstyle ":completion:*" ignored-patterns "(*/)#*.pyc"
+
+# JS files
+zstyle ":completion:*" ignored-patterns "(*/)#node_modules"
+
+# Git directories
+zstyle ":completion:*" ignored-patterns "(*/)#.git"
+
+
 # }}}
 # Run compinit {{{
 compinit
