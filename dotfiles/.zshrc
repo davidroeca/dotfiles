@@ -112,15 +112,7 @@ fi
 # custom completions {{{
 
 # Python compiled files
-zstyle ":completion:*" ignored-patterns "(*/)#__pycache__"
-zstyle ":completion:*" ignored-patterns "(*/)#*.pyc"
-
-# JS files
-zstyle ":completion:*" ignored-patterns "(*/)#node_modules"
-
-# Git directories
-zstyle ":completion:*" ignored-patterns "(*/)#.git"
-
+zstyle ":completion:*" ignored-patterns "(*/)#(__pycache__|*.pyc|node_modules|.git)"
 
 # }}}
 # Run compinit {{{

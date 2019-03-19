@@ -24,6 +24,7 @@ Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
 Plug 'jparise/vim-graphql' " graphql highlights
+Plug 'mattn/emmet-vim' " auto-close html and jsx tags
 Plug 'groenewege/vim-less'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'airblade/vim-rooter' " roots directory at git repo
@@ -132,6 +133,12 @@ let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'jquery,requirejs,react'
 " Used for vim-jsx-prettier
 let g:vim_jsx_pretty_colorful_config = 1
+" emmet configuration
+let g:user_emmet_settings = {
+  \ 'javascript': {
+  \   'extends': 'jsx',
+  \ },
+  \}
 " }}}
 " Vim Markdown ----------------- {{{
 let g:vim_markdown_folding_disabled=1
