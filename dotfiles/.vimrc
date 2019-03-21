@@ -92,6 +92,9 @@ nnoremap <silent> <C-c> :pclose <BAR> helpclose<CR>
 inoremap <silent> <C-c> <Esc>:cclose <BAR> lclose<CR>a
 nnoremap <silent> <C-c> :cclose <BAR> lclose<CR>
 
+" Remove highlights after hitting escape
+nnoremap <silent> <Esc> :noh<CR><Esc>
+
 " }}}
 " Colorschemes {{{
 syntax enable
@@ -228,6 +231,8 @@ set grepprg=git\ grep\ -n\ $*
 set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
 " For rust-racer
 set hidden
+" disable swap files until https://github.com/neovim/neovim/issues/8137
+set noswapfile
 " }}}
  "Filetype-specific settings {{{
 
