@@ -145,6 +145,7 @@ let g:user_emmet_settings = {
   \}
 
 "Use locally installed flow
+"See https://github.com/flowtype/vim-flow/issues/24
 let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
 if matchstr(local_flow, "^\/\\w") == ''
     let local_flow= getcwd() . "/" . local_flow
