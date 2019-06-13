@@ -40,6 +40,7 @@ Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
 Plug 'racer-rust/vim-racer' " rust autocompletion
 Plug 'vim-pandoc/vim-pandoc-syntax' " pandoc syntax  highlighting
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " for js
+Plug 'flowtype/vim-flow'
 " Plugins for plantuml
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
@@ -142,6 +143,15 @@ let g:user_emmet_settings = {
   \   'extends': 'jsx',
   \ },
   \}
+
+"Use locally installed flow
+let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
+if matchstr(local_flow, "^\/\\w") == ''
+    let local_flow= getcwd() . "/" . local_flow
+endif
+if executable(local_flow)
+  let g:flow#flowpath = local_flow
+endif
 " }}}
 " Vim Markdown ----------------- {{{
 let g:vim_markdown_folding_disabled=1
