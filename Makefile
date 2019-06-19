@@ -11,6 +11,10 @@ dot_config: $(DOT_CONFIG_DIRS_LINK)
 link_dotfiles: dot_config
 	stow -t ~ -R dotfiles
 
+.PHONY: unlink_dotfiles
+unlink_dotfiles: dot_config
+	stow -t ~ -D dotfiles
+
 # TODO: Find a better way to achieve this; consider ansible
 # TODO: Automate installation of vim-plug https://github.com/junegunn/vim-plug
 #   * For vim
