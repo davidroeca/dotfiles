@@ -12,14 +12,14 @@ Plug 'autowitch/hive.vim'
 Plug 'scrooloose/nerdcommenter' " for quick commenting
 Plug 'hashivim/vim-terraform' " for terraform highlights
 Plug 'pearofducks/ansible-vim' " Ansible highlights
-"Plug 'godlygeek/tabular' " needed for vim-markdown
-"Plug 'plasticboy/vim-markdown'
+Plug 'godlygeek/tabular' " needed for vim-markdown
+Plug 'plasticboy/vim-markdown'
 Plug 'martinda/Jenkinsfile-vim-syntax' " For jenkinsfiles
 Plug 'vim-scripts/groovyindent-unix' " For groovy indentation
 
 Plug 'ekalinin/Dockerfile.vim' " docker highlights
-Plug 'hdima/python-syntax' " Python highlight improvements
-Plug 'hynek/vim-python-pep8-indent' " For python
+Plug 'vim-python/python-syntax' " Python highlight improvements
+Plug 'Vimjas/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
@@ -33,12 +33,13 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy file search (like find)
 Plug 'dkprice/vim-easygrep' " find/replace across files (like grep/awk)
 Plug 'wincent/ferret' " find/replace
 
+Plug 'pappasam/vim-filetype-formatter' " running code formatters
+
 Plug 'othree/eregex.vim' " needed for perl usage
 " Autocompletion installs
 Plug 'davidhalter/jedi-vim' " Python autocompletion
 Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
 Plug 'racer-rust/vim-racer' " rust autocompletion
-Plug 'vim-pandoc/vim-pandoc-syntax' " pandoc syntax  highlighting
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " for js
 Plug 'flowtype/vim-flow'
 " Plugins for plantuml
@@ -153,6 +154,10 @@ endif
 if executable(local_flow)
   let g:flow#flowpath = local_flow
 endif
+" }}}
+" Vim Python {{{
+let g:python_highlight_space_errors = 0
+let g:python_highlight_all = 1
 " }}}
 " Vim Markdown ----------------- {{{
 let g:vim_markdown_folding_disabled=1
@@ -282,7 +287,7 @@ augroup END
 
 augroup md_markdown
   autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 augroup END
 
 augroup md_less
