@@ -1,6 +1,0 @@
-# User-specific anacrontab
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-# period  delay  job-identifier  command
-1 1 cron.daily run-parts --report /home/david/.anacron/daily
