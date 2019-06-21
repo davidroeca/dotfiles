@@ -37,11 +37,17 @@ Plug 'pappasam/vim-filetype-formatter' " running code formatters
 
 Plug 'othree/eregex.vim' " needed for perl usage
 " Autocompletion installs
-Plug 'davidhalter/jedi-vim' " Python autocompletion
+"Plug 'davidhalter/jedi-vim' " Python autocompletion
 Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
 Plug 'racer-rust/vim-racer' " rust autocompletion
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " for js
-Plug 'flowtype/vim-flow'
+"Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " for js
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 " Plugins for plantuml
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
@@ -78,25 +84,6 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 vnoremap <expr> // 'y/\V'.escape(@",'\').'<CR>'
-" }}}
-" Key Remappings {{{
-nnoremap tn :tabnext<CR>
-nnoremap tp :tabprev<CR>
-nnoremap tc :tabnew<CR>
-nnoremap td :tabclose<CR>
-" Omnicompletion
-" <C-@> actually means ctrl+space
-inoremap <C-@> <C-x><C-o>
-" Needed for neovim
-inoremap <C-space> <C-x><C-o>
-inoremap <silent> <C-c> <Esc>:pclose <BAR> helpclose<CR>a
-nnoremap <silent> <C-c> :pclose <BAR> helpclose<CR>
-inoremap <silent> <C-c> <Esc>:cclose <BAR> lclose<CR>a
-nnoremap <silent> <C-c> :cclose <BAR> lclose<CR>
-
-" Remove highlights after hitting escape
-nnoremap <silent> <Esc> :noh<CR><Esc>
-
 " }}}
 " Colorschemes {{{
 syntax enable
@@ -145,15 +132,6 @@ let g:user_emmet_settings = {
   \ },
   \}
 
-"Use locally installed flow
-"See https://github.com/flowtype/vim-flow/issues/24
-let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
-if matchstr(local_flow, "^\/\\w") == ''
-    let local_flow= getcwd() . "/" . local_flow
-endif
-if executable(local_flow)
-  let g:flow#flowpath = local_flow
-endif
 " }}}
 " Vim Python {{{
 let g:python_highlight_space_errors = 0
@@ -188,26 +166,69 @@ let g:ctrlp_use_caching = 0
 " Auto-completion configuration {{{
 " Remapping - defenition jump = <C-]>
 " Return - <C-o>
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = 0
-"let g:jedi#auto_close_doc = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#goto_command = "<C-]>"
-"let g:jedi#virtualenv_auto_activate = 1
+"let g:jedi#smart_auto_mappings = 0
+"let g:jedi#popup_on_dot = 0
+"let g:jedi#show_call_signatures = 0
+"let g:jedi#auto_vim_configuration = 0
+"let g:jedi#goto_command = "<C-]>"
 " Rust/Racer config
 let g:racer_cmd = "~/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 
 " Javascript edits
-let g:tern_show_signature_in_pum = 1
-" Currently commented out; slows down large codebases
-"let g:tern_show_argument_hints = 'on_move'
+"let g:tern_show_signature_in_pum = 1
 
-augroup javascript_complete
-  autocmd!
-  autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
+"augroup javascript_complete
+  "autocmd!
+  "autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
+"augroup END
+" }}}
+" Language Server Configuration {{{
+" deoplete will asynchronously add autocompletion popups
+" TODO: it's mildly annoying but the only thing that works with flow lsp
+let g:deoplete#enable_at_startup = 1
+let g:LanguageClient_serverCommands = {
+      \ 'python': ['pyls'],
+      \ 'javascript': ['flow', 'lsp'],
+      \ 'javascript.jsx': ['flow', 'lsp'],
+      \ }
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_hoverPreview = 'Auto'
+let g:LanguageClient_diagnosticsEnable = 0
+
+function! ConfigureLanguageClient()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <buffer> <C-]> :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> <leader>sd :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <buffer> <leader>sr :call LanguageClient#textDocument_rename()<CR>
+    nnoremap <buffer> <leader>su :call LanguageClient#textDocument_references()<CR><Paste>
+    setlocal omnifunc=LanguageClient#complete
+  endif
+endfunction
+
+augroup language_servers
+  autocmd FileType * call ConfigureLanguageClient()
 augroup END
+
+" }}}
+" Key Remappings {{{
+nnoremap tn :tabnext<CR>
+nnoremap tp :tabprev<CR>
+nnoremap tc :tabnew<CR>
+nnoremap td :tabclose<CR>
+" Omnicompletion
+" <C-@> actually means ctrl+space
+inoremap <C-@> <C-x><C-o>
+" Needed for neovim
+inoremap <C-space> <C-x><C-o>
+inoremap <silent> <C-c> <Esc>:pclose <BAR> helpclose<CR>a
+nnoremap <silent> <C-c> :pclose <BAR> helpclose<CR>
+inoremap <silent> <C-c> <Esc>:cclose <BAR> lclose<CR>a
+nnoremap <silent> <C-c> :cclose <BAR> lclose<CR>
+
+" Remove highlights after hitting escape
+nnoremap <silent> <Esc> :noh<CR><Esc>
+
 " }}}
 " easy grep {{{
 let g:EasyGrepCommand = 1 " use grep, NOT vimgrep
