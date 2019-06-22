@@ -33,8 +33,6 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy file search (like find)
 Plug 'dkprice/vim-easygrep' " find/replace across files (like grep/awk)
 Plug 'wincent/ferret' " find/replace
 
-Plug 'pappasam/vim-filetype-formatter' " running code formatters
-
 Plug 'othree/eregex.vim' " needed for perl usage
 " Autocompletion installs
 "Plug 'davidhalter/jedi-vim' " Python autocompletion
@@ -42,11 +40,14 @@ Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
 Plug 'racer-rust/vim-racer' " rust autocompletion
 "Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " for js
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+if has('nvim')
+  Plug 'pappasam/vim-filetype-formatter' " running code formatters
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
+endif
 
 " Plugins for plantuml
 Plug 'aklt/plantuml-syntax'
@@ -320,9 +321,4 @@ augroup fix_whitespace_save
   let blacklist = ['markdown', 'markdown.pandoc']
   autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
 augroup END
-" }}}
-" Pre-startup commands {{{
-function! StartUp()
-endfunction
-autocmd VimEnter * call StartUp()
 " }}}
