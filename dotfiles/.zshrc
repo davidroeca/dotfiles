@@ -186,6 +186,7 @@ include () {
   [[ -f "$1" ]] && source "$1"
 }
 include ~/.shrc_local
+include ~/.bash/sensitive
 # }}}
 # Custom aliases/sources {{{
 
