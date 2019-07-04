@@ -150,7 +150,7 @@ then
   zplug "lib/history", from:oh-my-zsh
   zplug "mafredri/zsh-async", from:github
   zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-  zplug "zsh-users/zsh-syntax-highlighting", use:zsh-syntax-highlighting.plugin.zsh, from:github
+  zplug "zsh-users/zsh-syntax-highlighting", defer:2
   zplug "docker/compose", use:"contrib/completion/zsh", as:plugin
   if zplug check || zplug install
   then
