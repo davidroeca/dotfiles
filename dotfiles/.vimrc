@@ -192,6 +192,7 @@ let g:LanguageClient_serverCommands = {
       \ 'python': ['pyls'],
       \ 'javascript': ['flow', 'lsp'],
       \ 'javascript.jsx': ['flow', 'lsp'],
+      \ 'html': ['svelteserver'],
       \ }
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_hoverPreview = 'Auto'
