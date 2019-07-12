@@ -278,6 +278,10 @@ augroup js_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.gs set filetype=javascript
 augroup END
+augroup svelte
+  autocmd!
+  autocmd BufNewFile,BufFilePre,BufRead *.svelte set filetype=html
+augroup END
 augroup jsx_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
