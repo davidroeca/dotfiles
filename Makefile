@@ -15,6 +15,26 @@ link_dotfiles: dot_config
 unlink_dotfiles: dot_config
 	stow -t ~ -D dotfiles
 
+
+~/.nodenv:
+	git clone https://github.com/nodenv/nodenv
+	git clone https://github.com/nodenv/node-build.git ~/.nodenv/plugins/node-build
+
+~/.pyenv:
+	git clone https://github.com/pyenv/pyenv ~/.pyenv
+
+# TODO: make sure this command works appropriately
+# Also check that these versions are the latest that you want
+.PHONY: init_envs
+init_envs: ~/.nodenv ~/.pyenv
+	source ~/.zshrc
+	nodenv install 12.4.0
+	nodenv global 12.4.0
+	pyenv install 3.7.3
+	pyenv global 3.7.3 system
+
+
+
 # TODO: Find a better way to achieve this; consider ansible
 # TODO: Automate installation of vim-plug https://github.com/junegunn/vim-plug
 #   * For vim
