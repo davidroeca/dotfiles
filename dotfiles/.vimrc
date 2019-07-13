@@ -23,6 +23,7 @@ Plug 'Vimjas/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
+Plug 'evanleck/vim-svelte' "svelte highlights
 Plug 'tpope/vim-ragtag' " html tag management
 Plug 'jparise/vim-graphql' " graphql highlights
 Plug 'groenewege/vim-less'
@@ -197,7 +198,7 @@ let g:LanguageClient_serverCommands = {
       \ 'python': ['pyls'],
       \ 'javascript': ['flow', 'lsp'],
       \ 'javascript.jsx': ['flow', 'lsp'],
-      \ 'html': ['svelteserver'],
+      \ 'svelte': ['svelteserver'],
       \ }
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_hoverPreview = 'Auto'
@@ -284,10 +285,6 @@ augroup js_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.gs set filetype=javascript
 augroup END
-augroup svelte
-  autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.svelte set filetype=html
-augroup END
 augroup jsx_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
@@ -324,8 +321,6 @@ augroup indentation_DR
   autocmd Filetype c setlocal shiftwidth=4 softtabstop=4 tabstop=4
   autocmd Filetype terraform setlocal shiftwidth=4 softtabstop=4 tabstop=4
   autocmd Filetype dot setlocal autoindent cindent
-  " indentkeys helpful for svelte files
-  autocmd Filetype html setlocal autoindent nolisp nosmartindent indentkeys+=0],0)
 augroup END
 
 augroup fix_whitespace_save
