@@ -324,6 +324,7 @@ augroup indentation_DR
   autocmd Filetype c setlocal shiftwidth=4 softtabstop=4 tabstop=4
   autocmd Filetype terraform setlocal shiftwidth=4 softtabstop=4 tabstop=4
   autocmd Filetype dot setlocal autoindent cindent
+  " indentkeys helpful for svelte files
   autocmd Filetype html setlocal autoindent nolisp nosmartindent indentkeys+=0],0)
 augroup END
 
