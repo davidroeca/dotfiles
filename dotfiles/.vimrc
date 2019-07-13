@@ -167,6 +167,7 @@ let g:ragtag_global_maps = 1
 " Additional files for whice ragtag will initialize
 augroup ragtag_config
   autocmd FileType javascript call RagtagInit()
+  autocmd FileType svelte call RagtagInit()
 augroup end
 
 " }}}
