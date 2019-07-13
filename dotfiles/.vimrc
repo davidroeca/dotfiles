@@ -23,8 +23,8 @@ Plug 'Vimjas/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
+Plug 'tpope/vim-ragtag' " html tag management
 Plug 'jparise/vim-graphql' " graphql highlights
-Plug 'mattn/emmet-vim' " auto-close html and jsx tags
 Plug 'groenewege/vim-less'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'airblade/vim-rooter' " roots directory at git repo
@@ -126,12 +126,6 @@ let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'jquery,requirejs,react'
 " Used for vim-jsx-prettier
 let g:vim_jsx_pretty_colorful_config = 1
-" emmet configuration
-let g:user_emmet_settings = {
-  \ 'javascript': {
-  \   'extends': 'jsx',
-  \ },
-  \}
 
 " }}}
 " Vim Python {{{
@@ -163,6 +157,17 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " open first in current window and others as hidden
 let g:ctrlp_open_multiple_files = '1r'
 let g:ctrlp_use_caching = 0
+" }}}
+" Ragtag {{{
+
+" Load mappings on every filetype
+let g:ragtag_global_maps = 1
+
+" Additional files for whice ragtag will initialize
+augroup ragtag_config
+  autocmd FileType javascript call RagtagInit()
+augroup end
+
 " }}}
 " Auto-completion configuration {{{
 " Remapping - defenition jump = <C-]>
@@ -291,21 +296,6 @@ augroup c_inc_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.c.inc set filetype=c
 augroup END
-augroup marker_folding
-  autocmd!
-  autocmd Filetype vim setlocal foldmethod=marker
-  autocmd Filetype zsh setlocal foldmethod=marker
-augroup END
-
-
-augroup indentation_DR
-  autocmd!
-  autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
-  autocmd Filetype c setlocal shiftwidth=4 softtabstop=4 tabstop=4
-  autocmd Filetype terraform setlocal shiftwidth=4 softtabstop=4 tabstop=4
-  autocmd Filetype dot setlocal autoindent cindent
-augroup END
-
 augroup hive_files
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.hql set filetype=hive expandtab
@@ -320,6 +310,21 @@ augroup END
 augroup md_less
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.less set filetype=less
+augroup END
+
+augroup marker_folding
+  autocmd!
+  autocmd Filetype vim setlocal foldmethod=marker
+  autocmd Filetype zsh setlocal foldmethod=marker
+augroup END
+
+augroup indentation_DR
+  autocmd!
+  autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd Filetype c setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd Filetype terraform setlocal shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd Filetype dot setlocal autoindent cindent
+  autocmd Filetype html setlocal autoindent nolisp nosmartindent indentkeys+=0],0)
 augroup END
 
 augroup fix_whitespace_save
