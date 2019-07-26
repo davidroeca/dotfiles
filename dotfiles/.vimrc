@@ -33,6 +33,9 @@ Plug 'scrooloose/nerdtree' " file browsing
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy file search (like find)
 Plug 'dkprice/vim-easygrep' " find/replace across files (like grep/awk)
 Plug 'wincent/ferret' " find/replace
+" tbone vs slime
+Plug 'tpope/vim-tbone'
+Plug 'jpalardy/vim-slime'
 
 Plug 'othree/eregex.vim' " needed for perl usage
 " Autocompletion installs
@@ -171,6 +174,11 @@ augroup ragtag_config
 augroup end
 
 " }}}
+" Slime {{{
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+" }}}
 " Auto-completion configuration {{{
 " Remapping - defenition jump = <C-]>
 " Return - <C-o>
@@ -210,7 +218,7 @@ function! ConfigureLanguageClient()
     nnoremap <buffer> <C-]> :call LanguageClient#textDocument_definition()<CR>
     nnoremap <buffer> <leader>sd :call LanguageClient#textDocument_hover()<CR>
     nnoremap <buffer> <leader>sr :call LanguageClient#textDocument_rename()<CR>
-    nnoremap <buffer> <leader>su :call LanguageClient#textDocument_references()<CR><Paste>
+    nnoremap <buffer> <leader>su :call LanguageClient#textDocument_references()<CR>
     setlocal omnifunc=LanguageClient#complete
   endif
 endfunction
