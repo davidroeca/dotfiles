@@ -40,7 +40,9 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		libncurses5-dev \
 		libncursesw5-dev \
 		liblzma-dev \
-		zlib1g-dev
+		zlib1g-dev \
+		snapd
+	snap install chromium spotify
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
