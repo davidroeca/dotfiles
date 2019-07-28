@@ -6,10 +6,12 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) |  \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+# TODO: sysfiles firefox.pref for correct firefox beta installation
 .PHONY: linux-bootstrap
 linux-bootstrap: ## Installs a bunch of utilized system dependencies
 	sudo add-apt-repository -y ppa:neovim-ppa/unstable
 	sudo add-apt-repository -y ppa:mmstick76/alacritty
+	sudo add-apt-repository -y ppa:mozillateam/firefox-next
 	sudo apt update
 	sudo apt install -y \
 		git \
@@ -95,6 +97,14 @@ node-packages: ## installs node packages that are leveraged often
 .PHONY: neovim-pluginstall
 neovim-pluginstall: ## installs neovim plugins in headless mode
 	nvim --headless +PlugInstall +qa!
+
+.PHONY: rust-dependencies
+rust-dependencies: ## Installs rust dependencies--requires rustup
+	rustup toolchain add nightly
+	rustup component add rust-src
+	cargo install \
+		racer \
+		ripgrep
 
 .PHONY: setup-all
 setup-all: linux-bootstrap remove-existing-dotfiles link-dotfiles init-envs python-packages node-packages neovim-pluginstall ## sets up entire system

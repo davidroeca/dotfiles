@@ -1,0 +1,7 @@
+Package: firefox
+Pin: origin ppa.launchpad.net
+Pin-Priority: 900
+
+Package: firefox
+Pin: release o=Ubuntu
+Pin-Priority: 900
