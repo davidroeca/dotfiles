@@ -8,17 +8,21 @@ help:
 
 .PHONY: linux-bootstrap
 linux-bootstrap: ## Installs a bunch of utilized system dependencies
-	add-apt-repository ppa:neovim-ppa/unstable && \
-	apt install \
+	sudo add-apt-repository ppa:neovim-ppa/unstable
+	sudo add-apt-repository ppa:mmstick76/alacritty
+	sudo apt update
+	sudo apt install \
 		git \
 		curl \
 		nvim \
+		zsh \
 		stow \
 		gtk-redshift \
 		htop \
 		tree \
 		graphviz \
 		tmux \
+		alacritty \
 		build-essential \
 		python3-dev \
 		python3-venv
@@ -69,8 +73,11 @@ node-packages: ## installs node packages that are leveraged often
 neovim-pluginstall: ## installs neovim plugins in headless mode
 	nvim --headless +PlugInstall +qa!
 
-.PHONY: full-setup
-full-setup: linux-bootstrap link-dotfiles init-envs python-packages node-packages neovim-pluginstall ## sets up entire system
+.PHONY: setup-all
+setup-all: linux-bootstrap link-dotfiles init-envs python-packages node-packages neovim-pluginstall ## sets up entire system
+	echo "switching default shell to $(shell which zsh)"
+	sudo chsh -s $(shell which zsh) $(USER)
 	echo "Make sure to manually install rustup (todo...)"
 	echo "Make sure to manually install racer with cargo `cargo install racer` (todo...)"
 	echo "Make sure to manually install poetry (todo...)"
+	echo "Now switch your default terminal to 'alacritty' and open a new terminal"
