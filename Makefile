@@ -66,7 +66,7 @@ node-packages: ## installs node packages that are leveraged often
 		create-react-app
 
 .PHONY: neovim-pluginstall
-neovim-pluginstall: # installs neovim plugins in headless mode
+neovim-pluginstall: ## installs neovim plugins in headless mode
 	nvim --headless +PlugInstall +qa!
 
 .PHONY: full-setup
