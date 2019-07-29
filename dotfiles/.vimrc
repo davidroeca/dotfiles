@@ -68,10 +68,6 @@ Plug 'hashivim/vim-vagrant'
 call plug#end()
 " }}}
 " Command aliases {{{
-cabbrev bt tab sb
-cabbrev bv vert sb
-cabbrev bs sbuffer
-
 " move tab to number
 cabbrev t tabn
 "  close help menu
@@ -111,11 +107,6 @@ let g:PaperColor_Theme_Options = {
   \ }
 
 colorscheme PaperColor
-
-" Old molokai stuff
-"let g:molokai_original = 1
-"let g:rehash256 = 1
-"colorscheme molokai
 " }}}
 " lightline config {{{
 let g:lightline = {
@@ -169,6 +160,7 @@ let g:ragtag_global_maps = 1
 
 " Additional files for whice ragtag will initialize
 augroup ragtag_config
+  autocmd!
   autocmd FileType javascript call RagtagInit()
   autocmd FileType svelte call RagtagInit()
 augroup end
@@ -182,22 +174,9 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-o
 " Auto-completion configuration {{{
 " Remapping - defenition jump = <C-]>
 " Return - <C-o>
-"let g:jedi#smart_auto_mappings = 0
-"let g:jedi#popup_on_dot = 0
-"let g:jedi#show_call_signatures = 0
-"let g:jedi#auto_vim_configuration = 0
-"let g:jedi#goto_command = "<C-]>"
 " Rust/Racer config
 let g:racer_cmd = "~/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
-
-" Javascript edits
-"let g:tern_show_signature_in_pum = 1
-
-"augroup javascript_complete
-  "autocmd!
-  "autocmd FileType javascript nnoremap <buffer> <C-]> :TernDef<CR>
-"augroup END
 " }}}
 " Language Server Configuration {{{
 " deoplete will asynchronously add autocompletion popups
@@ -226,25 +205,6 @@ endfunction
 augroup language_servers
   autocmd FileType * call ConfigureLanguageClient()
 augroup END
-
-" }}}
-" Key Remappings {{{
-nnoremap tn :tabnext<CR>
-nnoremap tp :tabprev<CR>
-nnoremap tc :tabnew<CR>
-nnoremap td :tabclose<CR>
-" Omnicompletion
-" <C-@> actually means ctrl+space
-inoremap <C-@> <C-x><C-o>
-" Needed for neovim
-inoremap <C-space> <C-x><C-o>
-inoremap <silent> <C-c> <Esc>:pclose <BAR> helpclose<CR>a
-nnoremap <silent> <C-c> :pclose <BAR> helpclose<CR>
-inoremap <silent> <C-c> <Esc>:cclose <BAR> lclose<CR>a
-nnoremap <silent> <C-c> :cclose <BAR> lclose<CR>
-
-" Remove highlights after hitting escape
-nnoremap <silent> <Esc> :noh<CR><Esc>
 
 " }}}
 " easy grep {{{
@@ -288,6 +248,57 @@ set hidden
 " disable swap files until https://github.com/neovim/neovim/issues/8137
 set noswapfile
 " }}}
+" Key Remappings {{{
+nnoremap tn :tabnext<CR>
+nnoremap tp :tabprev<CR>
+nnoremap tc :tabnew<CR>
+nnoremap td :tabclose<CR>
+" Omnicompletion
+" <C-@> actually means ctrl+space
+inoremap <C-@> <C-x><C-o>
+" Needed for neovim
+inoremap <C-space> <C-x><C-o>
+inoremap <silent> <C-c> <Esc>:pclose <BAR> helpclose<CR>a
+nnoremap <silent> <C-c> :pclose <BAR> helpclose<CR>
+inoremap <silent> <C-c> <Esc>:cclose <BAR> lclose<CR>a
+nnoremap <silent> <C-c> :cclose <BAR> lclose<CR>
+
+" Remove highlights after hitting escape
+nnoremap <silent> <Esc> :noh<CR><Esc>
+
+" Move current line down
+nnoremap <Leader>- ddp
+" Move current line up
+nnoremap <Leader>_ kddpk
+
+" Capitalize current word in insert mode
+inoremap <c-u> <esc>ebgUeea
+
+" Mapping to source vimrc
+nnoremap <Leader>sv :source $MYVIMRC<cr>
+
+" mapping to edit vimrc {{{
+nnoremap <Leader>ev :edit $MYVIMRC<cr>
+
+" Remap H and L to go to beginning and end of line
+nnoremap H 0
+nnoremap L $
+
+" Remove arrow keys
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+nnoremap <Left> <nop>
+nnoremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+vnoremap <Up> <nop>
+vnoremap <Down> <nop>
+vnoremap <Left> <nop>
+vnoremap <Right> <nop>
+
+" }}}
  "Filetype-specific settings {{{
 
 augroup js_recognition
@@ -313,9 +324,16 @@ augroup md_markdown
   autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 augroup END
 
-augroup md_less
+augroup less_filetype
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.less set filetype=less
+augroup END
+
+" Finds headers in markdown and restructured text
+augroup md_rst_header
+  autocmd!
+  autocmd FileType markdown,rst onoremap ih :<c-u>execute "normal! ?^[=-][=-]\\+$\r:nohlsearch\rkvg_"<cr>
+  autocmd FileType markdown,rst onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+$\r:nohlsearch\rg_vk0"<cr>
 augroup END
 
 augroup marker_folding
@@ -333,6 +351,7 @@ augroup indentation_DR
 augroup END
 
 augroup fix_whitespace_save
+  autocmd!
   let blacklist = ['markdown', 'markdown.pandoc']
   autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
 augroup END
