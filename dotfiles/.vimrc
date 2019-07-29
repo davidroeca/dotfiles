@@ -237,6 +237,7 @@ set relativenumber " show relative numbers
 
 let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
 let mapleader="," " change command leader from \ to ,
+let maplocalleader="-" " set local command leader to -
 " Powerline
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 set laststatus=2
