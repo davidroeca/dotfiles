@@ -14,6 +14,8 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 	sudo add-apt-repository -y ppa:mozillateam/firefox-next
 	sudo apt update
 	sudo apt install -y \
+		xclip \
+		xsel \
 		git \
 		curl \
 		neovim \
