@@ -67,11 +67,87 @@ Plug 'hashivim/vim-vagrant'
 " FixWhitespace fixes this
 call plug#end()
 " }}}
-" Command aliases {{{
-" move tab to number
-cabbrev t tabn
-"  close help menu
-cabbrev hc helpclose
+ "Non-Plugin Personal Customization {{{
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab " tabs are spaces
+set ruler " shows line and column number
+set showcmd " show previous command
+set cursorline  " highlights current line
+set incsearch " search as characters are entered
+set hlsearch " highlight matches
+set virtualedit=onemore " gives you access to one more space on a line
+set wildmenu " allows graphical cycling through command options
+set lazyredraw " redraw screen only when necessary
+set showmatch " highlight matching [{()}]
+
+" Combining these two commands sets number for current line and rnu for the
+" rest
+set number " show line number
+set relativenumber " show relative numbers
+
+let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
+let mapleader="," " change command leader from \ to ,
+let maplocalleader="-" " set local command leader to -
+" Powerline
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+set laststatus=2
+" easygrep
+set grepprg=git\ grep\ -n\ $*
+set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
+" For rust-racer
+set hidden
+" disable swap files until https://github.com/neovim/neovim/issues/8137
+set noswapfile
+" }}}
+" Key Remappings {{{
+nnoremap tn :tabnext<CR>
+nnoremap tp :tabprev<CR>
+nnoremap tc :tabnew<CR>
+nnoremap td :tabclose<CR>
+" Omnicompletion
+" <C-@> actually means ctrl+space
+inoremap <C-@> <C-x><C-o>
+" Needed for neovim
+inoremap <C-space> <C-x><C-o>
+inoremap <silent> <C-c> <Esc>:pclose <BAR> helpclose<CR>a
+nnoremap <silent> <C-c> :pclose <BAR> helpclose<CR>
+
+" Remove highlights after hitting escape
+nnoremap <silent> <Esc> :noh<CR><Esc>
+
+" Move current line down
+nnoremap <Leader>- ddp
+" Move current line up
+nnoremap <Leader>_ kddpk
+
+" Capitalize current word in insert mode
+inoremap <c-u> <esc>ebgUeea
+
+" Mapping to source vimrc
+nnoremap <Leader>sv :source $MYVIMRC<cr>
+
+" mapping to edit vimrc {{{
+nnoremap <Leader>ev :edit $MYVIMRC<cr>
+
+" Remap H and L to go to beginning and end of line
+nnoremap H 0
+nnoremap L $
+
+" Remove arrow keys
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+nnoremap <Left> <nop>
+nnoremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+vnoremap <Up> <nop>
+vnoremap <Down> <nop>
+vnoremap <Left> <nop>
+vnoremap <Right> <nop>
 " }}}
 " Selected search {{{
 vnoremap <silent> * :<C-U>
@@ -214,91 +290,6 @@ let g:EasyGrepPerlStyle = 1
 " }}}
 " eregex {{{
 let g:eregex_default_enable = 0
-" }}}
- "Non-Plugin Personal Customization {{{
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab " tabs are spaces
-set ruler " shows line and column number
-set showcmd " show previous command
-set cursorline  " highlights current line
-set incsearch " search as characters are entered
-set hlsearch " highlight matches
-set virtualedit=onemore " gives you access to one more space on a line
-set wildmenu " allows graphical cycling through command options
-set lazyredraw " redraw screen only when necessary
-set showmatch " highlight matching [{()}]
-
-" Combining these two commands sets number for current line and rnu for the
-" rest
-set number " show line number
-set relativenumber " show relative numbers
-
-let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
-let mapleader="," " change command leader from \ to ,
-let maplocalleader="-" " set local command leader to -
-" Powerline
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
-set laststatus=2
-" easygrep
-set grepprg=git\ grep\ -n\ $*
-set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
-" For rust-racer
-set hidden
-" disable swap files until https://github.com/neovim/neovim/issues/8137
-set noswapfile
-" }}}
-" Key Remappings {{{
-nnoremap tn :tabnext<CR>
-nnoremap tp :tabprev<CR>
-nnoremap tc :tabnew<CR>
-nnoremap td :tabclose<CR>
-" Omnicompletion
-" <C-@> actually means ctrl+space
-inoremap <C-@> <C-x><C-o>
-" Needed for neovim
-inoremap <C-space> <C-x><C-o>
-inoremap <silent> <C-c> <Esc>:pclose <BAR> helpclose<CR>a
-nnoremap <silent> <C-c> :pclose <BAR> helpclose<CR>
-inoremap <silent> <C-c> <Esc>:cclose <BAR> lclose<CR>a
-nnoremap <silent> <C-c> :cclose <BAR> lclose<CR>
-
-" Remove highlights after hitting escape
-nnoremap <silent> <Esc> :noh<CR><Esc>
-
-" Move current line down
-nnoremap <Leader>- ddp
-" Move current line up
-nnoremap <Leader>_ kddpk
-
-" Capitalize current word in insert mode
-inoremap <c-u> <esc>ebgUeea
-
-" Mapping to source vimrc
-nnoremap <Leader>sv :source $MYVIMRC<cr>
-
-" mapping to edit vimrc {{{
-nnoremap <Leader>ev :edit $MYVIMRC<cr>
-
-" Remap H and L to go to beginning and end of line
-nnoremap H 0
-nnoremap L $
-
-" Remove arrow keys
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
-nnoremap <Left> <nop>
-nnoremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
-vnoremap <Up> <nop>
-vnoremap <Down> <nop>
-vnoremap <Left> <nop>
-vnoremap <Right> <nop>
-
 " }}}
  "Filetype-specific settings {{{
 
