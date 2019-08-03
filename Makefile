@@ -1,5 +1,7 @@
 DOT_CONFIG_DIRS_REL = $(wildcard dotfiles/.config/*)
 DOT_CONFIG_DIRS_LINK = $(subst dotfiles, ~, $(DOT_CONFIG_DIRS_REL))
+NODE_VERSION = 12.7.0
+PYTHON_VERSION = 3.7.4
 
 .PHONY: help
 help:
@@ -70,14 +72,14 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 ~/.nodenv:
 	git clone https://github.com/nodenv/nodenv ~/.nodenv
 	git clone https://github.com/nodenv/node-build.git ~/.nodenv/plugins/node-build
-	~/.nodenv/bin/nodenv install 12.7.0
-	~/.nodenv/bin/nodenv global 12.7.0
+	~/.nodenv/bin/nodenv install $(NODE_VERSION)
+	~/.nodenv/bin/nodenv global $(NODE_VERSION)
 	eval $(~/.nodenv/bin/nodenv init -)
 
 ~/.pyenv:
 	git clone https://github.com/pyenv/pyenv ~/.pyenv
-	~/.pyenv/bin/pyenv install 3.7.4
-	~/.pyenv/bin/pyenv global 3.7.4 system
+	~/.pyenv/bin/pyenv install $(PYTHON_VERSION)
+	~/.pyenv/bin/pyenv global $(PYTHON_VERSION) system
 	eval $(~/.pyenv/bin/pyenv init -)
 
 ~/.zplug:
