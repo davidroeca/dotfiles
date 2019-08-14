@@ -296,6 +296,7 @@ let g:eregex_default_enable = 0
 augroup js_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.gs set filetype=javascript
+  autocmd BufNewFile,BufFilePre,BufRead *.js.flow set filetype=javascript
 augroup END
 augroup jsx_recognition
   autocmd!
