@@ -44,6 +44,10 @@ Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
 Plug 'racer-rust/vim-racer' " rust autocompletion
 "Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " for js
 
+" For writing
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+
 if has('nvim')
   Plug 'pappasam/vim-filetype-formatter' " running code formatters
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -128,8 +132,11 @@ inoremap <c-u> <esc>ebgUeea
 " Mapping to source vimrc
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
-" mapping to edit vimrc {{{
+" mapping to edit vimrc
 nnoremap <Leader>ev :edit $MYVIMRC<cr>
+
+" mapping to run goyo
+nnoremap <Leader>go :Goyo<cr>:Limelight!!0.8<cr>
 
 " Remap H and L to go to beginning and end of line
 nnoremap H 0
@@ -148,8 +155,8 @@ vnoremap <Up> <nop>
 vnoremap <Down> <nop>
 vnoremap <Left> <nop>
 vnoremap <Right> <nop>
-" }}}
-" Selected search {{{
+
+" Selected search
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R><C-R>=substitute(
