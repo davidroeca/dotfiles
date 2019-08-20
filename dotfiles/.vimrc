@@ -335,7 +335,10 @@ augroup md_rst_header
   autocmd FileType markdown,rst onoremap ih :<c-u>execute "normal! ?^[=-][=-]\\+$\r:nohlsearch\rkvg_"<cr>
   autocmd FileType markdown,rst onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+$\r:nohlsearch\rg_vk0"<cr>
 augroup END
-
+augroup writing
+  autocmd!
+  autocmd FileType markdown,rst,text,gitcommit setlocal wrap linebreak nolist
+augroup END
 augroup marker_folding
   autocmd!
   autocmd Filetype vim setlocal foldmethod=marker
