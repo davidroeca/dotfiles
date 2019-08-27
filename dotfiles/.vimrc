@@ -267,8 +267,8 @@ let g:racer_experimental_completer = 1
 let g:deoplete#enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
       \ 'python': ['pyls'],
-      \ 'javascript': ['flow', 'lsp'],
-      \ 'javascript.jsx': ['flow', 'lsp'],
+      \ 'javascript': ['npx', 'flow', 'lsp'],
+      \ 'javascript.jsx': ['npx', 'flow', 'lsp'],
       \ 'svelte': ['svelteserver'],
       \ }
 let g:LanguageClient_autoStart = 1
