@@ -138,6 +138,9 @@ setup-all: linux-bootstrap remove-existing-dotfiles link-dotfiles init-envs pyth
 	echo "switching default shell to $(shell which zsh)"
 	sudo chsh -s $(shell which zsh) $(USER)
 	echo "Make sure to manually install rustup (todo...)"
-	echo "Make sure to manually install racer with cargo `cargo install racer` (todo...)"
+	echo "Make sure to manually install rust language server;"
+	echo "> rustup component add rls rust-analysis rust-src"
+	echo "Make sure to manually install racer with cargo"
+	echo "> cargo install racer"
 	echo "Make sure to manually install poetry (todo...)"
 	echo "Now switch your default terminal to 'alacritty' and open a new terminal"
