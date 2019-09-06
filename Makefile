@@ -1,7 +1,8 @@
 DOT_CONFIG_DIRS_REL = $(wildcard dotfiles/.config/*)
 DOT_CONFIG_DIRS_LINK = $(subst dotfiles, ~, $(DOT_CONFIG_DIRS_REL))
-NODE_VERSION = 12.7.0
+NODE_VERSION = 12.10.0
 PYTHON_VERSION = 3.7.4
+YARN_VERSION = 1.9.4
 
 .PHONY: help
 help:
@@ -19,7 +20,6 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		xclip \
 		xsel \
 		git \
-		curl \
 		neovim \
 		zsh \
 		stow \
@@ -45,7 +45,19 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		libncursesw5-dev \
 		liblzma-dev \
 		zlib1g-dev \
-		snapd
+		snapd \
+		automake \
+		autoconf \
+		libreadline-dev \
+		libncurses-dev \
+		libssl-dev \
+		libyaml-dev \
+		libxslt-dev \
+		libffi-dev \
+		libtool \
+		unixodbc-dev \
+		unzip \
+		curl
 	snap install chromium spotify
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -69,25 +81,34 @@ link-dotfiles: dot_config ## links dotfiles to home directory via stow
 unlink-dotfiles: dot_config ## removes stow-managed sym links
 	stow -t ~ -D dotfiles
 
-~/.nodenv:
-	git clone https://github.com/nodenv/nodenv ~/.nodenv
-	git clone https://github.com/nodenv/node-build.git ~/.nodenv/plugins/node-build
-	~/.nodenv/bin/nodenv install $(NODE_VERSION)
-	~/.nodenv/bin/nodenv global $(NODE_VERSION)
-	eval $(~/.nodenv/bin/nodenv init -)
 
-~/.pyenv:
-	git clone https://github.com/pyenv/pyenv ~/.pyenv
-	~/.pyenv/bin/pyenv install $(PYTHON_VERSION)
-	~/.pyenv/bin/pyenv global $(PYTHON_VERSION) system
-	eval $(~/.pyenv/bin/pyenv init -)
+# Used because asdf.sh uses bash
+~/.asdf: SHELL:=/bin/bash
+# used because `cd` requires one shell
+.ONESHELL:
+~/.asdf:
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+	cd ~/.asdf
+	git checkout $(shell git describe --abbrev=0 --tags)
+	cd -
+	source ~/.asdf/asdf.sh
+	asdf plugin-add python
+	asdf plugin-add nodejs
+	asdf plugin-add yarn
+	asdf install python $(PYTHON_VERSION)
+	asdf global python $(PYTHON_VERSION) system
+	asdf install nodejs $(NODE_VERSION)
+	bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+	asdf global nodejs $(NODE_VERSION)
+	asdf install yarn $(YARN_VERSION)
+	asdf global yarn $(YARN_VERSION)
 
 ~/.zplug:
 	git clone https://github.com/zplug/zplug ~/.zplug
 
 # Check that these versions are the latest that you want
 .PHONY: init-envs
-init-envs: ~/.nodenv ~/.pyenv ~/.zplug # sets up nodenv, pyenv, and zplug
+init-envs: ~/.asdf ~/.zplug # sets up asdf and zplug
 
 .PHONY: python-packages
 python-packages: ## installs python packages that are leveraged often

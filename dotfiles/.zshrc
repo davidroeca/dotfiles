@@ -40,45 +40,6 @@ export REACT_EDITOR=$EDITOR
 # Modify path
 ############################################################
 
-PYENV_ROOT="$HOME/.pyenv"
-if [ -d "$PYENV_ROOT" ]
-then
-  export PYENV_ROOT
-  path_radd "$PYENV_ROOT/bin"
-  eval "$(pyenv init -)"
-fi
-
-NODENV_ROOT="$HOME/.nodenv"
-if [ -d "$NODENV_ROOT" ]
-then
-  export NODENV_ROOT
-  path_radd "$NODENV_ROOT/bin"
-  eval "$(nodenv init -)"
-fi
-
-GOENV_ROOT="$HOME/.goenv"
-if [ -d "$GOENV_ROOT" ]
-then
-  export GOENV_ROOT
-  path_radd "$GOENV_ROOT/bin"
-  eval "$(goenv init -)"
-fi
-
-SDKMAN_DIR="$HOME/.sdkman"
-if [ -d "$SDKMAN_DIR" ]
-then
-  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && \
-    source "$SDKMAN_DIR/bin/sdkman-init.sh"
-fi
-
-TFENV_ROOT="$HOME/.tfenv"
-if [ -d "$TFENV_ROOT" ]
-then
-  export TFENV_ROOT
-  path_radd "$TFENV_ROOT/bin"
-fi
-
-
 POETRY_PATH="$HOME/.poetry/bin"
 if [ -d "$POETRY_PATH" ]
 then
@@ -236,4 +197,8 @@ zstyle ":completion:*" ignored-patterns "(*/)#(__pycache__|*.pyc|node_modules|.g
 # }}}
 # Run compinit {{{
 compinit
+# }}}
+# asdf includes {{{
+include ~/.asdf/asdf.sh
+include ~/.asdf/completions/asdf.bash
 # }}}
