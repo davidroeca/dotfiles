@@ -168,6 +168,10 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 vnoremap <expr> // 'y/\V'.escape(@",'\').'<CR>'
+
+" Filetype format mappings
+nnoremap <Leader>f :FiletypeFormat<CR>
+vnoremap <Leader>f :FiletypeFormat<CR>
 " }}}
 " Colorschemes {{{
 syntax enable
