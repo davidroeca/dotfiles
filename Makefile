@@ -2,7 +2,7 @@ DOT_CONFIG_DIRS_REL = $(wildcard dotfiles/.config/*)
 DOT_CONFIG_DIRS_LINK = $(subst dotfiles, ~, $(DOT_CONFIG_DIRS_REL))
 NODE_VERSION = 12.10.0
 PYTHON_VERSION = 3.7.4
-YARN_VERSION = 1.9.4
+YARN_VERSION = 1.17.3
 
 .PHONY: help
 help:
@@ -12,10 +12,10 @@ help:
 # TODO: sysfiles firefox.pref for correct firefox beta installation
 .PHONY: linux-bootstrap
 linux-bootstrap: ## Installs a bunch of utilized system dependencies
-	sudo add-apt-repository -y ppa:neovim-ppa/unstable
-	sudo add-apt-repository -y ppa:mmstick76/alacritty
-	sudo add-apt-repository -y ppa:mozillateam/firefox-next
-	sudo apt update
+	#sudo add-apt-repository -y ppa:neovim-ppa/unstable
+	#sudo add-apt-repository -y ppa:mmstick76/alacritty
+	#sudo add-apt-repository -y ppa:mozillateam/firefox-next
+	#sudo apt update
 	sudo apt install -y \
 		xclip \
 		xsel \
@@ -59,8 +59,8 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		unzip \
 		curl
 	snap install chromium spotify
-	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	#curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+			#https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 .PHONY: dot_config
 dot_config: $(DOT_CONFIG_DIRS_LINK)
