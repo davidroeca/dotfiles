@@ -270,7 +270,7 @@ let g:racer_experimental_completer = 1
 " TODO: it's mildly annoying but the only thing that works with flow lsp
 let g:deoplete#enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
-      \ 'python': ['pyls'],
+      \ 'python': ['jedi-language-server'],
       \ 'rust': ['rls'],
       \ 'javascript': ['npx', 'flow', 'lsp'],
       \ 'javascript.jsx': ['npx', 'flow', 'lsp'],

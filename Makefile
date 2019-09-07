@@ -12,10 +12,10 @@ help:
 # TODO: sysfiles firefox.pref for correct firefox beta installation
 .PHONY: linux-bootstrap
 linux-bootstrap: ## Installs a bunch of utilized system dependencies
-	#sudo add-apt-repository -y ppa:neovim-ppa/unstable
-	#sudo add-apt-repository -y ppa:mmstick76/alacritty
-	#sudo add-apt-repository -y ppa:mozillateam/firefox-next
-	#sudo apt update
+	sudo add-apt-repository -y ppa:neovim-ppa/unstable
+	sudo add-apt-repository -y ppa:mmstick76/alacritty
+	sudo add-apt-repository -y ppa:mozillateam/firefox-next
+	sudo apt update
 	sudo apt install -y \
 		xclip \
 		xsel \
@@ -59,8 +59,8 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		unzip \
 		curl
 	snap install chromium spotify
-	#curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-			#https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 .PHONY: dot_config
 dot_config: $(DOT_CONFIG_DIRS_LINK)
@@ -112,13 +112,18 @@ init-envs: ~/.asdf ~/.zplug # sets up asdf and zplug
 
 .PHONY: python-packages
 python-packages: ## installs python packages that are leveraged often
-	pip install \
+	pip install -U \
+		pip \
 		pynvim \
+		jedi-language-server \
 		grip
 
 .PHONY: node-packages
 node-packages: ## installs node packages that are leveraged often
 	npm install -g \
+		npm \
+		flow \
+		svelte-language-server \
 		create-react-app
 
 .PHONY: neovim-pluginstall
