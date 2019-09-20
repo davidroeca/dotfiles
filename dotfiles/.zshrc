@@ -195,6 +195,9 @@ fi
 zstyle ":completion:*" ignored-patterns "(*/)#(__pycache__|*.pyc|node_modules|.git)"
 
 # }}}
+# opam configuration {{{
+test -r ~/.opam/opam-init/init.zsh && . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+# }}}
 # Run compinit {{{
 compinit
 # }}}
@@ -202,3 +205,4 @@ compinit
 include ~/.asdf/asdf.sh
 include ~/.asdf/completions/asdf.bash
 # }}}
+
