@@ -6,6 +6,7 @@ Plug 'NLKNguyen/papercolor-theme' " color scheme
 Plug 'itchyny/lightline.vim' " Airline/Powerline replacement
 Plug 'rust-lang/rust.vim' " Rust highlights
 Plug 'derekwyatt/vim-scala' " Scala highlights
+Plug 'rgrinberg/vim-ocaml' " ocaml highlights
 Plug 'cespare/vim-toml'
 Plug 'elzr/vim-json'
 Plug 'autowitch/hive.vim'
@@ -270,6 +271,7 @@ let g:racer_experimental_completer = 1
 " TODO: it's mildly annoying but the only thing that works with flow lsp
 let g:deoplete#enable_at_startup = 1
 let g:LanguageClient_serverCommands = {
+      \ 'ocaml': ['ocaml-language-server --stdio'],
       \ 'python': ['jedi-language-server'],
       \ 'rust': ['rls'],
       \ 'javascript': ['npx', 'flow', 'lsp'],
