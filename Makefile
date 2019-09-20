@@ -3,6 +3,8 @@ DOT_CONFIG_DIRS_LINK = $(subst dotfiles, ~, $(DOT_CONFIG_DIRS_REL))
 NODE_VERSION = 12.10.0
 PYTHON_VERSION = 3.7.4
 YARN_VERSION = 1.17.3
+OCAML_VERSION = 4.09.0
+OPAM_VERSION = 2.0.5
 
 .PHONY: help
 help:
@@ -95,6 +97,8 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 	asdf plugin-add python
 	asdf plugin-add nodejs
 	asdf plugin-add yarn
+	asdf plugin-add ocaml
+	asdf plugin-add opam
 	asdf install python $(PYTHON_VERSION)
 	asdf global python $(PYTHON_VERSION) system
 	asdf install nodejs $(NODE_VERSION)
@@ -102,6 +106,12 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 	asdf global nodejs $(NODE_VERSION)
 	asdf install yarn $(YARN_VERSION)
 	asdf global yarn $(YARN_VERSION)
+	asdf install ocaml $(OCAML_VERSION)
+	asdf global ocaml $(OCAML_VERSION)
+	asdf install opam $(OCAML_VERSION)
+	asdf global opam $(OCAML_VERSION)
+	asdf install opam $(OPAM_VERSION)
+	asdf global opam $(OPAM_VERSION)
 
 ~/.zplug:
 	git clone https://github.com/zplug/zplug ~/.zplug
@@ -124,6 +134,7 @@ node-packages: ## installs node packages that are leveraged often
 		npm \
 		flow \
 		svelte-language-server \
+		ocaml-language-server \
 		create-react-app
 
 .PHONY: neovim-pluginstall
