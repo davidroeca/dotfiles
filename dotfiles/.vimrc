@@ -24,6 +24,8 @@ Plug 'Vimjas/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
+Plug 'leafgarland/typescript-vim' " ts syntax
+Plug 'peitalin/vim-jsx-typescript' " tsx
 Plug 'evanleck/vim-svelte' "svelte highlights
 Plug 'tpope/vim-ragtag' " html tag management
 Plug 'jparise/vim-graphql' " graphql highlights
@@ -86,6 +88,7 @@ set virtualedit=onemore " gives you access to one more space on a line
 set wildmenu " allows graphical cycling through command options
 set lazyredraw " redraw screen only when necessary
 set showmatch " highlight matching [{()}]
+set exrc
 
 " Combining these two commands sets number for current line and rnu for the
 " rest
@@ -276,6 +279,8 @@ let g:LanguageClient_serverCommands = {
       \ 'rust': ['rls'],
       \ 'javascript': ['npx', 'flow', 'lsp'],
       \ 'javascript.jsx': ['npx', 'flow', 'lsp'],
+      \ 'typescript': ['npx', 'typescript-language-server', '--stdio'],
+      \ 'typescript.tsx': ['npx', 'typescript-language-server', '--stdio'],
       \ 'svelte': ['svelteserver'],
       \ }
 let g:LanguageClient_autoStart = 1
@@ -296,6 +301,12 @@ augroup language_servers
   autocmd FileType * call ConfigureLanguageClient()
 augroup END
 
+" }}}
+" Auto formatting {{{
+let g:vim_filetype_formatter_commands = {
+      \ 'typescript': g:filetype_formatter#ft#formatters['javascript']['prettier'],
+      \ 'typescript.tsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
+      \ }
 " }}}
 " easy grep {{{
 let g:EasyGrepCommand = 1 " use grep, NOT vimgrep
@@ -365,4 +376,8 @@ augroup fix_whitespace_save
   let blacklist = ['markdown', 'markdown.pandoc']
   autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
 augroup END
+" }}}
+" {{{
+" Prevents .nvimrcs and .exrcs from running not as the user
+set secure
 " }}}
