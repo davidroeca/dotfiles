@@ -25,7 +25,6 @@ Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
 Plug 'leafgarland/typescript-vim' " ts syntax
-Plug 'peitalin/vim-jsx-typescript' " tsx
 Plug 'evanleck/vim-svelte' "svelte highlights
 Plug 'tpope/vim-ragtag' " html tag management
 Plug 'jparise/vim-graphql' " graphql highlights
@@ -304,6 +303,7 @@ augroup END
 " }}}
 " Auto formatting {{{
 let g:vim_filetype_formatter_commands = {
+      \ 'javascript.jsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
       \ 'typescript': g:filetype_formatter#ft#formatters['javascript']['prettier'],
       \ 'typescript.tsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
       \ }
@@ -326,6 +326,10 @@ augroup END
 augroup jsx_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+augroup tsx_recognition
+  autocmd!
+  autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 augroup END
 augroup c_inc_recognition
   autocmd!
