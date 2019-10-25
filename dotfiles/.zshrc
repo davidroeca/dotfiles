@@ -198,7 +198,7 @@ then
 
   # Then, source plugins and add commands to $PATH
   # If this command is doing weird stuff, you can add the --verbose flag
-  zplug load --verbose
+  zplug load
 else
   echo "------------------------------------------------------------"
   echo "Please install zplug with the following command:"
