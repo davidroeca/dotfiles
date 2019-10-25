@@ -5,6 +5,7 @@ Plug 'NLKNguyen/papercolor-theme' " color scheme
 "Plug 'tomasr/molokai'
 Plug 'itchyny/lightline.vim' " Airline/Powerline replacement
 Plug 'rust-lang/rust.vim' " Rust highlights
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " everything go-related
 Plug 'derekwyatt/vim-scala' " Scala highlights
 Plug 'rgrinberg/vim-ocaml' " ocaml highlights
 Plug 'cespare/vim-toml'
@@ -26,6 +27,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
 Plug 'leafgarland/typescript-vim' " ts syntax
 Plug 'evanleck/vim-svelte' "svelte highlights
+Plug 'posva/vim-vue' " vue js setup
 Plug 'tpope/vim-ragtag' " html tag management
 Plug 'jparise/vim-graphql' " graphql highlights
 Plug 'groenewege/vim-less'
