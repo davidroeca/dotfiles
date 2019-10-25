@@ -98,34 +98,6 @@ setopt interactivecomments
 # if you type dir name and it's not a command, cd to the dir
 setopt auto_cd
 # }}}
-# plugins {{{
-export ZPLUG_HOME="$HOME/.zplug"
-if [ -f $ZPLUG_HOME/init.zsh ]
-then
-  source $ZPLUG_HOME/init.zsh
-  zplug "lib/clipboard", from:oh-my-zsh
-  # Handle completion from oh-my-zsh
-  zplug "lib/completion", from:oh-my-zsh
-  # Hitting up arrow key gives most recent hist command
-  zplug "lib/key-bindings", from:oh-my-zsh
-  zplug "lib/history", from:oh-my-zsh
-  zplug "mafredri/zsh-async", from:github
-  zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-  zplug "zsh-users/zsh-syntax-highlighting", defer:2
-  zplug "docker/compose", use:"contrib/completion/zsh", as:plugin
-  if zplug check || zplug install
-  then
-    zplug load
-  fi
-else
-  echo "------------------------------------------------------------"
-  echo "Please install zplug with the following command:"
-  echo ""
-  echo "git clone https://github.com/zplug/zplug ${ZPLUG_HOME}"
-  echo "------------------------------------------------------------"
-fi
-
-# }}}
 # History settings {{{
 setopt append_history
 # }}}
@@ -199,10 +171,44 @@ zstyle ":completion:*" ignored-patterns "(*/)#(__pycache__|*.pyc|node_modules|.g
 test -r ~/.opam/opam-init/init.zsh && . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 # }}}
 # Run compinit {{{
-compinit
+# zplug runs compinit for us; no need to use it
+# }}}
+# plugins {{{
+export ZPLUG_HOME="$HOME/.zplug"
+if [ -f $ZPLUG_HOME/init.zsh ]
+then
+  source $ZPLUG_HOME/init.zsh
+  zplug "lib/clipboard", from:oh-my-zsh
+  # Handle completion from oh-my-zsh
+  zplug "lib/completion", from:oh-my-zsh
+  # Hitting up arrow key gives most recent hist command
+  zplug "lib/key-bindings", from:oh-my-zsh
+  zplug "lib/history", from:oh-my-zsh
+  zplug "mafredri/zsh-async", from:github
+  zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+  zplug "zsh-users/zsh-syntax-highlighting", defer:2
+  zplug "docker/compose", use:"contrib/completion/zsh", as:plugin
+  # If this command is doing weird stuff, you can add the --verbose flag
+  if ! zplug check; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+  fi
+
+  # Then, source plugins and add commands to $PATH
+  # If this command is doing weird stuff, you can add the --verbose flag
+  zplug load --verbose
+else
+  echo "------------------------------------------------------------"
+  echo "Please install zplug with the following command:"
+  echo ""
+  echo "git clone https://github.com/zplug/zplug ${ZPLUG_HOME}"
+  echo "------------------------------------------------------------"
+fi
+
 # }}}
 # asdf includes {{{
 include ~/.asdf/asdf.sh
 include ~/.asdf/completions/asdf.bash
 # }}}
-
