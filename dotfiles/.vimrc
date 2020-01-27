@@ -25,7 +25,13 @@ Plug 'Vimjas/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
-Plug 'leafgarland/typescript-vim' " ts syntax
+" Waiting on https://github.com/leafgarland/typescript-vim/pull/176
+"Plug 'leafgarland/typescript-vim' " ts syntax
+Plug 'pappasam/typescript-vim', {
+      \ 'branch': 'INDENT_CORRECTLY_MULTILINE_GENERICS'
+      \ }
+" TSX
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'evanleck/vim-svelte' "svelte highlights
 Plug 'posva/vim-vue' " vue js setup
 Plug 'tpope/vim-ragtag' " html tag management
@@ -211,8 +217,11 @@ let g:terraform_align = 1
 " Vim JS {{{
 let g:javascript_plugin_flow = 1
 let g:used_javascript_libs = 'jquery,requirejs,react'
+" TSX is pretty broken for this plugin
+let g:vim_jsx_pretty_disable_tsx = v:true
 " Used for vim-jsx-prettier
 let g:vim_jsx_pretty_colorful_config = 1
+
 
 " }}}
 " Vim Python {{{
@@ -367,6 +376,12 @@ augroup marker_folding
   autocmd!
   autocmd Filetype vim setlocal foldmethod=marker
   autocmd Filetype zsh setlocal foldmethod=marker
+augroup END
+" Fix 'comments' for typescript. Fixes the >>>>> bug for generics.
+augroup ts_generics_comments_bug
+  autocmd!
+  autocmd FileType typescript.tsx,typescript
+        \ setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 augroup END
 
 augroup indentation_DR
