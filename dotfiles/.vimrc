@@ -59,7 +59,22 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
 " For autocompletion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+for coc_plugin in [
+      \ 'fannheyward/coc-markdownlint',
+      \ 'fannheyward/coc-texlab',
+      \ 'neoclide/coc-html',
+      \ 'neoclide/coc-css',
+      \ 'neoclide/coc-json',
+      \ 'neoclide/coc-python',
+      \ 'neoclide/coc-rls',
+      \ 'neoclide/coc-tsserver',
+      \ 'neoclide/coc-yaml',
+      \ 'coc-extensions/coc-svelte',
+      \ 'iamcco/coc-vimlsp',
+      \ ]
+  Plug coc_plugin, { 'do': 'yarn install --frozen-lockfile' }
+endfor
 
 if has('nvim')
   Plug 'pappasam/vim-filetype-formatter' " running code formatters
@@ -185,6 +200,9 @@ function! GlobalKeyRemap()
   vnoremap <Leader>f :FiletypeFormat<CR>
   " NERDTree mappings
   nnoremap <silent> <space>j :NERDTreeToggle %<CR>
+  " coc settings
+  nmap <silent> <C-]> <Plug>(coc-definition)
+  nnoremap <silent> <C-K> :call <SID>show_documentation()<CR>
 endfunction
 
 call GlobalKeyRemap()
@@ -299,34 +317,6 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-
-"let g:LanguageClient_serverCommands = {
-      "\ 'ocaml': ['ocaml-language-server --stdio'],
-      "\ 'python': ['jedi-language-server'],
-      "\ 'rust': ['rls'],
-      "\ 'javascript': ['npx', 'flow', 'lsp'],
-      "\ 'javascript.jsx': ['npx', 'flow', 'lsp'],
-      "\ 'typescript': ['npx', 'typescript-language-server', '--stdio'],
-      "\ 'typescript.tsx': ['npx', 'typescript-language-server', '--stdio'],
-      "\ 'svelte': ['svelteserver'],
-      "\ }
-"let g:LanguageClient_autoStart = 1
-"let g:LanguageClient_hoverPreview = 'Auto'
-"let g:LanguageClient_diagnosticsEnable = 0
-
-"function! ConfigureLanguageClient()
-  "if has_key(g:LanguageClient_serverCommands, &filetype)
-    "nnoremap <buffer> <C-]> :call LanguageClient#textDocument_definition()<CR>
-    "nnoremap <buffer> <leader>sd :call LanguageClient#textDocument_hover()<CR>
-    "nnoremap <buffer> <leader>sr :call LanguageClient#textDocument_rename()<CR>
-    "nnoremap <buffer> <leader>su :call LanguageClient#textDocument_references()<CR>
-    "setlocal omnifunc=LanguageClient#complete
-  "endif
-"endfunction
-
-"augroup language_servers
-  "autocmd FileType * call ConfigureLanguageClient()
-"augroup END
 
 " }}}
 " easy grep {{{
