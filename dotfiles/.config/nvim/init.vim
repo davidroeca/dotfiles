@@ -94,39 +94,61 @@ Plug 'hashivim/vim-vagrant'
 call plug#end()
 " }}}
  "Non-Plugin Personal Customization {{{
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab " tabs are spaces
-set ruler " shows line and column number
-set showcmd " show previous command
-set cursorline  " highlights current line
-set incsearch " search as characters are entered
-set hlsearch " highlight matches
-set virtualedit=onemore " gives you access to one more space on a line
-set wildmenu " allows graphical cycling through command options
-set lazyredraw " redraw screen only when necessary
-set showmatch " highlight matching [{()}]
-set exrc
+function! ConfigureGlobal()
+  set tabstop=2
+  set softtabstop=2
+  set shiftwidth=2
+  set expandtab " tabs are spaces
+  set ruler " shows line and column number
+  set showcmd " show previous command
+  set cursorline  " highlights current line
+  set incsearch " search as characters are entered
+  set hlsearch " highlight matches
+  set virtualedit=onemore " gives you access to one more space on a line
+  set wildmenu " allows graphical cycling through command options
+  set lazyredraw " redraw screen only when necessary
+  set showmatch " highlight matching [{()}]
+  set exrc " can handle local vimrc/init.vim
 
-" Combining these two commands sets number for current line and rnu for the
-" rest
-set number " show line number
-set relativenumber " show relative numbers
+  " https://github.com/neoclide/coc.nvim/issues/649
+  set nobackup
+  set nowritebackup
 
-let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
-let mapleader="," " change command leader from \ to ,
-let maplocalleader="-" " set local command leader to -
-" Powerline
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
-set laststatus=2
-" easygrep
-set grepprg=git\ grep\ -n\ $*
-set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
-" For rust-racer
-set hidden
-" disable swap files until https://github.com/neovim/neovim/issues/8137
-set noswapfile
+  " Provides additional info for message output
+  set cmdheight=2
+
+  " Helps with diagnostic messages in coc.nvim
+  set updatetime=300
+
+  " don't give |ins-completion-menu| messages.
+  set shortmess+=c
+
+  " Always show signcolumns - prevents shifting when lint errors pop up
+  set signcolumn=yes
+
+  " Combining these two commands sets number for current line and rnu for the
+  " rest
+  set number " show line number
+  set relativenumber " show relative numbers
+
+  let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
+  let mapleader="," " change command leader from \ to ,
+  let maplocalleader="-" " set local command leader to -
+  " Powerline
+  set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+  set laststatus=2
+  " easygrep
+  set grepprg=git\ grep\ -n\ $*
+  set completeopt=menuone,longest,preview " for jedi vim to turn off auto config
+  " Helps keep buffers around when abandoned; helps with plugins that edit
+  " multiple buffers such as coc.nvim
+  set hidden
+  " disable swap files until https://github.com/neovim/neovim/issues/8137
+  set noswapfile
+endfunction
+
+call ConfigureGlobal()
+
 " }}}
 " Key Remappings {{{
 " Defines key remppings as a function that can be called again if need be
