@@ -71,7 +71,6 @@ for coc_plugin in [
       \ 'neoclide/coc-tsserver',
       \ 'neoclide/coc-yaml',
       \ 'coc-extensions/coc-svelte',
-      \ 'iamcco/coc-vimlsp',
       \ ]
   Plug coc_plugin, { 'do': 'yarn install --frozen-lockfile' }
 endfor
@@ -197,12 +196,32 @@ function! GlobalKeyRemap()
 
   " Filetype format mappings
   nnoremap <Leader>f :FiletypeFormat<CR>
-  vnoremap <Leader>f :FiletypeFormat<CR>
   " NERDTree mappings
   nnoremap <silent> <space>j :NERDTreeToggle %<CR>
   " coc settings
+  nnoremap <silent> <C-k> :call <SID>show_documentation()<CR>
   nmap <silent> <C-]> <Plug>(coc-definition)
-  nnoremap <silent> <C-K> :call <SID>show_documentation()<CR>
+  nmap <silent> <Leader>st <Plug>(coc-type-definition)
+  nmap <silent> <Leader>si <Plug>(coc-implementation)
+  nmap <silent> <Leader>su <Plug>(coc-references)
+  nmap <silent> <Leader>sr <Plug>(coc-rename)
+  " Next and previous items in list
+  nnoremap <silent> <Leader>sn :<C-u>CocNext<CR>
+  nnoremap <silent> <Leader>sp :<C-u>CocPrev<CR>
+  nnoremap <silent> <Leader>sl :<C-u>CocListResume<CR>
+  " Show commands
+  nnoremap <silent> <Leader>sc :<C-u>CocList commands<CR>
+  " Find symbol in current document
+  nnoremap <silent> <Leader>ss :<C-u>CocList outline<CR>
+  " Search workspace symbols
+  nnoremap <silent> <Leader>sw :<C-u>CocList -I symbols<CR>
+
+  " Use <c-space> to trigger completion
+  inoremap <silent><expr> <c-space> coc#refresh()
+
+  " Scroll in floating window
+  nnoremap <expr><C-d> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-d>"
+  nnoremap <expr><C-u> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-u>"
 endfunction
 
 call GlobalKeyRemap()
