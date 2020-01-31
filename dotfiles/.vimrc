@@ -58,13 +58,11 @@ Plug 'racer-rust/vim-racer' " rust autocompletion
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
+" For autocompletion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 if has('nvim')
   Plug 'pappasam/vim-filetype-formatter' " running code formatters
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
 endif
 
 " Plugins for plantuml
@@ -117,72 +115,79 @@ set hidden
 set noswapfile
 " }}}
 " Key Remappings {{{
-nnoremap tn :tabnext<CR>
-nnoremap tp :tabprev<CR>
-nnoremap tc :tabnew<CR>
-nnoremap td :tabclose<CR>
-" Omnicompletion
-" <C-@> actually means ctrl+space
-inoremap <C-@> <C-x><C-o>
-" Needed for neovim
-inoremap <C-space> <C-x><C-o>
-inoremap <silent> <C-c> <Esc>:pclose <BAR> helpclose<CR>a
-nnoremap <silent> <C-c> :pclose <BAR> helpclose<CR>
+" Defines key remppings as a function that can be called again if need be
+function! GlobalKeyRemap()
+  nnoremap tn :tabnext<CR>
+  nnoremap tp :tabprev<CR>
+  nnoremap tc :tabnew<CR>
+  nnoremap td :tabclose<CR>
+  " Omnicompletion
+  " <C-@> actually means ctrl+space
+  inoremap <C-@> <C-x><C-o>
+  " Needed for neovim
+  inoremap <C-space> <C-x><C-o>
+  inoremap <silent> <C-c> <Esc>:pclose <BAR> helpclose<CR>a
+  nnoremap <silent> <C-c> :pclose <BAR> helpclose<CR>
 
-" Remove highlights after hitting escape
-nnoremap <silent> <Esc> :noh<CR><Esc>
+  " Remove highlights after hitting escape
+  nnoremap <silent> <Esc> :noh<CR><Esc>
 
-" Move current line down
-nnoremap <Leader>- ddp
-" Move current line up
-nnoremap <Leader>_ kddpk
+  " Move current line down
+  nnoremap <Leader>- ddp
+  " Move current line up
+  nnoremap <Leader>_ kddpk
 
-" Capitalize current word in insert mode
-inoremap <c-u> <esc>ebgUeea
+  " Capitalize current word in insert mode
+  inoremap <c-u> <esc>ebgUeea
 
-" Mapping to source vimrc
-nnoremap <Leader>sv :source $MYVIMRC<cr>
+  " Mapping to source vimrc
+  nnoremap <Leader>sv :source $MYVIMRC<cr>
 
-" mapping to edit vimrc
-nnoremap <Leader>ev :edit $MYVIMRC<cr>
+  " mapping to edit vimrc
+  nnoremap <Leader>ev :edit $MYVIMRC<cr>
 
-" mapping to run goyo
-nnoremap <Leader>go :Goyo<cr>:Limelight!!0.8<cr>
+  " mapping to run goyo
+  nnoremap <Leader>go :Goyo<cr>:Limelight!!0.8<cr>
 
-" Remap H and L to go to beginning and end of line
-nnoremap H 0
-nnoremap L $
+  " Remap H and L to go to beginning and end of line
+  nnoremap H 0
+  nnoremap L $
 
-" Remove arrow keys
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
-nnoremap <Left> <nop>
-nnoremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
-vnoremap <Up> <nop>
-vnoremap <Down> <nop>
-vnoremap <Left> <nop>
-vnoremap <Right> <nop>
+  " Remove arrow keys
+  nnoremap <Up> <nop>
+  nnoremap <Down> <nop>
+  nnoremap <Left> <nop>
+  nnoremap <Right> <nop>
+  inoremap <Up> <nop>
+  inoremap <Down> <nop>
+  inoremap <Left> <nop>
+  inoremap <Right> <nop>
+  vnoremap <Up> <nop>
+  vnoremap <Down> <nop>
+  vnoremap <Left> <nop>
+  vnoremap <Right> <nop>
 
-" Selected search
-vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <expr> // 'y/\V'.escape(@",'\').'<CR>'
+  " Selected search
+  vnoremap <silent> * :<C-U>
+    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+    \gvy/<C-R><C-R>=substitute(
+    \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+    \gV:call setreg('"', old_reg, old_regtype)<CR>
+  vnoremap <silent> # :<C-U>
+    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+    \gvy?<C-R><C-R>=substitute(
+    \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+    \gV:call setreg('"', old_reg, old_regtype)<CR>
+  vnoremap <expr> // 'y/\V'.escape(@",'\').'<CR>'
 
-" Filetype format mappings
-nnoremap <Leader>f :FiletypeFormat<CR>
-vnoremap <Leader>f :FiletypeFormat<CR>
+  " Filetype format mappings
+  nnoremap <Leader>f :FiletypeFormat<CR>
+  vnoremap <Leader>f :FiletypeFormat<CR>
+  " NERDTree mappings
+  nnoremap <silent> <space>j :NERDTreeToggle %<CR>
+endfunction
+
+call GlobalKeyRemap()
 " }}}
 " Colorschemes {{{
 syntax enable
@@ -229,7 +234,13 @@ let g:python_highlight_space_errors = 0
 let g:python_highlight_all = 1
 " }}}
 " Vim Markdown ----------------- {{{
-let g:vim_markdown_folding_disabled=1
+let g:markdown_frontmatter = v:true
+let g:markdown_toml_frontmatter = v:true
+let g:markdown_json_frontmatter = v:true
+let g:vim_markdown_strikethrough = v:true
+let g:no_default_key_mappings = v:true
+
+let g:vim_markdown_folding_disabled = v:true
 " }}}
 " Vim Rooter {{{
 " silence the cwd
@@ -245,7 +256,6 @@ let g:NERDTreeWinPos = 'left'
 let g:NERDTreeWinSize = 31
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeIgnore=['venv$[[dir]]', '__pycache__$[[dir]]', 'node_modules$[[dir]]']
-nnoremap <silent> <space>j :NERDTreeToggle %<CR>
 " }}}
 " CTRLP {{{
 let g:ctrlp_working_path_mode = 'rw' " start from cwd
@@ -280,44 +290,44 @@ let g:racer_cmd = "~/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 " }}}
 " Language Server Configuration {{{
-" deoplete will asynchronously add autocompletion popups
-" TODO: it's mildly annoying but the only thing that works with flow lsp
-let g:deoplete#enable_at_startup = 1
-let g:LanguageClient_serverCommands = {
-      \ 'ocaml': ['ocaml-language-server --stdio'],
-      \ 'python': ['jedi-language-server'],
-      \ 'rust': ['rls'],
-      \ 'javascript': ['npx', 'flow', 'lsp'],
-      \ 'javascript.jsx': ['npx', 'flow', 'lsp'],
-      \ 'typescript': ['npx', 'typescript-language-server', '--stdio'],
-      \ 'typescript.tsx': ['npx', 'typescript-language-server', '--stdio'],
-      \ 'svelte': ['svelteserver'],
-      \ }
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_hoverPreview = 'Auto'
-let g:LanguageClient_diagnosticsEnable = 0
 
-function! ConfigureLanguageClient()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <buffer> <C-]> :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <leader>sd :call LanguageClient#textDocument_hover()<CR>
-    nnoremap <buffer> <leader>sr :call LanguageClient#textDocument_rename()<CR>
-    nnoremap <buffer> <leader>su :call LanguageClient#textDocument_references()<CR>
-    setlocal omnifunc=LanguageClient#complete
+" For coc
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
   endif
 endfunction
 
-augroup language_servers
-  autocmd FileType * call ConfigureLanguageClient()
-augroup END
+"let g:LanguageClient_serverCommands = {
+      "\ 'ocaml': ['ocaml-language-server --stdio'],
+      "\ 'python': ['jedi-language-server'],
+      "\ 'rust': ['rls'],
+      "\ 'javascript': ['npx', 'flow', 'lsp'],
+      "\ 'javascript.jsx': ['npx', 'flow', 'lsp'],
+      "\ 'typescript': ['npx', 'typescript-language-server', '--stdio'],
+      "\ 'typescript.tsx': ['npx', 'typescript-language-server', '--stdio'],
+      "\ 'svelte': ['svelteserver'],
+      "\ }
+"let g:LanguageClient_autoStart = 1
+"let g:LanguageClient_hoverPreview = 'Auto'
+"let g:LanguageClient_diagnosticsEnable = 0
 
-" }}}
-" Auto formatting {{{
-let g:vim_filetype_formatter_commands = {
-      \ 'javascript.jsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
-      \ 'typescript': g:filetype_formatter#ft#formatters['javascript']['prettier'],
-      \ 'typescript.tsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
-      \ }
+"function! ConfigureLanguageClient()
+  "if has_key(g:LanguageClient_serverCommands, &filetype)
+    "nnoremap <buffer> <C-]> :call LanguageClient#textDocument_definition()<CR>
+    "nnoremap <buffer> <leader>sd :call LanguageClient#textDocument_hover()<CR>
+    "nnoremap <buffer> <leader>sr :call LanguageClient#textDocument_rename()<CR>
+    "nnoremap <buffer> <leader>su :call LanguageClient#textDocument_references()<CR>
+    "setlocal omnifunc=LanguageClient#complete
+  "endif
+"endfunction
+
+"augroup language_servers
+  "autocmd FileType * call ConfigureLanguageClient()
+"augroup END
+
 " }}}
 " easy grep {{{
 let g:EasyGrepCommand = 1 " use grep, NOT vimgrep
