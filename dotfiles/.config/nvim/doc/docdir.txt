@@ -1,0 +1,4 @@
+*docdir*
+
+This is a local directory for managing documentation that vim may not easily
+provide, which I would like to be managed by the `:help` command.

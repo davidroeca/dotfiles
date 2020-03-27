@@ -94,6 +94,7 @@ Plug 'hashivim/vim-vagrant'
 call plug#end()
 " }}}
  "Non-Plugin Personal Customization {{{
+helptags ~/.config/nvim/doc
 let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
 let mapleader="," " change command leader from \ to ,
 let maplocalleader="-" " set local command leader to -
