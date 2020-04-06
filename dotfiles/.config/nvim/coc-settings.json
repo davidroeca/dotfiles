@@ -1,0 +1,13 @@
+{
+  "coc.preferences.enableFloatHighlight": false,
+  "suggest.autoTrigger": "always",
+  "suggest.noselect": true,
+  "diagnostic.enable": false,
+  "languageserver": {
+    "jls": {
+      "command": "jedi-language-server",
+      "args": [],
+      "filetypes": ["python"]
+    }
+  }
+}

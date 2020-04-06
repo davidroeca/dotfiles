@@ -25,11 +25,7 @@ Plug 'Vimjas/vim-python-pep8-indent' " For python
 Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
-" Waiting on https://github.com/leafgarland/typescript-vim/pull/176
-"Plug 'leafgarland/typescript-vim' " ts syntax
-Plug 'pappasam/typescript-vim', {
-      \ 'branch': 'INDENT_CORRECTLY_MULTILINE_GENERICS'
-      \ }
+Plug 'leafgarland/typescript-vim' " ts syntax
 " TSX
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'evanleck/vim-svelte' "svelte highlights
@@ -72,12 +68,10 @@ for coc_plugin in [
       \ 'neoclide/coc-yaml',
       \ 'coc-extensions/coc-svelte',
       \ ]
-  Plug coc_plugin, { 'do': 'yarn install --frozen-lockfile' }
+  Plug coc_plugin, { 'do': 'yarn install --frozen-lockfile && yarn build' }
 endfor
 
-if has('nvim')
-  Plug 'pappasam/vim-filetype-formatter' " running code formatters
-endif
+Plug 'pappasam/vim-filetype-formatter' " running code formatters
 
 " Plugins for plantuml
 Plug 'aklt/plantuml-syntax'

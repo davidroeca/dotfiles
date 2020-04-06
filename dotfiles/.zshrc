@@ -128,6 +128,35 @@ if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
+
+function ve() {
+  local venv_name=.venv
+  if [ -z "$1" ]; then
+    local python_name='python3'
+  else
+    local python_name="$1"
+  fi
+  if [ ! -d "$venv_name" ]; then
+    $python_name -m venv "$venv_name"
+    if [ $? -ne 0 ]; then
+      local error_code=$?
+      echo "Failed to create virtualenv"
+      return error_code
+    fi
+    source "$venv_name/bin/activate"
+    pip install -U \
+      pip \
+      jedi \
+      jedi-language-server \
+      neovim-remote \
+      pynvim
+    deactivate
+  else
+    echo "$venv_name already exists. Activating."
+  fi
+  source "$venv_name/bin/activate"
+}
+
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -137,8 +166,6 @@ alias egrep='egrep --color=auto'
 
 alias f='nvim'
 
-alias vn='python3 -m venv venv'
-alias va='source venv/bin/activate'
 
 alias tmux='tmux -2'
 alias tn='tmux new-session \; rename-window "Source Code"'
