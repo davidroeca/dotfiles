@@ -5,7 +5,6 @@ Plug 'NLKNguyen/papercolor-theme' " color scheme
 "Plug 'tomasr/molokai'
 Plug 'itchyny/lightline.vim' " Airline/Powerline replacement
 Plug 'rust-lang/rust.vim' " Rust highlights
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " everything go-related
 Plug 'derekwyatt/vim-scala' " Scala highlights
 Plug 'rgrinberg/vim-ocaml' " ocaml highlights
 Plug 'cespare/vim-toml'
@@ -37,18 +36,15 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'airblade/vim-rooter' " roots directory at git repo
 Plug 'scrooloose/nerdtree' " file browsing
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy file search (like find)
-Plug 'dkprice/vim-easygrep' " find/replace across files (like grep/awk)
 Plug 'wincent/ferret' " find/replace
-" tbone vs slime
-Plug 'tpope/vim-tbone'
-Plug 'jpalardy/vim-slime'
+
+Plug 'pappasam/nvim-repl' " REPLs
 
 Plug 'othree/eregex.vim' " needed for perl usage
+
 " Autocompletion installs
-"Plug 'davidhalter/jedi-vim' " Python autocompletion
 Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
 Plug 'racer-rust/vim-racer' " rust autocompletion
-"Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } " for js
 
 " For writing
 Plug 'junegunn/goyo.vim'
@@ -59,13 +55,14 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 for coc_plugin in [
       \ 'fannheyward/coc-markdownlint',
       \ 'fannheyward/coc-texlab',
+      \ 'josa42/coc-go',
       \ 'neoclide/coc-html',
       \ 'neoclide/coc-css',
       \ 'neoclide/coc-json',
-      \ 'neoclide/coc-python',
       \ 'neoclide/coc-rls',
       \ 'neoclide/coc-tsserver',
       \ 'neoclide/coc-yaml',
+      \ 'pappasam/coc-jedi',
       \ 'coc-extensions/coc-svelte',
       \ ]
   Plug coc_plugin, { 'do': 'yarn install --frozen-lockfile && yarn build' }
