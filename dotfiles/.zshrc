@@ -53,6 +53,12 @@ then
   path_ladd "$CARGO_BIN"
 fi
 
+HOME_LOCAL_BIN="$HOME/.local/bin"
+if [ ! -d "$HOME_LOCAL_BIN" ]; then
+  mkdir -p "$HOME_LOCAL_BIN"
+fi
+path_ladd "$HOME_LOCAL_BIN"
+
 HOME_BIN="$HOME/bin"
 if [ -d "$HOME_BIN" ]
 then
@@ -128,6 +134,53 @@ if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
+function pythonglobal-install() {
+  local packages=(
+    awscli
+    black
+    cookiecutter
+    docker-compose
+    isort
+    jedi-language-server
+    mypy
+    pre-commit
+    pylint
+    restview
+  )
+  if command -v pipx > /dev/null; then
+    for package in $packages; do
+      pipx install "$package"
+      pipx upgrade "$package"
+    done
+  else
+    echo 'pipx not installed. Install with "pip install pipx"'
+  fi
+}
+
+function pythondev-install() {
+  local packages=(
+    pip
+    neovim-remote
+    pynvim
+  )
+  pip install -U $packages
+  asdf reshim python
+}
+
+function nodeglobal-install() {
+  local packages=(
+    npm
+    neovim
+    prettier
+    svelte-language-server
+    typescript
+    eslint
+  )
+  npm install --no-save -g $packages
+  asdf reshim nodejs
+}
+
+
 
 function ve() {
   local venv_name=.venv
@@ -144,12 +197,7 @@ function ve() {
       return error_code
     fi
     source "$venv_name/bin/activate"
-    pip install -U \
-      pip \
-      jedi \
-      jedi-language-server \
-      neovim-remote \
-      pynvim
+    pythondev-install()
     deactivate
   else
     echo "$venv_name already exists. Activating."
