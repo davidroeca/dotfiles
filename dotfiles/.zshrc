@@ -197,7 +197,7 @@ function ve() {
       return error_code
     fi
     source "$venv_name/bin/activate"
-    pythondev-install()
+    pythondev-install
     deactivate
   else
     echo "$venv_name already exists. Activating."
