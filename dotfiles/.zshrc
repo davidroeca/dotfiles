@@ -175,6 +175,7 @@ function nodeglobal-install() {
     svelte-language-server
     typescript
     eslint
+    degit
   )
   npm install --no-save -g $packages
   asdf reshim nodejs

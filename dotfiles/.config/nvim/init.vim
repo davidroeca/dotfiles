@@ -32,6 +32,7 @@ Plug 'posva/vim-vue' " vue js setup
 Plug 'tpope/vim-ragtag' " html tag management
 Plug 'jparise/vim-graphql' " graphql highlights
 Plug 'groenewege/vim-less'
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'airblade/vim-rooter' " roots directory at git repo
 Plug 'scrooloose/nerdtree' " file browsing
@@ -51,7 +52,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
 " For autocompletion
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile && yarn build'}
 for coc_plugin in [
       \ 'fannheyward/coc-markdownlint',
       \ 'fannheyward/coc-texlab',
@@ -63,7 +64,7 @@ for coc_plugin in [
       \ 'neoclide/coc-tsserver',
       \ 'neoclide/coc-yaml',
       \ 'pappasam/coc-jedi',
-      \ 'coc-extensions/coc-svelte',
+      \ 'davidroeca/coc-svelte-language-tools',
       \ ]
   Plug coc_plugin, { 'do': 'yarn install --frozen-lockfile && yarn build' }
 endfor
