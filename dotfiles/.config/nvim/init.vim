@@ -268,6 +268,9 @@ let g:lightline = {
   \ 'colorscheme': 'PaperColor'
   \ }
 " }}}
+" rooter config {{{
+let g:rooter_patterns = ['package.json', 'pyproject.toml', 'cargo.toml', 'setup.py', 'requirements.txt', '.git/']
+" }}}
 " Vim terraform {{{
 let g:terraform_align = 1
 " }}}
