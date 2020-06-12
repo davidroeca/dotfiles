@@ -2,7 +2,8 @@
   "coc.preferences.enableFloatHighlight": false,
   "suggest.autoTrigger": "always",
   "suggest.noselect": true,
-  "diagnostic.enable": false,
+  "diagnostic.enable": true,
+  "javascript.suggestionActions.enabled": false,
   "languageserver": {
     "jls": {
       "command": "jedi-language-server",

@@ -69,6 +69,8 @@ for coc_plugin in [
   Plug coc_plugin, { 'do': 'yarn install --frozen-lockfile && yarn build' }
 endfor
 
+Plug 'posva/vim-vue' " vue js setup
+
 Plug 'pappasam/vim-filetype-formatter' " running code formatters
 
 " Plugins for plantuml
