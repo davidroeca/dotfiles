@@ -270,9 +270,6 @@ let g:lightline = {
   \ 'colorscheme': 'PaperColor'
   \ }
 " }}}
-" rooter config {{{
-let g:rooter_patterns = ['package.json', 'pyproject.toml', 'cargo.toml', 'setup.py', 'requirements.txt', '.git/']
-" }}}
 " Vim terraform {{{
 let g:terraform_align = 1
 " }}}
@@ -301,7 +298,8 @@ let g:vim_markdown_folding_disabled = v:true
 " }}}
 " Vim Rooter {{{
 " silence the cwd
-let g:rooter_silent_chdir = 1
+"let g:rooter_silent_chdir = 1
+let g:rooter_patterns = ['Cargo.toml', 'package.json', 'pyproject.toml', 'setup.py', 'requirements.txt', '.git', '.git/']
 " }}}
 " NERDTree {{{
 let g:NERDTreeMapOpenInTab = '<C-t>'
