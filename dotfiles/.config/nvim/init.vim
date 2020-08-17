@@ -68,11 +68,7 @@ for coc_plugin in [
   Plug coc_plugin, { 'do': 'yarn install --frozen-lockfile && yarn build' }
 endfor
 
-"Plug 'davidroeca/coc-svelte-language-tools', { 'branch': 'update-lang-server' }
-Plug 'davidroeca/coc-svelte', {
-      \ 'branch': 'update-lang-server',
-      \ 'do': 'yarn install --frozen-lockfile && yarn build'
-      \ }
+Plug 'coc-extensions/coc-svelte', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 
 Plug 'posva/vim-vue' " vue js setup
 
