@@ -1,92 +1,98 @@
 filetype plugin indent on
-" Vim-Plug {{{
-call plug#begin()
-Plug 'NLKNguyen/papercolor-theme' " color scheme
-"Plug 'tomasr/molokai'
-Plug 'itchyny/lightline.vim' " Airline/Powerline replacement
-Plug 'rust-lang/rust.vim' " Rust highlights
-Plug 'derekwyatt/vim-scala' " Scala highlights
-Plug 'rgrinberg/vim-ocaml' " ocaml highlights
-Plug 'cespare/vim-toml'
-Plug 'elzr/vim-json'
-Plug 'autowitch/hive.vim'
-Plug 'scrooloose/nerdcommenter' " for quick commenting
-Plug 'hashivim/vim-terraform' " for terraform highlights
-Plug 'pearofducks/ansible-vim' " Ansible highlights
-Plug 'godlygeek/tabular' " needed for vim-markdown
-Plug 'plasticboy/vim-markdown'
-Plug 'martinda/Jenkinsfile-vim-syntax' " For jenkinsfiles
-Plug 'vim-scripts/groovyindent-unix' " For groovy indentation
+" Vim-Packager {{{
+"
+function s:init_packages() abort
+  packadd vim-packager
+  call packager#init()
+  call packager#add('git@github.com:kristijanhusak/vim-packager', {'type': 'opt'})
+  call packager#add('git@github.com:sainnhe/sonokai.git') " color scheme
+  "call packager#add('git@github.com:NLKNguyen/papercolor-theme.git') " color scheme
+  call packager#add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
+  call packager#add('git@github.com:itchyny/lightline.vim.git') " Airline/Powerline replacement
+  call packager#add('git@github.com:rust-lang/rust.vim.git') " Rust highlights
+  call packager#add('git@github.com:derekwyatt/vim-scala.git') " Scala highlights
+  call packager#add('git@github.com:rgrinberg/vim-ocaml.git') " ocaml highlights
+  call packager#add('git@github.com:cespare/vim-toml.git')
+  call packager#add('git@github.com:elzr/vim-json.git')
+  call packager#add('git@github.com:autowitch/hive.vim.git')
+  call packager#add('git@github.com:scrooloose/nerdcommenter.git') " for quick commenting
+  call packager#add('git@github.com:hashivim/vim-terraform.git') " for terraform highlights
+  call packager#add('git@github.com:pearofducks/ansible-vim.git') " Ansible highlights
+  call packager#add('git@github.com:godlygeek/tabular.git') " needed for vim-markdown
+  call packager#add('git@github.com:plasticboy/vim-markdown.git')
+  call packager#add('git@github.com:martinda/Jenkinsfile-vim-syntax.git') " For jenkinsfiles
+  call packager#add('git@github.com:vim-scripts/groovyindent-unix.git') " For groovy indentation
 
-Plug 'ekalinin/Dockerfile.vim' " docker highlights
-Plug 'vim-python/python-syntax' " Python highlight improvements
-Plug 'Vimjas/vim-python-pep8-indent' " For python
-Plug 'bronson/vim-trailing-whitespace' " Highlight trailing whitespace;
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
-Plug 'leafgarland/typescript-vim' " ts syntax
-" TSX
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'evanleck/vim-svelte' "svelte highlights
-Plug 'posva/vim-vue' " vue js setup
-Plug 'tpope/vim-ragtag' " html tag management
-Plug 'jparise/vim-graphql' " graphql highlights
-Plug 'groenewege/vim-less'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'airblade/vim-rooter' " roots directory at git repo
-Plug 'scrooloose/nerdtree' " file browsing
-Plug 'ctrlpvim/ctrlp.vim' " fuzzy file search (like find)
-Plug 'wincent/ferret' " find/replace
+  call packager#add('git@github.com:ekalinin/Dockerfile.vim.git') " docker highlights
+  call packager#add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
+  call packager#add('git@github.com:bronson/vim-trailing-whitespace.git') " Highlight trailing whitespace;
 
-Plug 'pappasam/nvim-repl' " REPLs
+  " Syntax highlight support, as well as text objects, etc.
+  call packager#add('git@github.com:davidroeca/nvim-treesitter.git')
+  " Waiting on https://github.com/nvim-treesitter/nvim-treesitter/pull/607
+  "call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git')
 
-Plug 'othree/eregex.vim' " needed for perl usage
+  call packager#add('git@github.com:evanleck/vim-svelte.git') "svelte highlights
+  call packager#add('git@github.com:tpope/vim-ragtag.git') " html tag management
+  call packager#add('git@github.com:jparise/vim-graphql.git') " graphql highlights
+  call packager#add('git@github.com:groenewege/vim-less.git')
+  call packager#add('git@github.com:cakebaker/scss-syntax.vim.git')
+  call packager#add('git@github.com:airblade/vim-rooter.git') " roots directory at git repo
+  call packager#add('git@github.com:scrooloose/nerdtree.git') " file browsing
+  call packager#add('git@github.com:ctrlpvim/ctrlp.vim.git') " fuzzy file search (like find)
+  call packager#add('git@github.com:wincent/ferret.git') " find/replace
 
-" Autocompletion installs
-Plug 'jmcantrell/vim-virtualenv' " Python-venv autocompletion
-Plug 'racer-rust/vim-racer' " rust autocompletion
+  call packager#add('git@github.com:pappasam/nvim-repl.git') " REPLs
 
-" For writing
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+  call packager#add('git@github.com:othree/eregex.vim.git') " needed for perl usage
 
-" For autocompletion
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile && yarn build'}
-for coc_plugin in [
-      \ 'fannheyward/coc-markdownlint',
-      \ 'fannheyward/coc-texlab',
-      \ 'josa42/coc-go',
-      \ 'neoclide/coc-html',
-      \ 'neoclide/coc-css',
-      \ 'neoclide/coc-json',
-      \ 'neoclide/coc-rls',
-      \ 'neoclide/coc-tsserver',
-      \ 'neoclide/coc-yaml',
-      \ 'pappasam/coc-jedi',
-      \ ]
-  Plug coc_plugin, { 'do': 'yarn install --frozen-lockfile && yarn build' }
-endfor
+  " Autocompletion installs
+  call packager#add('git@github.com:jmcantrell/vim-virtualenv.git') " Python-venv autocompletion
+  call packager#add('git@github.com:racer-rust/vim-racer.git') " rust autocompletion
 
-Plug 'coc-extensions/coc-svelte', { 'do': 'yarn install --frozen-lockfile && yarn build' }
+  " For writing
+  call packager#add('git@github.com:junegunn/goyo.vim.git')
+  call packager#add('git@github.com:junegunn/limelight.vim.git')
 
-Plug 'posva/vim-vue' " vue js setup
+  " For autocompletion
+  call packager#add('git@github.com:neoclide/coc.nvim.git', {'do': 'yarn install --frozen-lockfile && yarn build'})
+  for coc_plugin in [
+        \ 'git@github.com:fannheyward/coc-markdownlint.git',
+        \ 'git@github.com:fannheyward/coc-texlab.git',
+        \ 'git@github.com:josa42/coc-go.git',
+        \ 'git@github.com:neoclide/coc-html.git',
+        \ 'git@github.com:neoclide/coc-css.git',
+        \ 'git@github.com:neoclide/coc-json.git',
+        \ 'git@github.com:neoclide/coc-rls.git',
+        \ 'git@github.com:neoclide/coc-tsserver.git',
+        \ 'git@github.com:neoclide/coc-yaml.git',
+        \ 'git@github.com:pappasam/coc-jedi.git',
+        \ ]
+    call packager#add(coc_plugin, { 'do': 'yarn install --frozen-lockfile && yarn build' })
+  endfor
 
-Plug 'pappasam/vim-filetype-formatter' " running code formatters
+  call packager#add('git@github.com:coc-extensions/coc-svelte.git', { 'do': 'yarn install --frozen-lockfile && yarn build' })
 
-" Plugins for plantuml
-Plug 'aklt/plantuml-syntax'
-Plug 'tyru/open-browser.vim'
-Plug 'weirongxu/plantuml-previewer.vim'
+  call packager#add('git@github.com:pappasam/vim-filetype-formatter.git') " running code formatters
 
-" Nginx
-Plug 'nginx/nginx', { 'rtp': 'contrib/vim' }
+  " Plugins for plantuml
+  call packager#add('git@github.com:aklt/plantuml-syntax.git')
+  call packager#add('git@github.com:tyru/open-browser.vim.git')
+  call packager#add('git@github.com:weirongxu/plantuml-previewer.vim.git')
 
-" Vagrant
-Plug 'hashivim/vim-vagrant'
+  " Nginx
+  call packager#add('git@github.com:nginx/nginx.git', { 'rtp': 'contrib/vim' })
 
-" FixWhitespace fixes this
-call plug#end()
+  " Vagrant
+  call packager#add('git@github.com:hashivim/vim-vagrant.git')
+endfunction
+
+command!       PackInstall call s:init_packages() | call packager#install()
+command! -bang PackUpdate  call s:init_packages() | call packager#update({ 'force_hooks': '<bang>' })
+command!       PackClean   call s:init_packages() | call packager#clean()
+command!       PackStatus  call s:init_packages() | call packager#status()
+command! -bang PU          call s:init_packages() | call packager#clean() | call packager#update({ 'force_hooks': '<bang>' })
+
 " }}}
  "Non-Plugin Personal Customization {{{
 helptags ~/.config/nvim/doc
@@ -244,45 +250,13 @@ endfunction
 
 call GlobalKeyRemap()
 " }}}
-" Colorschemes {{{
-syntax enable
-set t_Co=256 " sets color count for terminal
-set background=dark
-let g:PaperColor_Theme_Options = {
-  \ 'theme': {
-  \   'default.dark': {
-  \     'override': {
-  \       'color00': ['#000a1c', ''],
-  \       'linenumber_bg': ['#000a1c', ''],
-  \     }
-  \   }
-  \ },
-  \ 'language': {
-  \   'python': {
-  \     'highlight_builtins': 1
-  \    }
-  \  }
-  \ }
-
-colorscheme PaperColor
-" }}}
 " lightline config {{{
 let g:lightline = {
-  \ 'colorscheme': 'PaperColor'
+  \ 'colorscheme': 'sonokai'
   \ }
 " }}}
 " Vim terraform {{{
 let g:terraform_align = 1
-" }}}
-" Vim JS {{{
-let g:javascript_plugin_flow = 1
-let g:used_javascript_libs = 'jquery,requirejs,react'
-" TSX is pretty broken for this plugin
-let g:vim_jsx_pretty_disable_tsx = v:true
-" Used for vim-jsx-prettier
-let g:vim_jsx_pretty_colorful_config = 1
-
-
 " }}}
 " Vim Python {{{
 let g:python_highlight_space_errors = 0
@@ -367,19 +341,6 @@ let g:eregex_default_enable = 0
 " }}}
  "Filetype-specific settings {{{
 
-augroup js_recognition
-  autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.gs set filetype=javascript
-  autocmd BufNewFile,BufFilePre,BufRead *.js.flow set filetype=javascript
-augroup END
-augroup jsx_recognition
-  autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.jsx set filetype=javascript.jsx
-augroup END
-augroup tsx_recognition
-  autocmd!
-  autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
-augroup END
 augroup c_inc_recognition
   autocmd!
   autocmd BufNewFile,BufFilePre,BufRead *.c.inc set filetype=c
@@ -416,11 +377,11 @@ augroup marker_folding
   autocmd Filetype zsh setlocal foldmethod=marker
 augroup END
 " Fix 'comments' for typescript. Fixes the >>>>> bug for generics.
-augroup ts_generics_comments_bug
-  autocmd!
-  autocmd FileType typescript.tsx,typescript
-        \ setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-augroup END
+"augroup ts_generics_comments_bug
+  "autocmd!
+  "autocmd FileType typescript.tsx,typescript,typescriptreact
+        "\ setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+"augroup END
 
 augroup indentation_DR
   autocmd!
@@ -436,7 +397,61 @@ augroup fix_whitespace_save
   autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
 augroup END
 " }}}
-" {{{
+" setting secure {{{
 " Prevents .nvimrcs and .exrcs from running not as the user
 set secure
+" }}}
+" VimEnter call {{{
+function! HandleVimEnter()
+lua <<EOF
+require('nvim-treesitter.configs').setup({
+  highlight = { enable = true },
+  textobjects = { enable = true },
+  ensure_installed = {
+    'html',
+    'javascript',
+    'rust',
+    'python',
+    'query',
+    'tsx',
+    'typescript',
+  },
+})
+EOF
+endfunction
+augroup vimenter
+  autocmd! VimEnter * call HandleVimEnter()
+augroup END
+function! HandleSyntaxSetup()
+  syntax enable
+  if has('termguicolors')
+    set termguicolors
+  endif
+  let g:sonokai_enable_italic = 1
+  let g:sonokai_transparent_background = 1
+  set t_Co=256 " sets color count for terminal
+  colorscheme sonokai
+  "set background=dark
+  "let g:PaperColor_Theme_Options = {
+    "\ 'theme': {
+    "\   'default.dark': {
+    "\     'override': {
+    "\       'color00': ['#000a1c', ''],
+    "\       'linenumber_bg': ['#000a1c', ''],
+    "\     }
+    "\   }
+    "\ },
+    "\ 'language': {
+    "\   'python': {
+    "\     'highlight_builtins': 1
+    "\    }
+    "\  }
+    "\ }
+
+  "colorscheme PaperColor
+endfunction
+augroup syntax_setup
+  autocmd! VimEnter * call HandleSyntaxSetup()
+augroup END
+" }}}
 " }}}
