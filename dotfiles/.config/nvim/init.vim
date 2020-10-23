@@ -5,6 +5,12 @@ function s:init_packages() abort
   packadd vim-packager
   call packager#init()
   call packager#add('git@github.com:kristijanhusak/vim-packager', {'type': 'opt'})
+
+  " Syntax highlight support, as well as text objects, etc.
+  call packager#add('git@github.com:davidroeca/nvim-treesitter.git')
+  " Waiting on https://github.com/nvim-treesitter/nvim-treesitter/pull/607
+  "call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git')
+  "
   call packager#add('git@github.com:sainnhe/sonokai.git') " color scheme
   "call packager#add('git@github.com:NLKNguyen/papercolor-theme.git') " color scheme
   call packager#add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
@@ -26,11 +32,6 @@ function s:init_packages() abort
   call packager#add('git@github.com:ekalinin/Dockerfile.vim.git') " docker highlights
   call packager#add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
   call packager#add('git@github.com:bronson/vim-trailing-whitespace.git') " Highlight trailing whitespace;
-
-  " Syntax highlight support, as well as text objects, etc.
-  call packager#add('git@github.com:davidroeca/nvim-treesitter.git')
-  " Waiting on https://github.com/nvim-treesitter/nvim-treesitter/pull/607
-  "call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git')
 
   call packager#add('git@github.com:evanleck/vim-svelte.git') "svelte highlights
   call packager#add('git@github.com:tpope/vim-ragtag.git') " html tag management
@@ -424,12 +425,12 @@ augroup vimenter
 augroup END
 function! HandleSyntaxSetup()
   syntax enable
+  set t_Co=256 " sets color count for terminal
   if has('termguicolors')
     set termguicolors
   endif
   let g:sonokai_enable_italic = 1
   let g:sonokai_transparent_background = 1
-  set t_Co=256 " sets color count for terminal
   colorscheme sonokai
   "set background=dark
   "let g:PaperColor_Theme_Options = {
