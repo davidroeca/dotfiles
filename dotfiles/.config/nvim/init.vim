@@ -1,5 +1,5 @@
 filetype plugin indent on
-" Vim-Packager {{{
+"  Vim-Packager {{{
 "
 function s:init_packages() abort
   packadd vim-packager
@@ -7,14 +7,16 @@ function s:init_packages() abort
   call packager#add('git@github.com:kristijanhusak/vim-packager', {'type': 'opt'})
 
   " Syntax highlight support, as well as text objects, etc.
-  call packager#add('git@github.com:davidroeca/nvim-treesitter.git')
-  " Waiting on https://github.com/nvim-treesitter/nvim-treesitter/pull/607
-  "call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git')
-  "
+  call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git')
   call packager#add('git@github.com:sainnhe/sonokai.git') " color scheme
+  call packager#add('git@github.com:pappasam/papercolor-theme-slim') " color scheme
+
   "call packager#add('git@github.com:NLKNguyen/papercolor-theme.git') " color scheme
   call packager#add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
   call packager#add('git@github.com:itchyny/lightline.vim.git') " Airline/Powerline replacement
+  call packager#add('git@github.com:pangloss/vim-javascript.git') " JS/JSX support
+  call packager#add('git@github.com:leafgarland/typescript-vim.git') " TS support
+  call packager#add('git@github.com:peitalin/vim-jsx-typescript.git') " TSX support
   call packager#add('git@github.com:rust-lang/rust.vim.git') " Rust highlights
   call packager#add('git@github.com:derekwyatt/vim-scala.git') " Scala highlights
   call packager#add('git@github.com:rgrinberg/vim-ocaml.git') " ocaml highlights
@@ -432,6 +434,7 @@ function! HandleSyntaxSetup()
   let g:sonokai_enable_italic = 1
   let g:sonokai_transparent_background = 1
   colorscheme sonokai
+
   "set background=dark
   "let g:PaperColor_Theme_Options = {
     "\ 'theme': {
@@ -449,6 +452,7 @@ function! HandleSyntaxSetup()
     "\  }
     "\ }
 
+  "colorscheme PaperColorSlim
   "colorscheme PaperColor
 endfunction
 augroup syntax_setup
