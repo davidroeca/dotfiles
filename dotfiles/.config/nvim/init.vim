@@ -6,17 +6,11 @@ function s:init_packages() abort
   call packager#init()
   call packager#add('git@github.com:kristijanhusak/vim-packager', {'type': 'opt'})
 
-  " Syntax highlight support, as well as text objects, etc.
-  call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git')
-  call packager#add('git@github.com:sainnhe/sonokai.git') " color scheme
-  call packager#add('git@github.com:pappasam/papercolor-theme-slim') " color scheme
-
   "call packager#add('git@github.com:NLKNguyen/papercolor-theme.git') " color scheme
   call packager#add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
   call packager#add('git@github.com:itchyny/lightline.vim.git') " Airline/Powerline replacement
   call packager#add('git@github.com:pangloss/vim-javascript.git') " JS/JSX support
-  call packager#add('git@github.com:leafgarland/typescript-vim.git') " TS support
-  call packager#add('git@github.com:peitalin/vim-jsx-typescript.git') " TSX support
+  call packager#add('git@github.com:pappasam/vim-jsx-typescript.git', {'branch': 'change-to-typescriptreact'}) " TSX support
   call packager#add('git@github.com:rust-lang/rust.vim.git') " Rust highlights
   call packager#add('git@github.com:derekwyatt/vim-scala.git') " Scala highlights
   call packager#add('git@github.com:rgrinberg/vim-ocaml.git') " ocaml highlights
@@ -58,7 +52,7 @@ function s:init_packages() abort
   call packager#add('git@github.com:junegunn/limelight.vim.git')
 
   " For autocompletion
-  call packager#add('git@github.com:neoclide/coc.nvim.git', {'do': 'yarn install --frozen-lockfile && yarn build'})
+  call packager#add('git@github.com:neoclide/coc.nvim.git', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
   for coc_plugin in [
         \ 'git@github.com:fannheyward/coc-markdownlint.git',
         \ 'git@github.com:fannheyward/coc-texlab.git',
@@ -88,6 +82,11 @@ function s:init_packages() abort
 
   " Vagrant
   call packager#add('git@github.com:hashivim/vim-vagrant.git')
+
+  " Syntax highlight support, as well as text objects, etc.
+  call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git')
+  call packager#add('git@github.com:sainnhe/sonokai.git') " color scheme
+  call packager#add('git@github.com:pappasam/papercolor-theme-slim') " color scheme
 endfunction
 
 command!       PackInstall call s:init_packages() | call packager#install()
@@ -247,16 +246,16 @@ function! GlobalKeyRemap()
   inoremap <silent><expr> <c-space> coc#refresh()
 
   " Scroll in floating window
-  nnoremap <expr><C-d> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-d>"
-  nnoremap <expr><C-u> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-u>"
+  nnoremap <expr><C-d> coc#float#has_float() ? coc#float#scroll(1) : "\<C-d>"
+  nnoremap <expr><C-u> coc#float#has_float() ? coc#float#scroll(0) : "\<C-u>"
 endfunction
 
 call GlobalKeyRemap()
 " }}}
 " lightline config {{{
-let g:lightline = {
-  \ 'colorscheme': 'sonokai'
-  \ }
+"let g:lightline = {
+  "\ 'colorscheme': 'sonokai'
+  "\ }
 " }}}
 " Vim terraform {{{
 let g:terraform_align = 1
@@ -405,17 +404,15 @@ augroup END
 set secure
 " }}}
 " VimEnter call {{{
+
 function! HandleVimEnter()
 lua <<EOF
 require('nvim-treesitter.configs').setup({
   highlight = { enable = true },
-  textobjects = { enable = true },
   ensure_installed = {
     'html',
     'javascript',
     'rust',
-    'python',
-    'query',
     'tsx',
     'typescript',
   },
@@ -431,28 +428,28 @@ function! HandleSyntaxSetup()
   if has('termguicolors')
     set termguicolors
   endif
-  let g:sonokai_enable_italic = 1
-  let g:sonokai_transparent_background = 1
-  colorscheme sonokai
+  "let g:sonokai_enable_italic = 1
+  "let g:sonokai_transparent_background = 1
+  "colorscheme sonokai
 
-  "set background=dark
-  "let g:PaperColor_Theme_Options = {
-    "\ 'theme': {
-    "\   'default.dark': {
-    "\     'override': {
-    "\       'color00': ['#000a1c', ''],
-    "\       'linenumber_bg': ['#000a1c', ''],
-    "\     }
-    "\   }
-    "\ },
-    "\ 'language': {
-    "\   'python': {
-    "\     'highlight_builtins': 1
-    "\    }
-    "\  }
-    "\ }
+  set background=dark
+  let g:PaperColor_Theme_Options = {
+    \ 'theme': {
+    \   'default.dark': {
+    \     'override': {
+    \       'color00': ['#000a1c', ''],
+    \       'linenumber_bg': ['#000a1c', ''],
+    \     }
+    \   }
+    \ },
+    \ 'language': {
+    \   'python': {
+    \     'highlight_builtins': 1
+    \    }
+    \  }
+    \ }
 
-  "colorscheme PaperColorSlim
+  colorscheme PaperColorSlim
   "colorscheme PaperColor
 endfunction
 augroup syntax_setup
