@@ -65,18 +65,6 @@ then
   path_ladd "$HOME_BIN" # Personal binary files
 fi
 
-if rustc_loc="$(type -p "rustc")" && [[ ! -z $rustc_loc ]]
-then
-  RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src
-  if [ -d $RUST_SRC_PATH ]
-  then
-    export RUST_SRC_PATH
-  else
-    echo "$RUST_SRC_PATH does not exist."
-    echo "Run 'rustup component add rust-src' to fix"
-  fi
-fi
-
 GOPATH="$HOME/go"
 if [ -d $GOPATH ]
 then
