@@ -248,6 +248,11 @@ function! GlobalKeyRemap()
   " Scroll in floating window
   nnoremap <expr><C-d> coc#float#has_float() ? coc#float#scroll(1) : "\<C-d>"
   nnoremap <expr><C-u> coc#float#has_float() ? coc#float#scroll(0) : "\<C-u>"
+
+  " Expand snippet
+  imap <silent> <expr> <C-l> coc#expandable() ? "<Plug>(coc-snippets-expand)" : "\<C-y>"
+
+
 endfunction
 
 call GlobalKeyRemap()

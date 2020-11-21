@@ -10,5 +10,9 @@
       "args": [],
       "filetypes": ["python"]
     }
+  },
+  "yaml.schemas": {
+    "kubernetes": "/kubernetes/*",
+    "https://raw.githubusercontent.com/GoogleContainerTools/skaffold/master/docs/content/en/schemas/v2beta5.json": "/skaffold.yaml"
   }
 }
