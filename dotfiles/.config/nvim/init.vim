@@ -15,7 +15,7 @@ function s:init_packages() abort
   call packager#add('git@github.com:derekwyatt/vim-scala.git') " Scala highlights
   call packager#add('git@github.com:rgrinberg/vim-ocaml.git') " ocaml highlights
   call packager#add('git@github.com:cespare/vim-toml.git')
-  call packager#add('git@github.com:elzr/vim-json.git')
+  call packager#add('git@github.com:neoclide/jsonc.vim.git')
   call packager#add('git@github.com:autowitch/hive.vim.git')
   call packager#add('git@github.com:scrooloose/nerdcommenter.git') " for quick commenting
   call packager#add('git@github.com:hashivim/vim-terraform.git') " for terraform highlights
@@ -419,6 +419,7 @@ require('nvim-treesitter.configs').setup({
     'javascript',
     'rust',
     'tsx',
+    'json',
     'typescript',
   },
 })
