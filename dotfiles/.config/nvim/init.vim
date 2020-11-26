@@ -420,6 +420,7 @@ require('nvim-treesitter.configs').setup({
     'rust',
     'tsx',
     'json',
+    'jsdoc',
     'typescript',
   },
 })
