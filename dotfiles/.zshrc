@@ -159,6 +159,7 @@ function nodeglobal-install() {
   local packages=(
     npm
     neovim
+    devspace
     prettier
     svelte-language-server
     typescript

@@ -54,21 +54,11 @@ function s:init_packages() abort
   " For autocompletion
   call packager#add('git@github.com:neoclide/coc.nvim.git', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
   for coc_plugin in [
-        \ 'git@github.com:fannheyward/coc-markdownlint.git',
-        \ 'git@github.com:fannheyward/coc-texlab.git',
-        \ 'git@github.com:josa42/coc-go.git',
-        \ 'git@github.com:neoclide/coc-html.git',
-        \ 'git@github.com:neoclide/coc-css.git',
-        \ 'git@github.com:neoclide/coc-json.git',
-        \ 'git@github.com:neoclide/coc-rls.git',
-        \ 'git@github.com:neoclide/coc-tsserver.git',
-        \ 'git@github.com:neoclide/coc-yaml.git',
-        \ 'git@github.com:pappasam/coc-jedi.git',
+        \ 'git@github.com:coc-extensions/coc-svelte.git',
         \ ]
     call packager#add(coc_plugin, { 'do': 'yarn install --frozen-lockfile && yarn build' })
   endfor
 
-  call packager#add('git@github.com:coc-extensions/coc-svelte.git', { 'do': 'yarn install --frozen-lockfile && yarn build' })
 
   call packager#add('git@github.com:pappasam/vim-filetype-formatter.git') " running code formatters
 
@@ -94,6 +84,7 @@ command! -bang PackUpdate  call s:init_packages() | call packager#update({ 'forc
 command!       PackClean   call s:init_packages() | call packager#clean()
 command!       PackStatus  call s:init_packages() | call packager#status()
 command! -bang PU          call s:init_packages() | call packager#clean() | call packager#update({ 'force_hooks': '<bang>' })
+command!       UpdateAll execute ':PackUpdate' | execute ':CocUpdate'
 
 " }}}
  "Non-Plugin Personal Customization {{{
@@ -251,8 +242,19 @@ function! GlobalKeyRemap()
 
   " Expand snippet
   imap <silent> <expr> <C-l> coc#expandable() ? "<Plug>(coc-snippets-expand)" : "\<C-y>"
-
-
+  let g:coc_global_extensions = [
+        \ 'coc-angular',
+        \ 'coc-markdownlint',
+        \ 'coc-texlab',
+        \ 'coc-go',
+        \ 'coc-html',
+        \ 'coc-css',
+        \ 'coc-json',
+        \ 'coc-rls',
+        \ 'coc-tsserver',
+        \ 'coc-yaml',
+        \ 'coc-jedi',
+        \ ]
 endfunction
 
 call GlobalKeyRemap()
