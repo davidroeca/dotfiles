@@ -60,7 +60,7 @@ function s:init_packages() abort
   endfor
 
 
-  call packager#add('git@github.com:pappasam/vim-filetype-formatter.git') " running code formatters
+  call packager#add('git@github.com:pappasam/vim-filetype-formatter.git', { 'branch': 'main' }) " running code formatters
 
   " Plugins for plantuml
   call packager#add('git@github.com:aklt/plantuml-syntax.git')
@@ -74,9 +74,9 @@ function s:init_packages() abort
   call packager#add('git@github.com:hashivim/vim-vagrant.git')
 
   " Syntax highlight support, as well as text objects, etc.
-  call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git')
+  call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git', { 'do': 'TSUpdate' })
   call packager#add('git@github.com:sainnhe/sonokai.git') " color scheme
-  call packager#add('git@github.com:pappasam/papercolor-theme-slim') " color scheme
+  call packager#add('git@github.com:pappasam/papercolor-theme-slim', { 'branch': 'main' }) " color scheme
 endfunction
 
 command!       PackInstall call s:init_packages() | call packager#install()

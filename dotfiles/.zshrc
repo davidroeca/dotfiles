@@ -162,6 +162,7 @@ function nodeglobal-install() {
     devspace
     prettier
     svelte-language-server
+    tree-sitter-cli
     typescript
     eslint
     degit
@@ -170,6 +171,13 @@ function nodeglobal-install() {
   asdf reshim nodejs
 }
 
+
+function nvim-update() {
+  asdf uninstall neovim nightly
+  asdf install neovim nightly
+  asdf global neovim nightly
+  nvim -c 'UpdateAll'
+}
 
 
 function ve() {
