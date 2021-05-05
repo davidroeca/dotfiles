@@ -6,7 +6,6 @@ function s:init_packages() abort
   call packager#init()
   call packager#add('git@github.com:kristijanhusak/vim-packager', {'type': 'opt'})
 
-  "call packager#add('git@github.com:NLKNguyen/papercolor-theme.git') " color scheme
   call packager#add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
   call packager#add('git@github.com:itchyny/lightline.vim.git') " Airline/Powerline replacement
   call packager#add('git@github.com:pangloss/vim-javascript.git') " JS/JSX support
@@ -25,7 +24,6 @@ function s:init_packages() abort
   call packager#add('git@github.com:martinda/Jenkinsfile-vim-syntax.git') " For jenkinsfiles
   call packager#add('git@github.com:vim-scripts/groovyindent-unix.git') " For groovy indentation
 
-  call packager#add('git@github.com:ekalinin/Dockerfile.vim.git') " docker highlights
   call packager#add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
   call packager#add('git@github.com:bronson/vim-trailing-whitespace.git') " Highlight trailing whitespace;
 
@@ -53,12 +51,6 @@ function s:init_packages() abort
 
   " For autocompletion
   call packager#add('git@github.com:neoclide/coc.nvim.git', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
-  for coc_plugin in [
-        \ 'git@github.com:coc-extensions/coc-svelte.git',
-        \ ]
-    call packager#add(coc_plugin, { 'do': 'yarn install --frozen-lockfile && yarn build' })
-  endfor
-
 
   call packager#add('git@github.com:pappasam/vim-filetype-formatter.git', { 'branch': 'main' }) " running code formatters
 
@@ -74,8 +66,7 @@ function s:init_packages() abort
   call packager#add('git@github.com:hashivim/vim-vagrant.git')
 
   " Syntax highlight support, as well as text objects, etc.
-  call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git', { 'do': 'TSUpdate' })
-  call packager#add('git@github.com:sainnhe/sonokai.git') " color scheme
+  call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git', { 'do': ':TSUpdate' })
   call packager#add('git@github.com:pappasam/papercolor-theme-slim', { 'branch': 'main' }) " color scheme
 endfunction
 
@@ -260,6 +251,7 @@ function! GlobalKeyRemap()
         \ 'coc-tsserver',
         \ 'coc-yaml',
         \ 'coc-jedi',
+        \ 'coc-svelte',
         \ ]
 endfunction
 
