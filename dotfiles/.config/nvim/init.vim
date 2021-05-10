@@ -419,6 +419,7 @@ require('nvim-treesitter.configs').setup({
     'html',
     'javascript',
     'rust',
+    'svelte',
     'tsx',
     'json',
     'jsdoc',
