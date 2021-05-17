@@ -394,7 +394,6 @@ augroup indentation_DR
   autocmd!
   autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=4
   autocmd Filetype c setlocal shiftwidth=4 softtabstop=4 tabstop=4
-  autocmd Filetype terraform setlocal shiftwidth=4 softtabstop=4 tabstop=4
   autocmd Filetype dot setlocal autoindent cindent
 augroup END
 
