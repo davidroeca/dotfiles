@@ -124,7 +124,6 @@ fi
 
 function pythonglobal-install() {
   local packages=(
-    awscli
     black
     cookiecutter
     docker-compose
@@ -137,8 +136,7 @@ function pythonglobal-install() {
   )
   if command -v pipx > /dev/null; then
     for package in $packages; do
-      pipx install "$package"
-      pipx upgrade "$package"
+      pipx install --force "$package"
     done
   else
     echo 'pipx not installed. Install with "pip install pipx"'
