@@ -1,8 +1,9 @@
 DOT_CONFIG_DIRS_REL = $(wildcard dotfiles/.config/*)
 DOT_CONFIG_DIRS_LINK = $(subst dotfiles, ~, $(DOT_CONFIG_DIRS_REL))
-NODE_VERSION = 14.1.0
-PYTHON_VERSION = 3.8.2
-YARN_VERSION = 1.22.4
+NODE_VERSION = 16.4.2
+PYTHON_VERSION = 3.9.6
+YARN_VERSION = 1.22.5
+TERRAFORM_LS_VERSION = 0.19.0
 
 .PHONY: help
 help:
@@ -95,6 +96,10 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 	asdf plugin-add python
 	asdf plugin-add nodejs
 	asdf plugin-add yarn
+	asdf plugin-add terraform-ls
+
+.PHONY: asdf-plugin-setup
+asdf-plugin-setup: ~/.asdf
 	asdf install python $(PYTHON_VERSION)
 	asdf global python $(PYTHON_VERSION) system
 	asdf install nodejs $(NODE_VERSION)
@@ -102,13 +107,15 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 	asdf global nodejs $(NODE_VERSION)
 	asdf install yarn $(YARN_VERSION)
 	asdf global yarn $(YARN_VERSION)
+	asdf install terraform-ls $(TERRAFORM_LS_VERSION)
+	asdf global terraform-ls %(TERRAFORM_LS_VERSION)
 
 ~/.zplug:
 	git clone https://github.com/zplug/zplug ~/.zplug
 
 # Check that these versions are the latest that you want
 .PHONY: init-envs
-init-envs: ~/.asdf ~/.zplug # sets up asdf and zplug
+init-envs: asdf-plugin-setup ~/.zplug # sets up asdf and zplug
 
 
 .PHONY: pipx-install

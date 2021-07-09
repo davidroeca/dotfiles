@@ -5,10 +5,11 @@
   "diagnostic.enable": true,
   "javascript.suggestionActions.enabled": false,
   "languageserver": {
-    "jls": {
-      "command": "jedi-language-server",
-      "args": [],
-      "filetypes": ["python"]
+    "terraform-ls": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "rootPatterns": ["Makefile", ".git"],
     }
   },
   "yaml.schemas": {
