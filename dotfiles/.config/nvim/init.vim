@@ -350,22 +350,22 @@ let g:eregex_default_enable = 0
 
 augroup c_inc_recognition
   autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.c.inc set filetype=c
+  autocmd BufEnter *.c.inc set filetype=c
 augroup END
 augroup hive_files
   autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.hql set filetype=hive expandtab
-  autocmd BufNewFile,BufFilePre,BufRead *.q set filetype=hive expandtab
+  autocmd BufEnter *.hql set filetype=hive expandtab
+  autocmd BufEnter *.q set filetype=hive expandtab
 augroup END
 
 augroup md_markdown
   autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+  autocmd BufEnter *.md set filetype=markdown
 augroup END
 
 augroup less_filetype
   autocmd!
-  autocmd BufNewFile,BufFilePre,BufRead *.less set filetype=less
+  autocmd BufEnter *.less set filetype=less
 augroup END
 
 " Finds headers in markdown and restructured text
@@ -414,6 +414,7 @@ lua <<EOF
 require('nvim-treesitter.configs').setup({
   highlight = { enable = true },
   ensure_installed = {
+    'dockerfile',
     'graphql',
     'html',
     'javascript',
