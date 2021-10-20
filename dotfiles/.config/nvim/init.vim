@@ -9,7 +9,7 @@ function s:init_packages() abort
   call packager#add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
   call packager#add('git@github.com:itchyny/lightline.vim.git') " Airline/Powerline replacement
   call packager#add('git@github.com:pangloss/vim-javascript.git') " JS/JSX support
-  call packager#add('git@github.com:pappasam/vim-jsx-typescript.git', {'branch': 'change-to-typescriptreact'}) " TSX support
+  call packager#add('git@github.com:peitalin/vim-jsx-typescript.git') " TSX support
   call packager#add('git@github.com:rust-lang/rust.vim.git') " Rust highlights
   call packager#add('git@github.com:derekwyatt/vim-scala.git') " Scala highlights
   call packager#add('git@github.com:rgrinberg/vim-ocaml.git') " ocaml highlights
@@ -37,7 +37,7 @@ function s:init_packages() abort
   call packager#add('git@github.com:ctrlpvim/ctrlp.vim.git') " fuzzy file search (like find)
   call packager#add('git@github.com:wincent/ferret.git') " find/replace
 
-  call packager#add('git@github.com:pappasam/nvim-repl.git') " REPLs
+  call packager#add('git@github.com:pappasam/nvim-repl.git', { 'branch': 'main' }) " REPLs
 
   call packager#add('git@github.com:othree/eregex.vim.git') " needed for perl usage
 
@@ -51,7 +51,7 @@ function s:init_packages() abort
 
   " For autocompletion
   call packager#add('git@github.com:neoclide/coc.nvim.git', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
-  call packager#add('git@github.com:davidroeca/coc-svelte.git', {'branch': 'updates', 'do': 'yarn install --frozen-lockfile'})
+  "call packager#add('git@github.com:davidroeca/coc-svelte.git')
 
   call packager#add('git@github.com:pappasam/vim-filetype-formatter.git', { 'branch': 'main' }) " running code formatters
 
@@ -249,6 +249,7 @@ function! GlobalKeyRemap()
         \ 'coc-css',
         \ 'coc-json',
         \ 'coc-rls',
+        \ 'coc-svelte',
         \ 'coc-tsserver',
         \ 'coc-yaml',
         \ 'coc-jedi',
