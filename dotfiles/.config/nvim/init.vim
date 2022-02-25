@@ -250,6 +250,7 @@ function! GlobalKeyRemap()
         \ 'coc-json',
         \ 'coc-rls',
         \ 'coc-svelte',
+        \ 'coc-snippets',
         \ 'coc-tsserver',
         \ 'coc-yaml',
         \ 'coc-jedi',
