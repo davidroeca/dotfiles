@@ -13,7 +13,7 @@ function s:init_packages() abort
   call packager#add('git@github.com:rust-lang/rust.vim.git') " Rust highlights
   call packager#add('git@github.com:derekwyatt/vim-scala.git') " Scala highlights
   call packager#add('git@github.com:rgrinberg/vim-ocaml.git') " ocaml highlights
-  call packager#add('git@github.com:cespare/vim-toml.git')
+  call packager#add('git@github.com:cespare/vim-toml.git', {'branch': 'main'})
   call packager#add('git@github.com:neoclide/jsonc.vim.git')
   call packager#add('git@github.com:autowitch/hive.vim.git')
   call packager#add('git@github.com:scrooloose/nerdcommenter.git') " for quick commenting
@@ -415,6 +415,7 @@ lua <<EOF
 require('nvim-treesitter.configs').setup({
   highlight = { enable = true },
   ensure_installed = {
+    'css',
     'dockerfile',
     'graphql',
     'html',
