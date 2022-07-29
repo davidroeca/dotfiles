@@ -143,6 +143,14 @@ function pythonglobal-install() {
   fi
 }
 
+function pipx-clean() {
+  if command -v pipx > /dev/null; then
+    pipx uninstall-all
+  else
+    echo 'pipx not installed. Install with "pip install pipx"'
+  fi
+}
+
 function pythondev-install() {
   local packages=(
     pip
@@ -151,6 +159,26 @@ function pythondev-install() {
   )
   pip install -U $packages
   asdf reshim python
+}
+
+function python-change-version() {
+  local version=$1
+  if [ -z $version ]; then
+    echo "Please pass a python version"
+  else
+    asdf install python $version
+    if [ $? != "0" ]; then
+      echo $result_status
+      echo "something went wrong"
+    else
+      pipx-clean
+      asdf global python $version
+      pip install pipx
+      asdf reshim python
+      pythondev-install
+      pythonglobal-install
+    fi
+  fi
 }
 
 function nodeglobal-install() {
