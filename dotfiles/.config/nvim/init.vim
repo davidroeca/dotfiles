@@ -228,16 +228,6 @@ function! GlobalKeyRemap()
   " Use <c-space> to trigger completion
   inoremap <silent><expr> <c-space> coc#refresh()
 
-  " Scroll in floating window
-  nnoremap <expr><C-d> coc#float#has_float() ? coc#float#scroll(1) : "\<C-d>"
-  nnoremap <expr><C-u> coc#float#has_float() ? coc#float#scroll(0) : "\<C-u>"
-  nnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
-  nnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-y>"
-  inoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<C-e>"
-  inoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<C-y>"
-  vnoremap <silent><nowait><expr> <C-e> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-e>"
-  vnoremap <silent><nowait><expr> <C-y> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-y>"
-
   " Expand snippet
   imap <silent> <expr> <C-l> coc#expandable() ? "<Plug>(coc-snippets-expand)" : "\<C-y>"
   let g:coc_global_extensions = [
