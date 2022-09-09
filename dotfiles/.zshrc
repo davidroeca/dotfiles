@@ -310,4 +310,5 @@ fi
 # asdf includes {{{
 include ~/.asdf/asdf.sh
 include ~/.asdf/completions/asdf.bash
+include ~/.config/asdf-direnv/zshrc
 # }}}

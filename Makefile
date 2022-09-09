@@ -97,6 +97,7 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 	asdf plugin-add nodejs
 	asdf plugin-add yarn
 	asdf plugin-add terraform-ls
+	asdf plugin-add direnv
 
 .PHONY: asdf-plugin-setup
 asdf-plugin-setup: ~/.asdf
