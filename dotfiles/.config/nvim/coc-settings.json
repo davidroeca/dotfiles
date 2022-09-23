@@ -1,15 +1,15 @@
 {
-  "coc.preferences.enableFloatHighlight": false,
   "suggest.autoTrigger": "always",
   "suggest.noselect": true,
   "diagnostic.enable": true,
   "javascript.suggestionActions.enabled": false,
+  "typescript.autoClosingTags": false,
   "languageserver": {
     "terraform-ls": {
       "command": "terraform-ls",
       "args": ["serve"],
       "filetypes": ["terraform", "tf"],
-      "rootPatterns": ["Makefile", ".git"],
+      "rootPatterns": ["Makefile", ".git"]
     }
   },
   "yaml.schemas": {
