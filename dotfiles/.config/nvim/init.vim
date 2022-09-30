@@ -68,6 +68,7 @@ function s:init_packages() abort
 
   " Syntax highlight support, as well as text objects, etc.
   call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git', { 'do': ':TSUpdate' })
+  call packager#add('git@github.com:nvim-treesitter/playground.git')
   call packager#add('git@github.com:pappasam/papercolor-theme-slim', { 'branch': 'main' }) " color scheme
 endfunction
 
@@ -417,6 +418,7 @@ require('nvim-treesitter.configs').setup({
     'json',
     'jsdoc',
     'typescript',
+    'query',
   },
 })
 EOF
