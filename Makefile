@@ -110,12 +110,12 @@ asdf-plugin-setup: ~/.asdf
 	asdf install terraform-ls $(TERRAFORM_LS_VERSION)
 	asdf global terraform-ls %(TERRAFORM_LS_VERSION)
 
-~/.zplug:
-	git clone https://github.com/zplug/zplug ~/.zplug
+~/.zinit:
+	git clone https://github.com/zdharma-continuum/zinit ~/.zinit
 
 # Check that these versions are the latest that you want
 .PHONY: init-envs
-init-envs: asdf-plugin-setup ~/.zplug # sets up asdf and zplug
+init-envs: asdf-plugin-setup ~/.zinit # sets up asdf and zinit
 
 
 .PHONY: pipx-install
