@@ -1,6 +1,14 @@
 #############################################################
 # David's zshrc file |
 #---------------------
+# {{{ powerlevel10k-specific initialization
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+# }}}
 # Edit paths {{{
 path_ladd () {
   # Takes 1 argument and adds it to the beginning of the PATH
@@ -266,6 +274,13 @@ fi
 zstyle ":completion:*" ignored-patterns "(*/)#(__pycache__|*.pyc|node_modules|.git)"
 
 # }}}
+# Run compinit {{{
+autoload -Uz compinit
+compinit
+# }}}
+# {{{ Customize powerlevel10k
+include ~/.p10k.zsh
+# }}}
 # plugins {{{
 ZINIT_HOME="$HOME/.zinit"
 
@@ -279,21 +294,18 @@ then
   zinit snippet OMZ::lib/key-bindings.zsh
   zinit snippet OMZ::lib/history.zsh
   zinit light mafredri/zsh-async
-  zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-  zinit light sindresorhus/pure
+  zinit ice depth"1"
+  zinit light romkatv/powerlevel10k
   zinit light zsh-users/zsh-syntax-highlighting
   zinit ice pick"contrib/completion/zsh"
 else
   echo "------------------------------------------------------------"
-  echo "Please install zplug with the following command:"
+  echo "Please install zinit with the following command:"
   echo ""
-  echo "git clone https://github.com/zplug/zplug ${ZINIT_HOME}"
+  echo "git clone https://github.com/zdharma-continuum/zinit ${ZINIT_HOME}"
   echo "------------------------------------------------------------"
 fi
 
-# }}}
-# Run compinit {{{
-compinit
 # }}}
 # asdf includes {{{
 include ~/.asdf/asdf.sh

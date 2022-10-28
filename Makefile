@@ -13,7 +13,7 @@ help:
 # TODO: sysfiles firefox.pref for correct firefox beta installation
 .PHONY: linux-bootstrap
 linux-bootstrap: ## Installs a bunch of utilized system dependencies
-	sudo add-apt-repository -y ppa:mmstick76/alacritty
+	sudo add-apt-repository -y ppa:aslatter/ppa # alacritty
 	sudo add-apt-repository -y ppa:mozillateam/firefox-next
 	sudo apt update
 	sudo apt install -y \
