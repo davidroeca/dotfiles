@@ -13,7 +13,6 @@ help:
 # TODO: sysfiles firefox.pref for correct firefox beta installation
 .PHONY: linux-bootstrap
 linux-bootstrap: ## Installs a bunch of utilized system dependencies
-	sudo add-apt-repository -y ppa:neovim-ppa/unstable
 	sudo add-apt-repository -y ppa:mmstick76/alacritty
 	sudo add-apt-repository -y ppa:mozillateam/firefox-next
 	sudo apt update
@@ -134,7 +133,7 @@ node-packages: ## installs node packages that are leveraged often
 
 .PHONY: neovim-pluginstall
 neovim-pluginstall: ## installs neovim plugins in headless mode
-	nvim --headless +PlugInstall +qa!
+	nvim --headless +UpdateAll +qa!
 
 .PHONY: rust-dependencies
 rust-dependencies: ## Installs rust dependencies--requires rustup
