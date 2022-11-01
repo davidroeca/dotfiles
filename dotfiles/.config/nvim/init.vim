@@ -461,3 +461,6 @@ augroup syntax_setup
 augroup END
 " }}}
 " }}}
+" Disable mouse {{{
+set mouse=
+" }}}
