@@ -119,7 +119,11 @@ fi
 # }}}
 # Custom sourcing {{{
 include () {
-  [[ -f "$1" ]] && source "$1"
+  # If all on 1 line, will return exit status
+  if [[ -f "$1" ]]
+  then
+    source "$1"
+  fi
 }
 include ~/.shrc_local
 include ~/.bash/sensitive
@@ -295,7 +299,6 @@ fi
 
 # }}}
 # Take oh my zsh completions - TODO: fork/simplify  {{{
-
 # fixme - the load process here seems a bit bizarre
 zmodload -i zsh/complist
 
@@ -371,19 +374,20 @@ if [[ ${COMPLETION_WAITING_DOTS:-false} != false ]]; then
   bindkey -M viins "^I" expand-or-complete-with-dots
   bindkey -M vicmd "^I" expand-or-complete-with-dots
 fi
+# }}}
 # custom completions {{{
 
 # Python compiled files
 zstyle ":completion:*" ignored-patterns "(*/)#(__pycache__|*.pyc|node_modules|.git)"
 
 # }}}
-# asdf includes {{{
-include ~/.asdf/asdf.sh
-include ~/.asdf/completions/asdf.bash
-include ~/.config/asdf-direnv/zshrc
-# }}}
 # Run bashcompinit {{{
 # Do we need compinit too?
 autoload -U +X bashcompinit
 bashcompinit
+# }}}
+# asdf includes {{{
+include ~/.asdf/asdf.sh
+include ~/.asdf/completions/asdf.bash
+include ~/.config/asdf-direnv/zshrc
 # }}}
