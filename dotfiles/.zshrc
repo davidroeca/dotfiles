@@ -377,13 +377,13 @@ fi
 zstyle ":completion:*" ignored-patterns "(*/)#(__pycache__|*.pyc|node_modules|.git)"
 
 # }}}
-# Run bashcompinit {{{
-# Do we need compinit too?
-autoload -U +X bashcompinit
-bashcompinit
-# }}}
 # asdf includes {{{
 include ~/.asdf/asdf.sh
 include ~/.asdf/completions/asdf.bash
 include ~/.config/asdf-direnv/zshrc
+# }}}
+# Run bashcompinit {{{
+# Do we need compinit too?
+autoload -U +X bashcompinit
+bashcompinit
 # }}}
