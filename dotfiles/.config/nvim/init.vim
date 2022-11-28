@@ -67,7 +67,7 @@ function s:init_packages() abort
   call packager#add('git@github.com:hashivim/vim-vagrant.git')
 
   " Syntax highlight support, as well as text objects, etc.
-  call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git', { 'do': ':TSUpdate' })
+  call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git')
   call packager#add('git@github.com:nvim-treesitter/playground.git')
   call packager#add('git@github.com:pappasam/papercolor-theme-slim', { 'branch': 'main' }) " color scheme
 endfunction
@@ -77,7 +77,7 @@ command! -bang PackUpdate  call s:init_packages() | call packager#update({ 'forc
 command!       PackClean   call s:init_packages() | call packager#clean()
 command!       PackStatus  call s:init_packages() | call packager#status()
 command! -bang PU          call s:init_packages() | call packager#clean() | call packager#update({ 'force_hooks': '<bang>' })
-command!       UpdateAll execute ':PackUpdate' | execute ':CocUpdate'
+command!       UpdateAll execute ':PackUpdate' | execute ':CocUpdate' | execute ':TSUpdate'
 
 " }}}
  "Non-Plugin Personal Customization {{{
@@ -419,6 +419,7 @@ require('nvim-treesitter.configs').setup({
     'jsdoc',
     'typescript',
     'query',
+    'markdown',
   },
 })
 EOF

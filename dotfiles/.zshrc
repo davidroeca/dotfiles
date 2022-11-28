@@ -138,7 +138,6 @@ function pythonglobal-install() {
   local packages=(
     black
     cookiecutter
-    docker-compose
     isort
     jedi-language-server
     mypy
@@ -249,7 +248,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 alias f='nvim'
-
+#alias docker-compose="docker compose"
 
 alias tmux='tmux -2'
 alias tn='tmux new-session \; rename-window "Source Code"'
