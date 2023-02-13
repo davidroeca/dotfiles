@@ -410,14 +410,13 @@ let g:better_whitespace_filetypes_blacklist = [
       \ 'fugitive'
       \ ]
 
-let g:better_whitespace_ctermcolor='Red'
-let g:better_whitespace_guicolor='Red'
 let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save = 0
 
-augroup better_whitespace
-  autocmd! BufWritePre * if index(g:better_whitespace_filetypes_blacklist, &ft) < 0
-        \ | execute ':StripWhitespace'
+augroup strip_whitespace
+  autocmd! BufWritePre * if index(g:better_whitespace_filetypes_blacklist, &ft) < 0 | execute ':StripWhitespace'
 augroup END
+
 " }}}
 " VimEnter call {{{
 
@@ -445,10 +444,6 @@ EOF
 endfunction
 augroup vimenter
   autocmd! VimEnter * call HandleVimEnter()
-augroup END
-
-augroup fix_whitespace_save
-  autocmd!
 augroup END
 function! HandleSyntaxSetup()
   syntax enable
