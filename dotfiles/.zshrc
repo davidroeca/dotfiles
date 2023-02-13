@@ -288,6 +288,7 @@ then
   zinit ice depth"1"
   zinit light romkatv/powerlevel10k
   zinit light zsh-users/zsh-syntax-highlighting
+  zinit load greymd/docker-zsh-completion
 else
   echo "------------------------------------------------------------"
   echo "Please install zinit with the following command:"

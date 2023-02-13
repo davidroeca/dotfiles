@@ -17,5 +17,6 @@
     "https://raw.githubusercontent.com/GoogleContainerTools/skaffold/master/docs/content/en/schemas/v2beta5.json": "/skaffold.yaml"
   },
   "svelte.plugin.html.tagComplete.enable": false,
-  "svelte.enable-ts-plugin": true
+  "svelte.enable-ts-plugin": true,
+  "snippets.ultisnips.pythonPrompt": false
 }
