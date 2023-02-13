@@ -23,6 +23,7 @@ function s:init_packages() abort
   call packager#add('git@github.com:plasticboy/vim-markdown.git')
   call packager#add('git@github.com:martinda/Jenkinsfile-vim-syntax.git') " For jenkinsfiles
   call packager#add('git@github.com:vim-scripts/groovyindent-unix.git') " For groovy indentation
+  call packager#add('git@github.com:mracos/mermaid.vim.git') " Mermaid syntax and indents
 
   call packager#add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
   call packager#add('git@github.com:bronson/vim-trailing-whitespace.git') " Highlight trailing whitespace;

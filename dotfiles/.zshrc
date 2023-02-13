@@ -202,7 +202,7 @@ function nodeglobal-install() {
     tree-sitter-cli
     typescript
     eslint
-    degit
+    @mermaid-js/mermaid-cli
   )
   npm install --no-save -g $packages
   asdf reshim nodejs
