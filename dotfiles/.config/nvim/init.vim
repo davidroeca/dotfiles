@@ -20,10 +20,9 @@ function s:init_packages() abort
   call packager#add('git@github.com:hashivim/vim-terraform.git') " for terraform highlights
   call packager#add('git@github.com:pearofducks/ansible-vim.git') " Ansible highlights
   call packager#add('git@github.com:godlygeek/tabular.git') " needed for vim-markdown
-  call packager#add('git@github.com:plasticboy/vim-markdown.git')
+  call packager#add('git@github.com:preservim/vim-markdown.git')
   call packager#add('git@github.com:martinda/Jenkinsfile-vim-syntax.git') " For jenkinsfiles
   call packager#add('git@github.com:vim-scripts/groovyindent-unix.git') " For groovy indentation
-  call packager#add('git@github.com:mracos/mermaid.vim.git') " Mermaid syntax and indents
 
   call packager#add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
   call packager#add('git@github.com:ntpeters/vim-better-whitespace.git') " Highlight trailing whitespace;
@@ -352,9 +351,14 @@ augroup hive_files
   autocmd BufEnter *.q set filetype=hive expandtab
 augroup END
 
-augroup md_markdown
+"augroup md_markdown
+  "autocmd!
+  "autocmd BufEnter *.md set filetype=markdown
+"augroup END
+
+augroup mermaid
   autocmd!
-  autocmd BufEnter *.md set filetype=markdown
+  autocmd BufEnter *.mmd,*.mmdc,*.mermaid set filetype=mermaid
 augroup END
 
 augroup less_filetype
