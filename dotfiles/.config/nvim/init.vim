@@ -26,7 +26,7 @@ function s:init_packages() abort
   call packager#add('git@github.com:mracos/mermaid.vim.git') " Mermaid syntax and indents
 
   call packager#add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
-  call packager#add('git@github.com:bronson/vim-trailing-whitespace.git') " Highlight trailing whitespace;
+  call packager#add('git@github.com:ntpeters/vim-better-whitespace.git') " Highlight trailing whitespace;
 
   call packager#add('git@github.com:evanleck/vim-svelte.git') "svelte highlights
   call packager#add('git@github.com:tpope/vim-ragtag.git') " html tag management
@@ -391,15 +391,33 @@ augroup indentation_DR
   autocmd Filetype dot setlocal autoindent cindent
 augroup END
 
-augroup fix_whitespace_save
-  autocmd!
-  let blacklist = ['markdown', 'markdown.pandoc']
-  autocmd BufWritePre * if index(blacklist, &ft) < 0 | execute ':FixWhitespace'
-augroup END
 " }}}
 " setting secure {{{
 " Prevents .nvimrcs and .exrcs from running not as the user
 set secure
+" }}}
+" Vim Better Whitespace {{{
+
+let g:better_whitespace_filetypes_blacklist = [
+      \ 'diff',
+      \ 'git',
+      \ 'gitcommit',
+      \ 'unite',
+      \ 'qf',
+      \ 'help',
+      \ 'markdown',
+      \ 'markdown.pandoc',
+      \ 'fugitive'
+      \ ]
+
+let g:better_whitespace_ctermcolor='Red'
+let g:better_whitespace_guicolor='Red'
+let g:better_whitespace_enabled=1
+
+augroup better_whitespace
+  autocmd! BufWritePre * if index(g:better_whitespace_filetypes_blacklist, &ft) < 0
+        \ | execute ':StripWhitespace'
+augroup END
 " }}}
 " VimEnter call {{{
 
@@ -427,6 +445,10 @@ EOF
 endfunction
 augroup vimenter
   autocmd! VimEnter * call HandleVimEnter()
+augroup END
+
+augroup fix_whitespace_save
+  autocmd!
 augroup END
 function! HandleSyntaxSetup()
   syntax enable
@@ -457,6 +479,8 @@ function! HandleSyntaxSetup()
 
   colorscheme PaperColorSlim
   "colorscheme PaperColor
+  " vim-better-whitespace highlight config, after paper color setup
+  highlight ExtraWhitespace guibg='Red'
 endfunction
 augroup syntax_setup
   autocmd! VimEnter * call HandleSyntaxSetup()
