@@ -144,6 +144,7 @@ function pythonglobal-install() {
     pre-commit
     pylint
     restview
+    grip
   )
   if command -v pipx > /dev/null; then
     for package in $packages; do
@@ -160,6 +161,29 @@ function pipx-clean() {
   else
     echo 'pipx not installed. Install with "pip install pipx"'
   fi
+}
+
+function gripmm() {
+  which grip > /dev/null
+  if [[ "$?" != "0" ]]; then
+    echo "grip not installed!"
+    echo "Please install with:"
+    echo "> pipx install grip"
+    return
+  fi
+  which mmdc > /dev/null
+  if [[ $? != 0 ]]; then
+    echo "mermaid CLI not installed!"
+    echo "Please install with:"
+    echo "> npm install -g @mermaid-js/mermaid-cli"
+    return
+  fi
+  local tmpdir="$(mktemp -d)"
+  local output="$tmpdir/$(basename $1)"
+  mmdc -i $1 -o $output
+  grip -b $output
+  echo "Cleaning up temp dir..."
+  rm -rf $tmpdir
 }
 
 function pythondev-install() {
