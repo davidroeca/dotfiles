@@ -351,10 +351,11 @@ augroup hive_files
   autocmd BufEnter *.q set filetype=hive expandtab
 augroup END
 
-"augroup md_markdown
-  "autocmd!
-  "autocmd BufEnter *.md set filetype=markdown
-"augroup END
+" https://github.com/preservim/vim-markdown/issues/268
+augroup markdown_fix
+  autocmd!
+  autocmd BufWinEnter *.md execute ":edit"
+augroup END
 
 augroup mermaid
   autocmd!
