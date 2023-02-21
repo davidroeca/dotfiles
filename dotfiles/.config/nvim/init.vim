@@ -19,8 +19,6 @@ function s:init_packages() abort
   call packager#add('git@github.com:scrooloose/nerdcommenter.git') " for quick commenting
   call packager#add('git@github.com:hashivim/vim-terraform.git') " for terraform highlights
   call packager#add('git@github.com:pearofducks/ansible-vim.git') " Ansible highlights
-  call packager#add('git@github.com:godlygeek/tabular.git') " needed for vim-markdown
-  call packager#add('git@github.com:preservim/vim-markdown.git')
   call packager#add('git@github.com:martinda/Jenkinsfile-vim-syntax.git') " For jenkinsfiles
   call packager#add('git@github.com:vim-scripts/groovyindent-unix.git') " For groovy indentation
 
@@ -262,15 +260,6 @@ let g:terraform_align = 1
 let g:python_highlight_space_errors = 0
 let g:python_highlight_all = 1
 " }}}
-" Vim Markdown ----------------- {{{
-let g:markdown_frontmatter = v:true
-let g:markdown_toml_frontmatter = v:true
-let g:markdown_json_frontmatter = v:true
-let g:vim_markdown_strikethrough = v:true
-let g:no_default_key_mappings = v:true
-
-let g:vim_markdown_folding_disabled = v:true
-" }}}
 " Vim Rooter {{{
 " silence the cwd
 "let g:rooter_silent_chdir = 1
@@ -349,12 +338,6 @@ augroup hive_files
   autocmd!
   autocmd BufEnter *.hql set filetype=hive expandtab
   autocmd BufEnter *.q set filetype=hive expandtab
-augroup END
-
-" https://github.com/preservim/vim-markdown/issues/268
-augroup markdown_fix
-  autocmd!
-  autocmd BufWinEnter *.md execute ":edit"
 augroup END
 
 augroup mermaid
@@ -443,6 +426,7 @@ require('nvim-treesitter.configs').setup({
     'typescript',
     'query',
     'markdown',
+    'mermaid',
   },
 })
 EOF
@@ -485,7 +469,6 @@ endfunction
 augroup syntax_setup
   autocmd! VimEnter * call HandleSyntaxSetup()
 augroup END
-" }}}
 " }}}
 " Disable mouse {{{
 set mouse=
