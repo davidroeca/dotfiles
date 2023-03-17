@@ -7,6 +7,7 @@ function s:init_packages() abort
   call packager#add('git@github.com:kristijanhusak/vim-packager', {'type': 'opt'})
 
   call packager#add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
+  call packager#add('git@github.com:tpope/vim-fugitive.git') " git management
   call packager#add('git@github.com:itchyny/lightline.vim.git') " Airline/Powerline replacement
   call packager#add('git@github.com:pangloss/vim-javascript.git') " JS/JSX support
   call packager#add('git@github.com:peitalin/vim-jsx-typescript.git') " TSX support
