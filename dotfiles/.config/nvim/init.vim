@@ -26,7 +26,10 @@ function s:init_packages() abort
   call packager#add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
   call packager#add('git@github.com:ntpeters/vim-better-whitespace.git') " Highlight trailing whitespace;
 
-  call packager#add('git@github.com:evanleck/vim-svelte.git') "svelte highlights
+  call packager#add('git@github.com:evanleck/vim-svelte.git', { 'requires': [
+        \ 'https://github.com/pangloss/vim-javascript.git',
+        \ 'https://github.com/othree/html5.vim.git',
+        \ ]})
   call packager#add('git@github.com:tpope/vim-ragtag.git') " html tag management
   call packager#add('git@github.com:jparise/vim-graphql.git') " graphql highlights
   call packager#add('git@github.com:groenewege/vim-less.git')
