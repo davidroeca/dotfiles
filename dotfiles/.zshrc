@@ -312,6 +312,9 @@ then
   zinit ice depth"1"
   zinit light romkatv/powerlevel10k
   zinit light zsh-users/zsh-syntax-highlighting
+  zinit ice as"completion"
+  zinit snippet \
+    https://github.com/git/git/tree/master/contrib/completion/git-completion.zsh
   zinit load greymd/docker-zsh-completion
 else
   echo "------------------------------------------------------------"
