@@ -1,4 +1,0 @@
-# Ensure packages from saiarcot895-chromium-beta PPA have priority
-Package: *
-Pin: release o=LP-PPA-saiarcot895-chromium-beta
-Pin-Priority: 800

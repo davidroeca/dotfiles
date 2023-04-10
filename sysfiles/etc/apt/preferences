@@ -1,0 +1,16 @@
+Package: *
+Pin: release o=linuxmint
+Pin-Priority: 700
+
+Package: firefox
+Pin: release o=LP-PPA-mozillateam-firefox-next
+Pin-Priority: 900
+
+Package: firefox
+Pin: release o=Ubuntu
+Pin-Priority: 500
+
+# Ensure packages from saiarcot895-chromium-beta PPA have priority
+Package: chromium*
+Pin: release o=LP-PPA-saiarcot895-chromium-beta
+Pin-Priority: 800
