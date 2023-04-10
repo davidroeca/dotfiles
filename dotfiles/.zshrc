@@ -405,9 +405,10 @@ fi
 zstyle ":completion:*" ignored-patterns "(*/)#(__pycache__|*.pyc|node_modules|.git)"
 
 # }}}
-# Run bashcompinit {{{
-# Do we need compinit too?
-autoload -U +X bashcompinit
+# Run compinit and bashcompinit {{{
+# Taken from https://stackoverflow.com/a/67161186
+autoload -Uz compinit bashcompinit
+compinit
 bashcompinit
 # }}}
 # asdf includes {{{
