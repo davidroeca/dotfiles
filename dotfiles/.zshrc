@@ -138,12 +138,14 @@ function pythonglobal-install() {
   local packages=(
     black
     cookiecutter
+    docformatter
     isort
     jedi-language-server
     mypy
     pre-commit
     pylint
     restview
+    ruff
     grip
   )
   if command -v pipx > /dev/null; then

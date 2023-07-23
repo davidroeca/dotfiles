@@ -332,6 +332,12 @@ let g:EasyGrepPerlStyle = 1
 " eregex {{{
 let g:eregex_default_enable = 0
 " }}}
+" Filetype formatter {{{
+let g:vim_filetype_formatter_commands = {
+      \ 'python': 'ruff check -q --fix-only - | black -q - | isort -q - | docformatter -',
+      \ }
+
+" }}}
  "Filetype-specific settings {{{
 
 augroup c_inc_recognition
@@ -423,8 +429,8 @@ require('nvim-treesitter.configs').setup({
     'html',
     'javascript',
     'rust',
-    'svelte',
     'tsx',
+    'svelte',
     'json',
     'jsdoc',
     'typescript',
