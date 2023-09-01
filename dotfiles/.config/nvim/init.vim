@@ -333,8 +333,18 @@ let g:EasyGrepPerlStyle = 1
 let g:eregex_default_enable = 0
 " }}}
 " Filetype formatter {{{
+function! s:formatter_python()
+  let filename = expand('%:p')
+  return printf(
+        \ 'ruff check -q --fix-only --stdin-filename="%s" - ' .
+        \ '| black -q --stdin-filename="%s" - ' .
+        \ '| isort -q --filename="%s" - ' .
+        \ '| docformatter -',
+        \ filename, filename, filename
+        \ )
+endfunction
 let g:vim_filetype_formatter_commands = {
-      \ 'python': 'ruff check -q --fix-only - | black -q - | isort -q - | docformatter -',
+      \ 'python': funcref('s:formatter_python')
       \ }
 
 " }}}
