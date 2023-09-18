@@ -27,16 +27,17 @@ path_radd () {
 ############################################################
 # Define preferred editor
 ############################################################
-# TODO: use nvim for pager at some point
-export MANPAGER=less
 if [ -x "$(command -v nvim)" ]
 then
   export EDITOR=nvim
+  export MANPAGER='nvim +Man!'
 elif [ -x "$(command -v vim)" ]
 then
   export EDITOR=vim
+  export MANPAGER='vim +Man!'
 else
   export EDITOR=vi
+  export MANPAGER=less
 fi
 
 ############################################################
