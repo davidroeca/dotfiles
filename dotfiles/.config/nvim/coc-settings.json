@@ -10,7 +10,13 @@
       "args": ["serve"],
       "filetypes": ["terraform", "tf"],
       "rootPatterns": ["Makefile", ".git"]
-    }
+    },
+    "svelteserver": {
+      "command": "svelteserver",
+      "args": ["--stdio"],
+      "filetypes": ["svelte"],
+      "rootPatterns": ["package.json", ".git"]
+    },
   },
   "yaml.schemas": {
     "kubernetes": "/kubernetes/*",

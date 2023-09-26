@@ -53,7 +53,6 @@ function s:init_packages() abort
 
   " For autocompletion
   call packager#add('git@github.com:neoclide/coc.nvim.git', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
-  call packager#add('git@github.com:davidroeca/coc-svelte.git', {'branch': 'upstream-updates', 'do': 'yarn install --frozen-lockfile'})
 
   call packager#add('git@github.com:pappasam/vim-filetype-formatter.git', { 'branch': 'main' }) " running code formatters
 
@@ -242,7 +241,6 @@ function! GlobalKeyRemap()
         \ 'coc-css',
         \ 'coc-json',
         \ 'coc-rls',
-        "\ 'coc-svelte',
         \ 'coc-snippets',
         \ 'coc-tsserver',
         \ 'coc-yaml',

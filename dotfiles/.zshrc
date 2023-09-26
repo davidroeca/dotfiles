@@ -225,6 +225,7 @@ function nodeglobal-install() {
     neovim
     devspace
     prettier
+    prettier-plugin-svelte
     svelte-language-server
     tree-sitter-cli
     typescript
