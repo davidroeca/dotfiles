@@ -1,84 +1,85 @@
 filetype plugin indent on
 "  Vim-Packager {{{
 "
-function s:init_packages() abort
-  packadd vim-packager
-  call packager#init()
-  call packager#add('git@github.com:kristijanhusak/vim-packager', {'type': 'opt'})
+if &compatible
+  set nocompatible
+endif
 
-  call packager#add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
-  call packager#add('git@github.com:tpope/vim-fugitive.git') " git management
-  call packager#add('git@github.com:itchyny/lightline.vim.git') " Airline/Powerline replacement
-  call packager#add('git@github.com:pangloss/vim-javascript.git') " JS/JSX support
-  call packager#add('git@github.com:peitalin/vim-jsx-typescript.git') " TSX support
-  call packager#add('git@github.com:rust-lang/rust.vim.git') " Rust highlights
-  call packager#add('git@github.com:derekwyatt/vim-scala.git') " Scala highlights
-  call packager#add('git@github.com:rgrinberg/vim-ocaml.git') " ocaml highlights
-  call packager#add('git@github.com:cespare/vim-toml.git', {'branch': 'main'})
-  call packager#add('git@github.com:neoclide/jsonc.vim.git')
-  call packager#add('git@github.com:autowitch/hive.vim.git')
-  call packager#add('git@github.com:scrooloose/nerdcommenter.git') " for quick commenting
-  call packager#add('git@github.com:hashivim/vim-terraform.git') " for terraform highlights
-  call packager#add('git@github.com:pearofducks/ansible-vim.git') " Ansible highlights
-  call packager#add('git@github.com:martinda/Jenkinsfile-vim-syntax.git') " For jenkinsfiles
-  call packager#add('git@github.com:vim-scripts/groovyindent-unix.git') " For groovy indentation
+function s:packager_init(packager) abort
+  call a:packager.init()
+  call a:packager.add('git@github.com:kristijanhusak/vim-packager', {'type': 'opt'})
 
-  call packager#add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
-  call packager#add('git@github.com:ntpeters/vim-better-whitespace.git') " Highlight trailing whitespace;
+  call a:packager.add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
+  call a:packager.add('git@github.com:tpope/vim-fugitive.git') " git management
+  call a:packager.add('git@github.com:itchyny/lightline.vim.git') " Airline/Powerline replacement
+  call a:packager.add('git@github.com:pangloss/vim-javascript.git') " JS/JSX support
+  call a:packager.add('git@github.com:peitalin/vim-jsx-typescript.git') " TSX support
+  call a:packager.add('git@github.com:rust-lang/rust.vim.git') " Rust highlights
+  call a:packager.add('git@github.com:derekwyatt/vim-scala.git') " Scala highlights
+  call a:packager.add('git@github.com:rgrinberg/vim-ocaml.git') " ocaml highlights
+  call a:packager.add('git@github.com:cespare/vim-toml.git', {'branch': 'main'})
+  call a:packager.add('git@github.com:neoclide/jsonc.vim.git')
+  call a:packager.add('git@github.com:autowitch/hive.vim.git')
+  call a:packager.add('git@github.com:scrooloose/nerdcommenter.git') " for quick commenting
+  call a:packager.add('git@github.com:hashivim/vim-terraform.git') " for terraform highlights
+  call a:packager.add('git@github.com:pearofducks/ansible-vim.git') " Ansible highlights
+  call a:packager.add('git@github.com:martinda/Jenkinsfile-vim-syntax.git') " For jenkinsfiles
+  call a:packager.add('git@github.com:vim-scripts/groovyindent-unix.git') " For groovy indentation
 
-  call packager#add('git@github.com:evanleck/vim-svelte.git', { 'requires': [
+  call a:packager.add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
+  call a:packager.add('git@github.com:ntpeters/vim-better-whitespace.git') " Highlight trailing whitespace;
+
+  call a:packager.add('git@github.com:evanleck/vim-svelte.git', { 'requires': [
         \ 'https://github.com/pangloss/vim-javascript.git',
         \ 'https://github.com/othree/html5.vim.git',
         \ ]})
-  call packager#add('git@github.com:tpope/vim-ragtag.git') " html tag management
-  call packager#add('git@github.com:jparise/vim-graphql.git') " graphql highlights
-  call packager#add('git@github.com:groenewege/vim-less.git')
-  call packager#add('git@github.com:cakebaker/scss-syntax.vim.git')
-  call packager#add('git@github.com:airblade/vim-rooter.git') " roots directory at git repo
-  call packager#add('git@github.com:scrooloose/nerdtree.git') " file browsing
-  call packager#add('git@github.com:ctrlpvim/ctrlp.vim.git') " fuzzy file search (like find)
-  call packager#add('git@github.com:wincent/ferret.git') " find/replace
+  call a:packager.add('git@github.com:tpope/vim-ragtag.git') " html tag management
+  call a:packager.add('git@github.com:jparise/vim-graphql.git') " graphql highlights
+  call a:packager.add('git@github.com:groenewege/vim-less.git')
+  call a:packager.add('git@github.com:cakebaker/scss-syntax.vim.git')
+  call a:packager.add('git@github.com:airblade/vim-rooter.git') " roots directory at git repo
+  call a:packager.add('git@github.com:scrooloose/nerdtree.git') " file browsing
+  call a:packager.add('git@github.com:ctrlpvim/ctrlp.vim.git') " fuzzy file search (like find)
+  call a:packager.add('git@github.com:wincent/ferret.git') " find/replace
 
-  call packager#add('git@github.com:pappasam/nvim-repl.git', { 'branch': 'main' }) " REPLs
+  call a:packager.add('git@github.com:pappasam/nvim-repl.git', { 'branch': 'main' }) " REPLs
 
-  call packager#add('git@github.com:othree/eregex.vim.git') " needed for perl usage
+  call a:packager.add('git@github.com:othree/eregex.vim.git') " needed for perl usage
 
   " Autocompletion installs
-  call packager#add('git@github.com:jmcantrell/vim-virtualenv.git') " Python-venv autocompletion
-  call packager#add('git@github.com:racer-rust/vim-racer.git') " rust autocompletion
+  call a:packager.add('git@github.com:jmcantrell/vim-virtualenv.git') " Python-venv autocompletion
+  call a:packager.add('git@github.com:racer-rust/vim-racer.git') " rust autocompletion
 
   " For writing
-  call packager#add('git@github.com:junegunn/goyo.vim.git')
-  call packager#add('git@github.com:junegunn/limelight.vim.git')
+  call a:packager.add('git@github.com:junegunn/goyo.vim.git')
+  call a:packager.add('git@github.com:junegunn/limelight.vim.git')
 
   " For autocompletion
-  call packager#add('git@github.com:neoclide/coc.nvim.git', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
+  call a:packager.add('git@github.com:neoclide/coc.nvim.git', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
 
-  call packager#add('git@github.com:pappasam/vim-filetype-formatter.git', { 'branch': 'main' }) " running code formatters
+  call a:packager.add('git@github.com:pappasam/vim-filetype-formatter.git', { 'branch': 'main' }) " running code formatters
 
   " Plugins for plantuml
-  call packager#add('git@github.com:aklt/plantuml-syntax.git')
-  call packager#add('git@github.com:tyru/open-browser.vim.git')
-  call packager#add('git@github.com:weirongxu/plantuml-previewer.vim.git')
+  call a:packager.add('git@github.com:aklt/plantuml-syntax.git')
+  call a:packager.add('git@github.com:tyru/open-browser.vim.git')
+  call a:packager.add('git@github.com:weirongxu/plantuml-previewer.vim.git')
 
   " Nginx
-  call packager#add('git@github.com:nginx/nginx.git', { 'rtp': 'contrib/vim' })
+  call a:packager.add('git@github.com:nginx/nginx.git', { 'rtp': 'contrib/vim' })
 
   " Vagrant
-  call packager#add('git@github.com:hashivim/vim-vagrant.git')
+  call a:packager.add('git@github.com:hashivim/vim-vagrant.git')
 
   " Syntax highlight support, as well as text objects, etc.
-  call packager#add('git@github.com:nvim-treesitter/nvim-treesitter.git')
-  call packager#add('git@github.com:nvim-treesitter/playground.git')
-  call packager#add('git@github.com:pappasam/papercolor-theme-slim', { 'branch': 'main' }) " color scheme
+  call a:packager.add('git@github.com:nvim-treesitter/nvim-treesitter.git')
+  call a:packager.add('git@github.com:nvim-treesitter/playground.git')
+  call a:packager.add('git@github.com:pappasam/papercolor-theme-slim', { 'branch': 'main' }) " color scheme
 endfunction
 
-command!       PackInstall call s:init_packages() | call packager#install()
-command! -bang PackUpdate  call s:init_packages() | call packager#update({ 'force_hooks': '<bang>' })
-command!       PackClean   call s:init_packages() | call packager#clean()
-command!       PackStatus  call s:init_packages() | call packager#status()
-command! -bang PU          call s:init_packages() | call packager#clean() | call packager#update({ 'force_hooks': '<bang>' })
-command!       UpdateAll execute ':PackUpdate' | execute ':CocUpdate' | execute ':TSUpdate'
+packadd vim-packager
+call packager#setup(function('s:packager_init'))
+
+command!       UpdateAll execute ':PackagerUpdate' | execute ':CocUpdate' | execute ':TSUpdate'
 
 " }}}
  "Non-Plugin Personal Customization {{{
@@ -331,19 +332,19 @@ let g:EasyGrepPerlStyle = 1
 let g:eregex_default_enable = 0
 " }}}
 " Filetype formatter {{{
-function! s:formatter_python()
-  let filename = expand('%:p')
+"
+function s:ruff()
   return printf(
-        \ 'ruff check -q --fix-only --stdin-filename="%s" - ' .
-        \ '| black -q --stdin-filename="%s" - ' .
-        \ '| isort -q --filename="%s" - ' .
-        \ '| docformatter -',
-        \ filename, filename, filename
-        \ )
+        \ 'ruff check --unsafe-fixes -q --fix-only --stdin-filename="%1$s" - | ' ..
+        \ 'ruff format -q --stdin-filename="%1$s" -',
+        \ expand('%:p'))
 endfunction
 let g:vim_filetype_formatter_commands = {
-      \ 'python': funcref('s:formatter_python')
-      \ }
+          \ 'python':  funcref('s:ruff')
+          \ }
+
+" This requires more work setting up packadd vim-filetype-formatter
+" let g:vim_filetype_formatter_commands['python'] = g:vim_filetype_formatter_builtins['ruff']
 
 " }}}
  "Filetype-specific settings {{{
