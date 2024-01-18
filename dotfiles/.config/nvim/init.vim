@@ -6,7 +6,6 @@ if &compatible
 endif
 
 function s:packager_init(packager) abort
-  call a:packager.init()
   call a:packager.add('git@github.com:kristijanhusak/vim-packager', {'type': 'opt'})
 
   call a:packager.add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
@@ -333,14 +332,14 @@ let g:eregex_default_enable = 0
 " }}}
 " Filetype formatter {{{
 "
-function s:ruff()
+function s:formatter_python()
   return printf(
         \ 'ruff check --unsafe-fixes -q --fix-only --stdin-filename="%1$s" - | ' ..
         \ 'ruff format -q --stdin-filename="%1$s" -',
         \ expand('%:p'))
 endfunction
 let g:vim_filetype_formatter_commands = {
-          \ 'python':  funcref('s:ruff')
+          \ 'python':  function('s:formatter_python')
           \ }
 
 " This requires more work setting up packadd vim-filetype-formatter
