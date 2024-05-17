@@ -1,9 +1,5 @@
 DOT_CONFIG_DIRS_REL = $(wildcard dotfiles/.config/*)
 DOT_CONFIG_DIRS_LINK = $(subst dotfiles, ~, $(DOT_CONFIG_DIRS_REL))
-NODE_VERSION = 16.4.2
-PYTHON_VERSION = 3.9.6
-YARN_VERSION = 1.22.5
-TERRAFORM_LS_VERSION = 0.19.0
 
 .PHONY: help
 help:
@@ -81,42 +77,12 @@ link-dotfiles: dot_config ## links dotfiles to home directory via stow
 unlink-dotfiles: dot_config ## removes stow-managed sym links
 	stow -t ~ -D dotfiles
 
-
-# Used because asdf.sh uses bash
-~/.asdf: SHELL:=/bin/bash
-# used because `cd` requires one shell
-.ONESHELL:
-~/.asdf:
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-	cd ~/.asdf
-	git checkout $(shell git describe --abbrev=0 --tags)
-	cd -
-	source ~/.asdf/asdf.sh
-	asdf plugin-add python
-	asdf plugin-add nodejs
-	asdf plugin-add yarn
-	asdf plugin-add terraform-ls
-	asdf plugin-add direnv
-
-.PHONY: asdf-plugin-setup
-asdf-plugin-setup: ~/.asdf
-	asdf install python $(PYTHON_VERSION)
-	asdf global python $(PYTHON_VERSION) system
-	asdf install nodejs $(NODE_VERSION)
-	bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
-	asdf global nodejs $(NODE_VERSION)
-	asdf install yarn $(YARN_VERSION)
-	asdf global yarn $(YARN_VERSION)
-	asdf install terraform-ls $(TERRAFORM_LS_VERSION)
-	asdf global terraform-ls %(TERRAFORM_LS_VERSION)
-
 ~/.zinit:
 	git clone https://github.com/zdharma-continuum/zinit ~/.zinit
 
 # Check that these versions are the latest that you want
 .PHONY: init-envs
-init-envs: asdf-plugin-setup ~/.zinit # sets up asdf and zinit
-
+init-envs: ~/.zinit # sets up zinit
 
 .PHONY: pipx-install
 pipx-install:

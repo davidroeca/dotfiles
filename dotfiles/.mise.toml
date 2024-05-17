@@ -1,0 +1,16 @@
+[tools]
+
+yarn = '1.22.5'
+nodejs = '21.4.0'
+python = ['3.12.3', '3.11.4']
+neovim = 'nightly'
+java = 'openjdk-15.0.2'
+minikube = '1.25.2'
+kubectl = '1.22.10'
+smlnj = '110.99'
+terraform-ls = '0.19.0'
+terraform = '1.0.3'
+direnv = '2.32.1'
+poetry = '1.7.1'
+sqlite = '3.41.0'
+k9s = '0.32.3'

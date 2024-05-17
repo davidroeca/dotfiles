@@ -137,14 +137,8 @@ fi
 
 function pythonglobal-install() {
   local packages=(
-    black
-    cookiecutter
-    docformatter
-    isort
-    jedi-language-server
-    mypy
+    poetry
     pre-commit
-    pylint
     restview
     ruff
     grip
@@ -196,27 +190,6 @@ function pythondev-install() {
     pynvim
   )
   pip install -U $packages
-  asdf reshim python
-}
-
-function python-change-version() {
-  local version=$1
-  if [ -z $version ]; then
-    echo "Please pass a python version"
-  else
-    asdf install python $version
-    if [ $? != "0" ]; then
-      echo $result_status
-      echo "something went wrong"
-    else
-      pipx-clean
-      asdf global python $version
-      pip install pipx
-      asdf reshim python
-      pythondev-install
-      pythonglobal-install
-    fi
-  fi
 }
 
 function nodeglobal-install() {
@@ -233,14 +206,13 @@ function nodeglobal-install() {
     @mermaid-js/mermaid-cli
   )
   npm install --no-save -g $packages
-  asdf reshim nodejs
 }
 
 
 function nvim-update() {
-  asdf uninstall neovim nightly
-  asdf install neovim nightly
-  asdf global neovim nightly
+  mise rm neovim@nightly
+  mise install neovim@nightly
+  asdf global neovim@nightly
   nvim -c 'UpdateAll'
 }
 
@@ -419,7 +391,8 @@ compinit
 bashcompinit
 # }}}
 # asdf includes {{{
-include ~/.asdf/asdf.sh
-include ~/.asdf/completions/asdf.bash
-include ~/.config/asdf-direnv/zshrc
+eval "$(~/.local/bin/mise activate zsh)"
+#include ~/.asdf/asdf.sh
+#include ~/.asdf/completions/asdf.bash
+#include ~/.config/asdf-direnv/zshrc
 # }}}
