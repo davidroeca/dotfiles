@@ -11,6 +11,8 @@ smlnj = '110.99'
 terraform-ls = '0.19.0'
 terraform = '1.0.3'
 direnv = '2.32.1'
-poetry = '1.7.1'
+# The following solution might be necessary for poetry installation
+# https://github.com/mise-plugins/mise-poetry/issues/5#issuecomment-1920889685
+poetry = '1.8.3'
 sqlite = '3.41.0'
 k9s = '0.32.3'
