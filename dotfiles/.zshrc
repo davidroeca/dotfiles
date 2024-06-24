@@ -55,11 +55,10 @@ then
   path_radd $POETRY_PATH
 fi
 
-
 CARGO_BIN="$HOME/.cargo/bin"
 if [ -d "$CARGO_BIN" ]
 then
-  path_ladd "$CARGO_BIN"
+  path_radd "$CARGO_BIN"
 fi
 
 HOME_LOCAL_BIN="$HOME/.local/bin"
@@ -135,9 +134,14 @@ if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
+function rust-analyzer-install() {
+  curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | \
+    gunzip -c - > ~/bin/rust-analyzer && \
+    chmod +x ~/bin/rust-analyzer
+}
+
 function pythonglobal-install() {
   local packages=(
-    poetry
     pre-commit
     restview
     ruff

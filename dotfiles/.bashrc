@@ -6,7 +6,8 @@ include () {
 include ~/.shrc_local
 include ~/.bashrc_mint
 
-stty -ixon
+# https://stackoverflow.com/a/25391867
+[[ $- == *i* ]] && stty -ixon
 
 ############################################################
 # Mac OS options

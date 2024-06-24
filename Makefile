@@ -9,8 +9,6 @@ help:
 # TODO: sysfiles firefox.pref for correct firefox beta installation
 .PHONY: linux-bootstrap
 linux-bootstrap: ## Installs a bunch of utilized system dependencies
-	sudo add-apt-repository -y ppa:aslatter/ppa # alacritty
-	sudo add-apt-repository -y ppa:mozillateam/firefox-next
 	sudo apt update
 	sudo apt install -y \
 		xclip \
@@ -19,7 +17,7 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		neovim \
 		zsh \
 		stow \
-		gtk-redshift \
+		redshift-gtk \
 		htop \
 		tree \
 		graphviz \
@@ -54,20 +52,12 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		unixodbc-dev \
 		unzip \
 		curl
-	snap install chromium spotify
-	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 .PHONY: dot_config
 dot_config: $(DOT_CONFIG_DIRS_LINK)
 
 ~/.config/%: dotfiles/.config/%
 	mkdir -p $@
-
-.PHONY: remove-existing-dotfiles
-remove-existing-dotfiles: ## Removes dotfiles from original mint env
-	rm ~/.bashrc
-	rm ~/.profile
 
 .PHONY: link-dotfiles
 link-dotfiles: dot_config ## links dotfiles to home directory via stow
@@ -84,10 +74,6 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 .PHONY: init-envs
 init-envs: ~/.zinit # sets up zinit
 
-.PHONY: pipx-install
-pipx-install:
-	pip install -U pipx
-
 .PHONY: python-packages
 python-packages: pipx-install
 	zsh -i -c pythonglobal-install
@@ -96,27 +82,3 @@ python-packages: pipx-install
 node-packages: SHELL:=/bin/zsh
 node-packages: ## installs node packages that are leveraged often
 	zsh -i -c nodeglobal-install
-
-.PHONY: neovim-pluginstall
-neovim-pluginstall: ## installs neovim plugins in headless mode
-	nvim --headless +UpdateAll +qa!
-
-.PHONY: rust-dependencies
-rust-dependencies: ## Installs rust dependencies--requires rustup
-	rustup toolchain add nightly
-	rustup component add rust-src
-	cargo install \
-		racer \
-		ripgrep
-
-.PHONY: setup-all
-setup-all: linux-bootstrap remove-existing-dotfiles link-dotfiles init-envs python-packages node-packages neovim-pluginstall ## sets up entire system
-	echo "switching default shell to $(shell which zsh)"
-	sudo chsh -s $(shell which zsh) $(USER)
-	echo "Make sure to manually install rustup (todo...)"
-	echo "Make sure to manually install rust language server;"
-	echo "> rustup component add rls rust-analysis rust-src"
-	echo "Make sure to manually install racer with cargo"
-	echo "> cargo install racer"
-	echo "Make sure to manually install poetry (todo...)"
-	echo "Now switch your default terminal to 'alacritty' and open a new terminal"

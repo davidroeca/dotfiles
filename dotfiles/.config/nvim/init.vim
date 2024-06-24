@@ -13,7 +13,7 @@ function s:packager_init(packager) abort
   call a:packager.add('git@github.com:itchyny/lightline.vim.git') " Airline/Powerline replacement
   call a:packager.add('git@github.com:pangloss/vim-javascript.git') " JS/JSX support
   call a:packager.add('git@github.com:peitalin/vim-jsx-typescript.git') " TSX support
-  call a:packager.add('git@github.com:rust-lang/rust.vim.git') " Rust highlights
+  "call a:packager.add('git@github.com:mrcjkb/rustaceanvim.git') " Rust support
   call a:packager.add('git@github.com:derekwyatt/vim-scala.git') " Scala highlights
   call a:packager.add('git@github.com:rgrinberg/vim-ocaml.git') " ocaml highlights
   call a:packager.add('git@github.com:cespare/vim-toml.git', {'branch': 'main'})
@@ -47,7 +47,6 @@ function s:packager_init(packager) abort
 
   " Autocompletion installs
   call a:packager.add('git@github.com:jmcantrell/vim-virtualenv.git') " Python-venv autocompletion
-  call a:packager.add('git@github.com:racer-rust/vim-racer.git') " rust autocompletion
 
   " For writing
   call a:packager.add('git@github.com:junegunn/goyo.vim.git')
@@ -240,8 +239,8 @@ function! GlobalKeyRemap()
         \ 'coc-html',
         \ 'coc-css',
         \ 'coc-json',
-        \ 'coc-rls',
         \ 'coc-snippets',
+        \ 'coc-rust-analyzer',
         \ 'coc-tsserver',
         \ 'coc-yaml',
         \ 'coc-jedi',
