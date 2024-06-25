@@ -17,6 +17,11 @@
       "filetypes": ["svelte"],
       "rootPatterns": ["package.json", ".git"]
     },
+    "rust-analyzer": {
+      "command": "rust-analyzer",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml", ".git"],
+    },
   },
   "yaml.schemas": {
     "kubernetes": "/kubernetes/*",

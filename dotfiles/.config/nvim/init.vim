@@ -240,7 +240,6 @@ function! GlobalKeyRemap()
         \ 'coc-css',
         \ 'coc-json',
         \ 'coc-snippets',
-        \ 'coc-rust-analyzer',
         \ 'coc-tsserver',
         \ 'coc-yaml',
         \ 'coc-jedi',
