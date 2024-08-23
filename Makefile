@@ -82,3 +82,7 @@ python-packages: pipx-install
 node-packages: SHELL:=/bin/zsh
 node-packages: ## installs node packages that are leveraged often
 	zsh -i -c nodeglobal-install
+
+.PHONY: rust-packages
+rust-packages:
+	cargo install ripgrep git-delta
