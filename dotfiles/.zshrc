@@ -146,6 +146,7 @@ function pythonglobal-install() {
     restview
     ruff
     grip
+    maturin
   )
   if command -v pipx > /dev/null; then
     for package in $packages; do
