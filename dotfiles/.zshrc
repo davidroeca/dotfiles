@@ -55,10 +55,9 @@ then
   path_radd $POETRY_PATH
 fi
 
-CARGO_BIN="$HOME/.cargo/bin"
-if [ -d "$CARGO_BIN" ]
-then
-  path_radd "$CARGO_BIN"
+CARGO_ENV="$HOME/.cargo/env"
+if [ -d "$CARGO_ENV" ]
+  . "$CARGO_ENV"
 fi
 
 HOME_LOCAL_BIN="$HOME/.local/bin"
