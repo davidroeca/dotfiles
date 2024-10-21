@@ -56,7 +56,7 @@ then
 fi
 
 CARGO_ENV="$HOME/.cargo/env"
-if [ -d "$CARGO_ENV" ]
+if [ -f "$CARGO_ENV" ]
 then
   . "$CARGO_ENV"
 fi
