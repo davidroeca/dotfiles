@@ -1,0 +1,21 @@
+require('nvim-treesitter.configs').setup({
+  highlight = { enable = true },
+  indent = { enable = true },
+  ensure_installed = {
+    'css',
+    'dockerfile',
+    'bash',
+    'graphql',
+    'html',
+    'javascript',
+    'rust',
+    'tsx',
+    'svelte',
+    'json',
+    'jsdoc',
+    'typescript',
+    'query',
+    'markdown',
+    'mermaid',
+  },
+})

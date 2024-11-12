@@ -424,34 +424,7 @@ augroup END
 " }}}
 " VimEnter call {{{
 
-function! HandleVimEnter()
-lua <<EOF
-require('nvim-treesitter.configs').setup({
-  highlight = { enable = true },
-  indent = { enable = true },
-  ensure_installed = {
-    'css',
-    'dockerfile',
-    'bash',
-    'graphql',
-    'html',
-    'javascript',
-    'rust',
-    'tsx',
-    'svelte',
-    'json',
-    'jsdoc',
-    'typescript',
-    'query',
-    'markdown',
-    'mermaid',
-  },
-})
-EOF
-endfunction
-augroup vimenter
-  autocmd! VimEnter * call HandleVimEnter()
-augroup END
+lua require('packages')
 function! HandleSyntaxSetup()
   syntax enable
   set t_Co=256 " sets color count for terminal
