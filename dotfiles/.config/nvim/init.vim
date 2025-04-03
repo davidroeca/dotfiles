@@ -28,10 +28,6 @@ function s:packager_init(packager) abort
   call a:packager.add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
   call a:packager.add('git@github.com:ntpeters/vim-better-whitespace.git') " Highlight trailing whitespace;
 
-  call a:packager.add('git@github.com:evanleck/vim-svelte.git', { 'requires': [
-        \ 'https://github.com/pangloss/vim-javascript.git',
-        \ 'https://github.com/othree/html5.vim.git',
-        \ ]})
   call a:packager.add('git@github.com:tpope/vim-ragtag.git') " html tag management
   call a:packager.add('git@github.com:jparise/vim-graphql.git') " graphql highlights
   call a:packager.add('git@github.com:groenewege/vim-less.git')
@@ -53,7 +49,7 @@ function s:packager_init(packager) abort
   call a:packager.add('git@github.com:junegunn/limelight.vim.git')
 
   " For autocompletion
-  call a:packager.add('git@github.com:neoclide/coc.nvim.git', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'})
+  call a:packager.add('git@github.com:neoclide/coc.nvim.git', {'branch': 'master', 'do': 'npm ci'})
 
   call a:packager.add('git@github.com:pappasam/vim-filetype-formatter.git', { 'branch': 'main' }) " running code formatters
 
