@@ -53,6 +53,23 @@ vim.lsp.config("*", {
   },
 })
 
+vim.lsp.config("basedpyright", {
+  settings = {
+    basedpyright = {
+      analysis = {
+        diagnosticSeverityOverrides = {
+          reportAny = "none",
+          reportExplicitAny = "none",
+          reportUnannotatedClassAttribute = "none",
+          reportUninitializedInstanceVariable = "none",
+          reportUnnecessaryIsInstance = "none",
+          reportUnusedCallResult = "none",
+        },
+      },
+    },
+  },
+})
+
 vim.lsp.config("lua_ls", {
   settings = {
     Lua = {
