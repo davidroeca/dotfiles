@@ -1,19 +1,29 @@
 [tools]
 
-awscli = '2.17.12'
-yarn = '1.22.5'
-nodejs = '22.13.1'
-python = ['3.12.3', '3.11.4', '3.13.1']
-neovim = 'nightly'
-java = 'openjdk-15.0.2'
-minikube = '1.25.2'
-kubectl = '1.22.10'
-smlnj = '110.99'
-terraform-ls = '0.19.0'
-terraform = '1.0.3'
-direnv = '2.32.1'
-# The following solution might be necessary for poetry installation
-# https://github.com/mise-plugins/mise-poetry/issues/5#issuecomment-1920889685
-poetry = '2.0.1'
-sqlite = '3.41.0'
-k9s = "0.40.10"
+awscli = "latest"
+cargo-binstall = "latest"
+delta = "latest"
+direnv = "latest"
+java = "latest"
+k9s = "latest"
+kubectl = "latest"
+lua-language-server = "latest"
+minikube = "latest"
+neovim = "nightly"
+nodejs = "22.13.1"
+python = ["3.12.3", "3.11.4", "3.13.1"]
+ripgrep = "latest"
+sqlite = "latest"
+terraform = "latest"
+terraform-ls = "latest"
+yarn = "1.22.22"
+"npm:bash-language-server" = "latest"
+"npm:svelte-language-server" = "latest"
+"npm:prettier" = "latest"
+"npm:prettier-plugin-svelte" = "latest"
+"npm:typescript" = "latest"
+"npm:typescript-language-server" = "latest"
+"npm:vim-language-server" = "latest"
+"pipx:basedpyright" = "latest"
+"pipx:grip" = "latest"
+"pipx:poetry" = { version = "latest", uvx_args = "--with poetry-plugin-export" }

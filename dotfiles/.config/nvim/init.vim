@@ -1,82 +1,9 @@
 filetype plugin indent on
-"  Vim-Packager {{{
-"
-if &compatible
-  set nocompatible
-endif
-
-function s:packager_init(packager) abort
-  call a:packager.add('git@github.com:kristijanhusak/vim-packager', {'type': 'opt'})
-
-  call a:packager.add('git@github.com:tpope/vim-scriptease.git') " color scheme debugging
-  call a:packager.add('git@github.com:tpope/vim-fugitive.git') " git management
-  call a:packager.add('git@github.com:itchyny/lightline.vim.git') " Airline/Powerline replacement
-  call a:packager.add('git@github.com:pangloss/vim-javascript.git') " JS/JSX support
-  call a:packager.add('git@github.com:peitalin/vim-jsx-typescript.git') " TSX support
-  "call a:packager.add('git@github.com:mrcjkb/rustaceanvim.git') " Rust support
-  call a:packager.add('git@github.com:derekwyatt/vim-scala.git') " Scala highlights
-  call a:packager.add('git@github.com:rgrinberg/vim-ocaml.git') " ocaml highlights
-  call a:packager.add('git@github.com:cespare/vim-toml.git', {'branch': 'main'})
-  call a:packager.add('git@github.com:neoclide/jsonc.vim.git')
-  call a:packager.add('git@github.com:autowitch/hive.vim.git')
-  call a:packager.add('git@github.com:scrooloose/nerdcommenter.git') " for quick commenting
-  call a:packager.add('git@github.com:hashivim/vim-terraform.git') " for terraform highlights
-  call a:packager.add('git@github.com:pearofducks/ansible-vim.git') " Ansible highlights
-  call a:packager.add('git@github.com:martinda/Jenkinsfile-vim-syntax.git') " For jenkinsfiles
-  call a:packager.add('git@github.com:vim-scripts/groovyindent-unix.git') " For groovy indentation
-
-  call a:packager.add('git@github.com:Vimjas/vim-python-pep8-indent.git') " For python
-  call a:packager.add('git@github.com:ntpeters/vim-better-whitespace.git') " Highlight trailing whitespace;
-
-  call a:packager.add('git@github.com:tpope/vim-ragtag.git') " html tag management
-  call a:packager.add('git@github.com:jparise/vim-graphql.git') " graphql highlights
-  call a:packager.add('git@github.com:groenewege/vim-less.git')
-  call a:packager.add('git@github.com:cakebaker/scss-syntax.vim.git')
-  call a:packager.add('git@github.com:airblade/vim-rooter.git') " roots directory at git repo
-  call a:packager.add('git@github.com:scrooloose/nerdtree.git') " file browsing
-  call a:packager.add('git@github.com:ctrlpvim/ctrlp.vim.git') " fuzzy file search (like find)
-  call a:packager.add('git@github.com:wincent/ferret.git') " find/replace
-
-  call a:packager.add('git@github.com:pappasam/nvim-repl.git', { 'branch': 'main' }) " REPLs
-
-  call a:packager.add('git@github.com:othree/eregex.vim.git') " needed for perl usage
-
-  " Autocompletion installs
-  call a:packager.add('git@github.com:jmcantrell/vim-virtualenv.git') " Python-venv autocompletion
-
-  " For writing
-  call a:packager.add('git@github.com:junegunn/goyo.vim.git')
-  call a:packager.add('git@github.com:junegunn/limelight.vim.git')
-
-  " For autocompletion
-  call a:packager.add('git@github.com:neoclide/coc.nvim.git', {'branch': 'master', 'do': 'npm ci'})
-
-  call a:packager.add('git@github.com:pappasam/vim-filetype-formatter.git', { 'branch': 'main' }) " running code formatters
-
-  " Plugins for plantuml
-  call a:packager.add('git@github.com:aklt/plantuml-syntax.git')
-  call a:packager.add('git@github.com:tyru/open-browser.vim.git')
-  call a:packager.add('git@github.com:weirongxu/plantuml-previewer.vim.git')
-
-  " Nginx
-  call a:packager.add('git@github.com:nginx/nginx.git', { 'rtp': 'contrib/vim' })
-
-  " Vagrant
-  call a:packager.add('git@github.com:hashivim/vim-vagrant.git')
-
-  " Syntax highlight support, as well as text objects, etc.
-  call a:packager.add('git@github.com:nvim-treesitter/nvim-treesitter.git')
-  call a:packager.add('git@github.com:nvim-treesitter/playground.git')
-  call a:packager.add('git@github.com:pappasam/papercolor-theme-slim', { 'branch': 'main' }) " color scheme
-endfunction
-
-packadd vim-packager
-call packager#setup(function('s:packager_init'))
-
-command!       UpdateAll execute ':PackagerUpdate' | execute ':CocUpdate' | execute ':TSUpdate'
-
+" Require packages {{{
+lua require('packages')
 " }}}
- "Non-Plugin Personal Customization {{{
+command! UpdateAll execute ':PaqUpdate' | execute ':TSUpdate'
+"Non-Plugin Personal Customization {{{
 helptags ~/.config/nvim/doc
 let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
 let mapleader="," " change command leader from \ to ,
@@ -189,72 +116,27 @@ function! GlobalKeyRemap()
 
   " Selected search
   vnoremap <silent> * :<C-U>
-    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-    \gvy/<C-R><C-R>=substitute(
-    \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-    \gV:call setreg('"', old_reg, old_regtype)<CR>
+        \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+        \gvy/<C-R><C-R>=substitute(
+        \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+        \gV:call setreg('"', old_reg, old_regtype)<CR>
   vnoremap <silent> # :<C-U>
-    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-    \gvy?<C-R><C-R>=substitute(
-    \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-    \gV:call setreg('"', old_reg, old_regtype)<CR>
+        \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+        \gvy?<C-R><C-R>=substitute(
+        \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+        \gV:call setreg('"', old_reg, old_regtype)<CR>
   vnoremap <expr> // 'y/\V'.escape(@",'\').'<CR>'
 
   " Filetype format mappings
   nnoremap <Leader>f :FiletypeFormat<CR>
   " NERDTree mappings
   nnoremap <silent> <space>j :NERDTreeToggle %<CR>
-  " coc settings
-  nnoremap <silent> <C-k> :call <SID>show_documentation()<CR>
-  nmap <silent> <C-]> <Plug>(coc-definition)
-  nmap <silent> <Leader>st <Plug>(coc-type-definition)
-  nmap <silent> <Leader>si <Plug>(coc-implementation)
-  nmap <silent> <Leader>su <Plug>(coc-references)
-  nmap <silent> <Leader>sr <Plug>(coc-rename)
-  " Next and previous items in list
-  nnoremap <silent> <Leader>sn :<C-u>CocNext<CR>
-  nnoremap <silent> <Leader>sp :<C-u>CocPrev<CR>
-  nnoremap <silent> <Leader>sl :<C-u>CocListResume<CR>
-  " Show commands
-  nnoremap <silent> <Leader>sc :<C-u>CocList commands<CR>
-  " Find symbol in current document
-  nnoremap <silent> <Leader>ss :<C-u>CocList outline<CR>
-  " Search workspace symbols
-  nnoremap <silent> <Leader>sw :<C-u>CocList -I symbols<CR>
 
-  " Use <c-space> to trigger completion
-  inoremap <silent><expr> <c-space> coc#refresh()
-
-  " Expand snippet
-  imap <silent> <expr> <C-l> coc#expandable() ? "<Plug>(coc-snippets-expand)" : "\<C-y>"
-  let g:coc_global_extensions = [
-        \ 'coc-angular',
-        \ 'coc-markdownlint',
-        \ 'coc-texlab',
-        \ 'coc-go',
-        \ 'coc-html',
-        \ 'coc-css',
-        \ 'coc-json',
-        \ 'coc-snippets',
-        \ 'coc-tsserver',
-        \ 'coc-yaml',
-        \ 'coc-jedi',
-        \ ]
+  " lsp mappings
+  nnoremap <Leader>d <Cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>
 endfunction
 
 call GlobalKeyRemap()
-" }}}
-" lightline config {{{
-"let g:lightline = {
-  "\ 'colorscheme': 'sonokai'
-  "\ }
-" }}}
-" Vim terraform {{{
-let g:terraform_align = 1
-" }}}
-" Vim Python {{{
-let g:python_highlight_space_errors = 0
-let g:python_highlight_all = 1
 " }}}
 " Vim Rooter {{{
 " silence the cwd
@@ -297,33 +179,6 @@ let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
 " }}}
-" Auto-completion configuration {{{
-" Remapping - defenition jump = <C-]>
-" Return - <C-o>
-" Rust/Racer config
-let g:racer_cmd = "~/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
-" }}}
-" Language Server Configuration {{{
-
-" For coc
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" }}}
-" easy grep {{{
-let g:EasyGrepCommand = 1 " use grep, NOT vimgrep
-let g:EasyGrepJumpToMatch = 0 " Do not jump to the first match
-let g:EasyGrepPerlStyle = 1
-" }}}
-" eregex {{{
-let g:eregex_default_enable = 0
-" }}}
 " Filetype formatter {{{
 "
 function s:formatter_python()
@@ -333,14 +188,10 @@ function s:formatter_python()
         \ expand('%:p'))
 endfunction
 let g:vim_filetype_formatter_commands = {
-          \ 'python':  function('s:formatter_python')
-          \ }
-
-" This requires more work setting up packadd vim-filetype-formatter
-" let g:vim_filetype_formatter_commands['python'] = g:vim_filetype_formatter_builtins['ruff']
-
+      \ 'python':  function('s:formatter_python')
+      \ }
 " }}}
- "Filetype-specific settings {{{
+"Filetype-specific settings {{{
 
 augroup c_inc_recognition
   autocmd!
@@ -379,9 +230,9 @@ augroup marker_folding
 augroup END
 " Fix 'comments' for typescript. Fixes the >>>>> bug for generics.
 "augroup ts_generics_comments_bug
-  "autocmd!
-  "autocmd FileType typescript.tsx,typescript,typescriptreact
-        "\ setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+"autocmd!
+"autocmd FileType typescript.tsx,typescript,typescriptreact
+      "\ setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
 "augroup END
 
 augroup indentation_DR
@@ -419,8 +270,6 @@ augroup END
 
 " }}}
 " VimEnter call {{{
-
-lua require('packages')
 function! HandleSyntaxSetup()
   syntax enable
   set t_Co=256 " sets color count for terminal
@@ -433,20 +282,20 @@ function! HandleSyntaxSetup()
 
   set background=dark
   let g:PaperColor_Theme_Options = {
-    \ 'theme': {
-    \   'default.dark': {
-    \     'override': {
-    \       'color00': ['#000a1c', ''],
-    \       'linenumber_bg': ['#000a1c', ''],
-    \     }
-    \   }
-    \ },
-    \ 'language': {
-    \   'python': {
-    \     'highlight_builtins': 1
-    \    }
-    \  }
-    \ }
+        \ 'theme': {
+        \   'default.dark': {
+        \     'override': {
+        \       'color00': ['#000a1c', ''],
+        \       'linenumber_bg': ['#000a1c', ''],
+        \     }
+        \   }
+        \ },
+        \ 'language': {
+        \   'python': {
+        \     'highlight_builtins': 1
+        \    }
+        \  }
+        \ }
 
   colorscheme PaperColorSlim
   "colorscheme PaperColor

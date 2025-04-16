@@ -141,20 +141,8 @@ function rust-analyzer-install() {
 }
 
 function pythonglobal-install() {
-  local packages=(
-    pre-commit
-    restview
-    ruff
-    grip
-    maturin
-  )
-  if command -v pipx > /dev/null; then
-    for package in $packages; do
-      pipx install --force "$package"
-    done
-  else
-    echo 'pipx not installed. Install with "pip install pipx"'
-  fi
+  pip install --user pipx
+  pip install -U argcomplete && pydev-install
 }
 
 function pipx-clean() {
@@ -395,9 +383,6 @@ autoload -Uz compinit bashcompinit
 compinit
 bashcompinit
 # }}}
-# asdf includes {{{
+# mise includes {{{
 eval "$(~/.local/bin/mise activate zsh)"
-#include ~/.asdf/asdf.sh
-#include ~/.asdf/completions/asdf.bash
-#include ~/.config/asdf-direnv/zshrc
 # }}}

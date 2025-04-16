@@ -70,19 +70,8 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 ~/.zinit:
 	git clone https://github.com/zdharma-continuum/zinit ~/.zinit
 
+
+
 # Check that these versions are the latest that you want
 .PHONY: init-envs
 init-envs: ~/.zinit # sets up zinit
-
-.PHONY: python-packages
-python-packages: pipx-install
-	zsh -i -c pythonglobal-install
-
-.PHONY: node-packages
-node-packages: SHELL:=/bin/zsh
-node-packages: ## installs node packages that are leveraged often
-	zsh -i -c nodeglobal-install
-
-.PHONY: rust-packages
-rust-packages:
-	cargo install ripgrep git-delta
