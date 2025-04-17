@@ -340,7 +340,7 @@ show-release-notes: false
 #  - zzz
 
 ## Use VI editing mode in the terminal (default: False)
-vim: true
+#vim: false
 
 ## Specify the language to use in the chat (default: None, uses system settings)
 #chat-language: xxx
