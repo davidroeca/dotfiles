@@ -1,8 +1,7 @@
 require("paq")({
   "https://github.com/tpope/vim-scriptease.git", -- color scheme debugging
   "https://github.com/itchyny/lightline.vim.git", -- Airline/Powerline replacement
-  "https://github.com/pangloss/vim-javascript.git", -- JS/JSX support
-  "https://github.com/peitalin/vim-jsx-typescript.git", -- TSX support
+  "https://github.com/tronikelis/ts-autotag.nvim", -- auto-close tags
   "https://github.com/neoclide/jsonc.vim.git",
   "https://github.com/autowitch/hive.vim.git",
   "https://github.com/scrooloose/nerdcommenter.git", -- for quick commenting
