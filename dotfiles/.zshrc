@@ -377,6 +377,21 @@ fi
 zstyle ":completion:*" ignored-patterns "(*/)#(__pycache__|*.pyc|node_modules|.git)"
 
 # }}}
+# custom functions {{{
+function upgrade() {
+  sudo apt update
+  sudo apt upgrade -y
+  sudo apt autoremove -y
+  sudo snap refresh
+  mise self-update -y
+  mise upgrade -y
+  mise uninstall neovim@nightly
+  mise install -y
+  rustup self update
+  rustup update
+  uv self update
+}
+# }}}
 # Run compinit and bashcompinit {{{
 # Taken from https://stackoverflow.com/a/67161186
 autoload -Uz compinit bashcompinit

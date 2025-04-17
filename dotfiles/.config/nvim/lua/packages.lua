@@ -147,11 +147,16 @@ require("nvim-treesitter.configs").setup({
   },
   indent = {
     enable = true,
+    ---@diagnostic disable-next-line: unused-local
     disable = function(lang, bufnr)
       return vim.api.nvim_buf_line_count(bufnr) > 10000
     end,
   },
   ensure_installed = "all",
+  ignore_install = {
+    -- avoids compilation error
+    "norg",
+  },
 })
 
 vim.treesitter.language.register("terraform", "terraform-vars")
