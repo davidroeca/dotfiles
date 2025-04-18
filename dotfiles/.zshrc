@@ -390,6 +390,8 @@ function upgrade() {
   rustup self update
   rustup update
   uv self update
+  zinit self-update
+  zinit update
 }
 # }}}
 # Run compinit and bashcompinit {{{
