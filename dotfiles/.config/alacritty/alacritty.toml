@@ -46,7 +46,8 @@ print_events = false
 render_timer = false
 
 [font]
-size = 11.0
+size = 12.0
+normal = { family = "MononokiNerdFont" }
 
 [font.glyph_offset]
 x = 0

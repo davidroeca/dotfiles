@@ -6,6 +6,11 @@ require("paq")({
   "https://github.com/autowitch/hive.vim.git",
   "https://github.com/scrooloose/nerdcommenter.git", -- for quick commenting
 
+  -- git
+  "https://github.com/lewis6991/gitsigns.nvim",
+  "https://github.com/sindrets/diffview.nvim",
+  "https://github.com/nvim-tree/nvim-web-devicons",
+
   "https://github.com/ntpeters/vim-better-whitespace.git", -- Highlight trailing whitespace;
 
   "https://github.com/tpope/vim-ragtag.git", -- html tag management
@@ -31,6 +36,7 @@ require("paq")({
   "https://github.com/nvim-treesitter/playground.git",
   "https://github.com/pappasam/papercolor-theme-slim", -- color scheme
 })
+
 
 vim.lsp.enable("basedpyright")
 vim.lsp.enable("bashls")
@@ -127,6 +133,56 @@ vim.diagnostic.config({
   jump = {
     float = true,
   },
+})
+
+require("diffview").setup({
+  enhanced_diff_hl = true,
+  show_help_hints = false,
+  file_panel = {
+    listing_style = "tree",
+    win_config = {
+      width = 30,
+    },
+  },
+  hooks = {
+    diff_buf_read = function(_)
+      vim.opt_local.wrap = false
+    end,
+  },
+})
+
+require("gitsigns").setup({
+  signcolumn = false,
+  numhl = true,
+  linehl = false,
+  word_diff = true,
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+    -- Navigation
+    map("n", "]g", function()
+      if vim.wo.diff then
+        return "]g"
+      end
+      vim.schedule(function()
+        gs.next_hunk()
+      end)
+      return "<Ignore>"
+    end, { expr = true })
+    map("n", "[g", function()
+      if vim.wo.diff then
+        return "[g"
+      end
+      vim.schedule(function()
+        gs.prev_hunk()
+      end)
+      return "<Ignore>"
+    end, { expr = true })
+  end,
 })
 
 require("nvim-treesitter.configs").setup({

@@ -70,6 +70,10 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 ~/.zinit:
 	git clone https://github.com/zdharma-continuum/zinit ~/.zinit
 
+.PHONY: install-fonts
+install-fonts:
+	./scripts/install-fonts.sh
+
 # Check that these versions are the latest that you want
 .PHONY: init-envs
 init-envs: ~/.zinit # sets up zinit
