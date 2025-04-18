@@ -152,10 +152,10 @@ require("diffview").setup({
 })
 
 require("gitsigns").setup({
-  signcolumn = false,
+  signcolumn = true,
   numhl = true,
   linehl = false,
-  word_diff = true,
+  word_diff = false,
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
     local function map(mode, l, r, opts)
