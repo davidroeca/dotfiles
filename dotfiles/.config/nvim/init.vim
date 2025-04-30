@@ -24,15 +24,8 @@ function! ConfigureGlobal()
   set showmatch " highlight matching [{()}]
   set exrc " can handle local vimrc/init.vim
 
-  " https://github.com/neoclide/coc.nvim/issues/649
-  set nobackup
-  set nowritebackup
-
   " Provides additional info for message output
   set cmdheight=2
-
-  " Helps with diagnostic messages in coc.nvim
-  set updatetime=300
 
   " don't give |ins-completion-menu| messages.
   set shortmess+=c

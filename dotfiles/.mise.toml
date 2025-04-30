@@ -1,8 +1,11 @@
-[tools]
+[settings]
+idiomatic_version_file_enable_tools = []
 
+[tools]
 awscli = "latest"
 cargo-binstall = "latest"
 delta = "latest"
+deno = "2.2.12"
 bat = "latest"
 direnv = "latest"
 java = "latest"
@@ -25,7 +28,8 @@ yarn = "1.22.22"
 "npm:typescript" = "latest"
 "npm:typescript-language-server" = "latest"
 "npm:vim-language-server" = "latest"
-"pipx:aider-chat" = { version = "latest", uvx_args = "--with boto3" }
+"pipx:aider-chat" = { version = "latest", uvx_args = "--python 3.12 --with boto3" }
 "pipx:basedpyright" = "latest"
 "pipx:grip" = "latest"
 "pipx:poetry" = { version = "latest", uvx_args = "--with poetry-plugin-export" }
+"pipx:pre-commit" = "latest"

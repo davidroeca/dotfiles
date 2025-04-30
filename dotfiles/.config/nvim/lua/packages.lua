@@ -5,6 +5,11 @@ require("paq")({
   "https://github.com/neoclide/jsonc.vim.git",
   "https://github.com/autowitch/hive.vim.git",
   "https://github.com/scrooloose/nerdcommenter.git", -- for quick commenting
+  -- Autocompletion
+  {
+    "https://github.com/Saghen/blink.cmp",
+    build = "cargo build --release",
+  },
 
   -- git
   "https://github.com/lewis6991/gitsigns.nvim",
@@ -24,11 +29,6 @@ require("paq")({
   -- For writing
   "https://github.com/junegunn/goyo.vim.git",
   "https://github.com/junegunn/limelight.vim.git",
-  -- For autocompletion
-  {
-    "https://github.com/neoclide/coc.nvim.git",
-    build = "npm ci",
-  },
   "https://github.com/pappasam/vim-filetype-formatter.git", -- running code formatters
   "https://github.com/tyru/open-browser.vim.git",
   -- Syntax highlight support, as well as text objects, etc.
@@ -133,6 +133,20 @@ vim.diagnostic.config({
   jump = {
     float = true,
   },
+})
+
+require("blink.cmp").setup({
+  enabled = function()
+    if vim.bo.filetype == "vim" and vim.bo.buftype == "nofile" then
+      -- disable in cmdline window (see :help cmdline-window)
+      return false
+    end
+    return true
+  end,
+  completion = {
+    -- Don't select by default, auto insert on selection
+    list = { selection = { preselect = false, auto_insert = true } },
+  }
 })
 
 require("diffview").setup({
