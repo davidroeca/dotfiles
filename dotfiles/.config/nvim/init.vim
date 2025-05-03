@@ -123,7 +123,7 @@ function! GlobalKeyRemap()
   " Filetype format mappings
   nnoremap <Leader>f :FiletypeFormat<CR>
   " NERDTree mappings
-  nnoremap <silent> <space>j :NERDTreeToggle %<CR>
+  nnoremap <silent> <space>j :NvimTreeToggle<CR>
 
   " lsp mappings
   nnoremap <Leader>d <Cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>
@@ -144,16 +144,9 @@ call GlobalKeyRemap()
 "let g:rooter_silent_chdir = 1
 let g:rooter_patterns = ['Cargo.toml', 'package.json', 'pyproject.toml', 'setup.py', 'requirements.txt', '.git', '.git/']
 " }}}
-" NERDTree {{{
-let g:NERDTreeMapOpenInTab = '<C-t>'
-let g:NERDTreeMapOpenSplit = '<C-s>'
-let g:NERDTreeMapOpenVSplit = '<C-v>'
-let g:NERDTreeShowLineNumbers = 1
-let g:NERDTreeCaseSensitiveSort = 0
-let g:NERDTreeWinPos = 'left'
-let g:NERDTreeWinSize = 31
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeIgnore=['venv$[[dir]]', '__pycache__$[[dir]]', 'node_modules$[[dir]]']
+" NvimTree {{{
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
 " }}}
 " Ragtag {{{
 
