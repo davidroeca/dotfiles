@@ -1,10 +1,10 @@
 require("paq")({
-  "https://github.com/tpope/vim-scriptease.git", -- color scheme debugging
-  "https://github.com/itchyny/lightline.vim.git", -- Airline/Powerline replacement
+  "https://github.com/tpope/vim-scriptease", -- color scheme debugging
+  "https://github.com/itchyny/lightline.vim", -- Airline/Powerline replacement
   "https://github.com/tronikelis/ts-autotag.nvim", -- auto-close tags
-  "https://github.com/neoclide/jsonc.vim.git",
-  "https://github.com/autowitch/hive.vim.git",
-  "https://github.com/scrooloose/nerdcommenter.git", -- for quick commenting
+  "https://github.com/neoclide/jsonc.vim",
+  "https://github.com/autowitch/hive.vim",
+  "https://github.com/scrooloose/nerdcommenter", -- for quick commenting
   -- Autocompletion
   {
     "https://github.com/Saghen/blink.cmp",
@@ -16,24 +16,24 @@ require("paq")({
   "https://github.com/sindrets/diffview.nvim",
   "https://github.com/nvim-tree/nvim-web-devicons",
 
-  "https://github.com/ntpeters/vim-better-whitespace.git", -- Highlight trailing whitespace;
+  "https://github.com/ntpeters/vim-better-whitespace", -- Highlight trailing whitespace;
 
-  "https://github.com/tpope/vim-ragtag.git", -- html tag management
-  "https://github.com/jparise/vim-graphql.git", -- graphql highlights
-  "https://github.com/airblade/vim-rooter.git", -- roots directory at git repo
-  "https://github.com/scrooloose/nerdtree.git", -- file browsing
-  "https://github.com/ctrlpvim/ctrlp.vim.git", -- fuzzy file search (like find)
-  "https://github.com/wincent/ferret.git", -- find/replace
+  "https://github.com/tpope/vim-ragtag", -- html tag management
+  "https://github.com/jparise/vim-graphql", -- graphql highlights
+  "https://github.com/airblade/vim-rooter", -- roots directory at git repo
+  "https://github.com/scrooloose/nerdtree", -- file browsing
+  "https://github.com/ibhagwan/fzf-lua", -- fuzzy file search
+  "https://github.com/wincent/ferret", -- find/replace
    -- REPLs
-  "https://github.com/pappasam/nvim-repl.git",
+  "https://github.com/pappasam/nvim-repl",
   -- For writing
-  "https://github.com/junegunn/goyo.vim.git",
-  "https://github.com/junegunn/limelight.vim.git",
-  "https://github.com/pappasam/vim-filetype-formatter.git", -- running code formatters
-  "https://github.com/tyru/open-browser.vim.git",
+  "https://github.com/junegunn/goyo.vim",
+  "https://github.com/junegunn/limelight.vim",
+  "https://github.com/pappasam/vim-filetype-formatter", -- running code formatters
+  "https://github.com/tyru/open-browser.vim",
   -- Syntax highlight support, as well as text objects, etc.
-  "https://github.com/nvim-treesitter/nvim-treesitter.git",
-  "https://github.com/nvim-treesitter/playground.git",
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  "https://github.com/nvim-treesitter/playground",
   "https://github.com/pappasam/papercolor-theme-slim", -- color scheme
 })
 

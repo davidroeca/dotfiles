@@ -127,6 +127,14 @@ function! GlobalKeyRemap()
 
   " lsp mappings
   nnoremap <Leader>d <Cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>
+
+  " fzf
+  nnoremap <C-\> <Cmd>lua require"fzf-lua".buffers()<CR>
+  nnoremap <C-k> <Cmd>lua require"fzf-lua".builtin()<CR>
+  nnoremap <C-p> <Cmd>lua require"fzf-lua".files()<CR>
+  nnoremap <C-l> <Cmd>lua require"fzf-lua".live_grep_glob()<CR>
+  nnoremap <C-g> <Cmd>lua require"fzf-lua".grep_project()<CR>
+  nnoremap <F1> <Cmd>lua require"fzf-lua".help_tags()<CR>
 endfunction
 
 call GlobalKeyRemap()
@@ -146,13 +154,6 @@ let g:NERDTreeWinPos = 'left'
 let g:NERDTreeWinSize = 31
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeIgnore=['venv$[[dir]]', '__pycache__$[[dir]]', 'node_modules$[[dir]]']
-" }}}
-" CTRLP {{{
-let g:ctrlp_working_path_mode = 'rw' " start from cwd
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-" open first in current window and others as hidden
-let g:ctrlp_open_multiple_files = '1r'
-let g:ctrlp_use_caching = 0
 " }}}
 " Ragtag {{{
 
