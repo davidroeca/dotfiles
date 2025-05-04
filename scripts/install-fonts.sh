@@ -14,10 +14,10 @@ unzip "$TEMP_DIR/font.zip" -d "$TEMP_DIR"
 
 # Improvement where if ttf or otf don't have any files, the script can still
 # continue
-for ext in ttf otf; do
-  files="$TEMP_DIR"/*."$ext"
-  [ -e "${files[0]}" ] && sudo mv "${files[@]}" /usr/local/share/fonts/
-done
+shopt -s nullglob
+sudo mv "$TEMP_DIR"/*.{ttf,otf} /usr/local/share/fonts/
+# unset nullglob
+shopt -u nullglob
 
 fc-cache -f -v
 
