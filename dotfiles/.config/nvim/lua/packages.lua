@@ -2,8 +2,6 @@ require("paq")({
   "https://github.com/tpope/vim-scriptease", -- color scheme debugging
   "https://github.com/itchyny/lightline.vim", -- Airline/Powerline replacement
   "https://github.com/tronikelis/ts-autotag.nvim", -- auto-close tags
-  "https://github.com/neoclide/jsonc.vim",
-  "https://github.com/autowitch/hive.vim",
   "https://github.com/scrooloose/nerdcommenter", -- for quick commenting
   -- Autocompletion
   {
