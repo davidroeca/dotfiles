@@ -1,5 +1,6 @@
 filetype plugin indent on
 " Require packages {{{
+lua require('initlua')
 lua require('packages')
 " }}}
 command! UpdateAll execute ':PaqUpdate' | execute ':TSUpdate'

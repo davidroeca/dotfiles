@@ -20,7 +20,6 @@ require("paq")({
 
   "https://github.com/tpope/vim-ragtag", -- html tag management
   "https://github.com/jparise/vim-graphql", -- graphql highlights
-  "https://github.com/airblade/vim-rooter", -- roots directory at git repo
   "https://github.com/nvim-tree/nvim-tree.lua", -- replacement for nerdtree
   "https://github.com/ibhagwan/fzf-lua", -- fuzzy file search
   "https://github.com/wincent/ferret", -- find/replace
