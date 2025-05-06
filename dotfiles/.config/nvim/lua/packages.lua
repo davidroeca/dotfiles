@@ -201,6 +201,9 @@ require("gitsigns").setup({
 require("nvim-tree").setup({
   view  = {
     width = 35
+  },
+  update_focused_file = {
+    enable = true
   }
 })
 
