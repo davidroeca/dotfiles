@@ -33,6 +33,7 @@ require("paq")({
   -- Syntax highlight support, as well as text objects, etc.
   "https://github.com/nvim-treesitter/nvim-treesitter",
   "https://github.com/nvim-treesitter/playground",
+  "https://github.com/hedengran/fga.nvim", -- fga syntax
   "https://github.com/pappasam/papercolor-theme-slim", -- color scheme
 })
 
@@ -162,6 +163,10 @@ require("diffview").setup({
       vim.opt_local.wrap = false
     end,
   },
+})
+
+require("fga").setup({
+  install_treesitter_grammar = true,
 })
 
 require("gitsigns").setup({
