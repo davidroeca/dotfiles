@@ -3,8 +3,8 @@ local function get_root(root_files)
   if buf_name == '' then
     buf_name = vim.fn.getcwd() .. "/fake-file"
   end
-  for _, root_file in ipairs(root_files) do
-    for dir in vim.fs.parents(buf_name) do
+  for dir in vim.fs.parents(buf_name) do
+    for _, root_file in ipairs(root_files) do
       local to_check = dir .. "/" .. root_file
       if string.sub(dir, -1) == "/" then
         to_check = dir .. root_file
@@ -16,8 +16,24 @@ local function get_root(root_files)
   end
 end
 
-local root_dir = get_root({".git", "Makefile"})
+local root_files = {
+  ".git",
+  "Makefile",
+  "Cargo.toml",
+  "package.json",
+  "pyproject.toml",
+  "setup.py",
+  "requirements.txt",
+}
 
-if root_dir then
-  vim.api.nvim_set_current_dir(root_dir)
+local function set_root()
+  local root_dir = get_root(root_files)
+
+  if root_dir then
+    vim.api.nvim_set_current_dir(root_dir)
+  end
 end
+
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  callback = function() set_root() end,
+})
