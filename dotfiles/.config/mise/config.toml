@@ -1,5 +1,6 @@
 [settings]
 idiomatic_version_file_enable_tools = []
+experimental = true
 
 [tools]
 awscli = "latest"
@@ -10,6 +11,7 @@ bat = "latest"
 direnv = "latest"
 fd = "latest"
 fzf = "latest"
+go = "1.24.3"
 java = "latest"
 k9s = "latest"
 kubectl = "latest"
@@ -23,6 +25,7 @@ sqlite = "latest"
 terraform = "latest"
 terraform-ls = "latest"
 yarn = "1.22.22"
+"go:github.com/openfga/cli/cmd/fga" = "latest"
 "npm:bash-language-server" = "latest"
 "npm:svelte-language-server" = "latest"
 "npm:prettier" = "latest"
