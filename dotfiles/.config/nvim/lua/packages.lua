@@ -28,6 +28,8 @@ require("paq")({
   "https://github.com/junegunn/limelight.vim",
   "https://github.com/pappasam/vim-filetype-formatter", -- running code formatters
   "https://github.com/tyru/open-browser.vim",
+  -- helpers
+  "https://github.com/nvim-lua/plenary.nvim",
   -- Syntax highlight support, as well as text objects, etc.
   "https://github.com/nvim-treesitter/nvim-treesitter",
   "https://github.com/nvim-treesitter/playground",
