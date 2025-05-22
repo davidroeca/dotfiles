@@ -3,6 +3,8 @@ require("paq")({
   "https://github.com/itchyny/lightline.vim", -- Airline/Powerline replacement
   "https://github.com/tronikelis/ts-autotag.nvim", -- auto-close tags
   "https://github.com/scrooloose/nerdcommenter", -- for quick commenting
+  -- LSP
+  "https://github.com/neovim/nvim-lspconfig",
   -- Autocompletion
   {
     "https://github.com/Saghen/blink.cmp",
