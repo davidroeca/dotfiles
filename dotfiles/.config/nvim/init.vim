@@ -5,7 +5,6 @@ lua require('packages')
 " }}}
 command! UpdateAll execute ':PaqUpdate' | execute ':TSUpdate'
 "Non-Plugin Personal Customization {{{
-helptags ~/.config/nvim/doc
 let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
 let mapleader="," " change command leader from \ to ,
 let maplocalleader="-" " set local command leader to -
@@ -178,6 +177,9 @@ endfunction
 let g:vim_filetype_formatter_commands = {
       \ 'python':  function('s:formatter_python')
       \ }
+" }}}
+" Buffer reloads {{{
+au FocusGained,BufEnter * :checktime
 " }}}
 "Filetype-specific settings {{{
 
