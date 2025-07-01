@@ -24,6 +24,7 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		tmux \
 		alacritty \
 		build-essential \
+		libstdc++-12-dev \
 		python3-dev \
 		python3-venv \
 		libffi-dev \
@@ -51,6 +52,8 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		libtool \
 		unixodbc-dev \
 		unzip \
+		# for building curl -- remove if not needed
+		libpsl-dev \
 		curl
 
 .PHONY: dot_config
@@ -73,6 +76,10 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 .PHONY: install-fonts
 install-fonts:
 	./scripts/install-fonts.sh
+
+.PHONY: install-curl
+install-curl:
+	./scripts/install-curl.sh
 
 # Check that these versions are the latest that you want
 .PHONY: init-envs
