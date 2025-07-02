@@ -43,7 +43,7 @@ set-env:
 
 ## Add a model alias (can be used multiple times)
 alias:
-  - "work:bedrock/us.anthropic.claude-3-7-sonnet-20250219-v1:0"
+  - "work:bedrock/us.anthropic.claude-sonnet-4-20250514-v1:0"
 
 ## Set the reasoning_effort API parameter (default: not set)
 #reasoning-effort: xxx
