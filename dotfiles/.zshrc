@@ -82,6 +82,12 @@ fi
 export PATH
 
 # }}}
+# AWS setup {{{
+export AWS_REGION="us-east-1"
+# }}}
+# Claude code {{{
+export CLAUDE_CODE_USE_BEDROCK="1"
+# }}}
 # zsh cache directory {{{
 ZSH_CACHE_DIR=$HOME/.zsh_cache
 if [ ! -e "$ZSH_CACHE_DIR" ]; then

@@ -15,6 +15,8 @@ require("paq")({
   "https://github.com/lewis6991/gitsigns.nvim",
   "https://github.com/sindrets/diffview.nvim",
   "https://github.com/nvim-tree/nvim-web-devicons",
+  -- requirement for claude code
+  --"https://github.com/nvim-lua/plenary.nvim",
 
   "https://github.com/ntpeters/vim-better-whitespace", -- Highlight trailing whitespace;
 
@@ -25,6 +27,8 @@ require("paq")({
   "https://github.com/wincent/ferret", -- find/replace
    -- REPLs
   "https://github.com/pappasam/nvim-repl",
+  -- ai
+  --"https://github.com/greggh/claude-code.nvim",
   -- For writing
   "https://github.com/junegunn/goyo.vim",
   "https://github.com/junegunn/limelight.vim",
