@@ -219,6 +219,8 @@ require("nvim-tree").setup({
   }
 })
 
+-- https://github.com/latex-lsp/tree-sitter-latex/issues/64
+vim.g.tex_indent_items=0
 require("nvim-treesitter.configs").setup({
   highlight = {
     enable = true,
