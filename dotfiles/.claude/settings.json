@@ -4,7 +4,10 @@
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp"]
+      "args": ["@playwright/mcp"],
+      "env": {
+        "PATH": "$(mise where node@latest)/bin:$PATH"
+      }
     }
   }
 }

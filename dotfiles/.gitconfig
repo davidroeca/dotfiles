@@ -1,6 +1,8 @@
 [user]
   email = david.roeca@gmail.com
   name = davidroeca
+[init]
+	defaultBranch = main
 [alias]
   hist = log --pretty=format:'%h %ad | %s%d[%an]' --graph --date=short
 [credential "https://github.com"]
