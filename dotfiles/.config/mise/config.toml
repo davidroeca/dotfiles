@@ -30,7 +30,6 @@ yarn = "1.22.22"
 "npm:bash-language-server" = "latest"
 "npm:@anthropic-ai/claude-code" = "latest"
 "npm:svelte-language-server" = "latest"
-"npm:@playwright/mcp" = "latest"
 "npm:@modelcontextprotocol/server-filesystem" = "latest"
 "npm:@modelcontextprotocol/server-sequential-thinking" = "latest"
 "npm:prettier" = "latest"
@@ -44,3 +43,6 @@ yarn = "1.22.22"
 "pipx:poetry" = { version = "latest", uvx_args = "--with poetry-plugin-export" }
 "pipx:pre-commit" = "latest"
 "pipx:mcp-server-git" = "latest"
+
+[tasks]
+install-playwright-mcp = "npm install -g @playwright/mcp"
