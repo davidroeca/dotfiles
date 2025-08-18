@@ -209,9 +209,8 @@ function nodeglobal-install() {
 
 
 function nvim-update() {
-  mise rm neovim@nightly
-  mise install neovim@nightly
-  asdf global neovim@nightly
+  mise rm "github:neovim/neovim@nightly"
+  mise install "github:neovim/neovim@nightly"
   nvim -c 'UpdateAll'
 }
 
@@ -391,7 +390,7 @@ function upgrade() {
   sudo snap refresh
   mise self-update -y
   mise upgrade -y
-  mise uninstall neovim@nightly
+  mise uninstall "github:neovim/neovim@nightly"
   mise install -y
   mise run install-playwright-mcp
   rustup self update
