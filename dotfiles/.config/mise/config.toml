@@ -32,6 +32,7 @@ yarn = "1.22.22"
 "npm:svelte-language-server" = "latest"
 "npm:@modelcontextprotocol/server-filesystem" = "latest"
 "npm:@modelcontextprotocol/server-sequential-thinking" = "latest"
+"npm:mint" = "latest"
 "npm:prettier" = "latest"
 "npm:prettier-plugin-svelte" = "latest"
 "npm:typescript" = "latest"
@@ -43,6 +44,8 @@ yarn = "1.22.22"
 "pipx:poetry" = { version = "latest", uvx_args = "--with poetry-plugin-export" }
 "pipx:pre-commit" = "latest"
 "pipx:mcp-server-git" = "latest"
+"pipx:doc2dash" = "latest"
+"pipx:mkdocs" = { version = "latest", uvx_args = "--with mkdocs-material" }
 
 [tasks]
 install-playwright-mcp = "npm install -g @playwright/mcp"
