@@ -93,19 +93,20 @@ function! GlobalKeyRemap()
   nnoremap H 0
   nnoremap L $
 
-  " Remove arrow keys
-  nnoremap <Up> <nop>
-  nnoremap <Down> <nop>
-  nnoremap <Left> <nop>
-  nnoremap <Right> <nop>
-  inoremap <Up> <nop>
-  inoremap <Down> <nop>
-  inoremap <Left> <nop>
-  inoremap <Right> <nop>
-  vnoremap <Up> <nop>
-  vnoremap <Down> <nop>
-  vnoremap <Left> <nop>
-  vnoremap <Right> <nop>
+  " Remove arrow keys - currently cannot remove them because claude code needs
+  " them
+  "nnoremap <Up> <nop>
+  "nnoremap <Down> <nop>
+  "nnoremap <Left> <nop>
+  "nnoremap <Right> <nop>
+  "inoremap <Up> <nop>
+  "inoremap <Down> <nop>
+  "inoremap <Left> <nop>
+  "inoremap <Right> <nop>
+  "vnoremap <Up> <nop>
+  "vnoremap <Down> <nop>
+  "vnoremap <Left> <nop>
+  "vnoremap <Right> <nop>
 
   " Selected search
   vnoremap <silent> * :<C-U>
@@ -135,6 +136,20 @@ function! GlobalKeyRemap()
   nnoremap <C-l> <Cmd>lua require"fzf-lua".live_grep_glob()<CR>
   nnoremap <C-g> <Cmd>lua require"fzf-lua".grep_project()<CR>
   nnoremap <F1> <Cmd>lua require"fzf-lua".help_tags()<CR>
+
+  " claudecode
+  " Waiting on https://github.com/coder/claudecode.nvim/issues/100
+  nnoremap <Leader>ac <cmd>CustomClaudeCode<cr>
+  nnoremap <Leader>af <cmd>ClaudeCodeFocus<cr>
+  nnoremap <Leader>ar <cmd>ClaudeCode --resume<cr>
+  nnoremap <Leader>aC <cmd>ClaudeCode --continue<cr>
+  nnoremap <Leader>am <cmd>ClaudeCodeSelectModel<cr>
+  nnoremap <Leader>ab <cmd>ClaudeCodeAdd %<cr>
+  xnoremap <Leader>as <cmd>ClaudeCodeSend<cr>
+  nnoremap <Leader>aa <cmd>ClaudeCodeDiffAccept<cr>
+  nnoremap <Leader>ad <cmd>ClaudeCodeDiffDeny<cr>
+  " Deviates from standard docs
+  nnoremap <Leader>at <cmd>ClaudeCodeTreeAdd<cr>
 endfunction
 
 call GlobalKeyRemap()
