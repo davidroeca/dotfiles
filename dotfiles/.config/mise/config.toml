@@ -46,6 +46,7 @@ yarn = "1.22.22"
 "pipx:mcp-server-git" = "latest"
 "pipx:doc2dash" = "latest"
 "pipx:mkdocs" = { version = "latest", uvx_args = "--with mkdocs-material" }
+"pipx:poethepoet" = "latest"
 
 [tasks]
 install-playwright-mcp = "npm install -g @playwright/mcp"
