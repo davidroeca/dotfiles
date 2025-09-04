@@ -5,6 +5,7 @@ experimental = true
 [tools]
 awscli = "latest"
 cargo-binstall = "latest"
+"cargo:alacritty" = "latest"
 delta = "latest"
 deno = "2.2.12"
 bat = "latest"

@@ -22,7 +22,6 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		tree \
 		graphviz \
 		tmux \
-		alacritty \
 		build-essential \
 		libstdc++-12-dev \
 		python3-dev \
@@ -52,7 +51,6 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		libtool \
 		unixodbc-dev \
 		unzip \
-		# for building curl -- remove if not needed
 		libpsl-dev \
 		curl
 
