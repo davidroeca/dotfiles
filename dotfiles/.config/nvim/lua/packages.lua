@@ -223,29 +223,14 @@ require("nvim-tree").setup({
 
 -- https://github.com/latex-lsp/tree-sitter-latex/issues/64
 vim.g.tex_indent_items=0
-require("nvim-treesitter").setup()
-vim.api.nvim_create_autocmd("User", {
-  pattern = "TSUpdate",
-  callback = function()
-    require("nvim-treesitter.parsers").fga = {
-      install_info = {
-        url = "https://github.com/matoous/tree-sitter-fga",
-      }
-    }
-  end
-})
-require("nvim-treesitter").install({ "all", "fga" })
--- Add openfga file types and treesitter setup
-vim.filetype.add({
-  extension = {
-    fga = "fga"
-  }
-})
 vim.treesitter.language.register("terraform", "terraform-vars")
 vim.treesitter.language.register("bash", "zsh")
 vim.treesitter.language.register("bash", "shell")
 vim.treesitter.language.register("tsx", "typescriptreact")
 vim.treesitter.language.register("jsx", "javascriptreact")
+
+require("nvim-treesitter").setup()
+require("nvim-treesitter").install({ "all" })
 
 local function get_ts_fts()
   local result_table = {}
