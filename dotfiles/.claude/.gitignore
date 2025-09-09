@@ -1,1 +1,4 @@
-ide/
+*
+!.gitignore
+!CLAUDE.md
+!settings.json
