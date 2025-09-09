@@ -35,9 +35,11 @@ require("paq")({
   -- helpers
   "https://github.com/nvim-lua/plenary.nvim",
   -- Syntax highlight support, as well as text objects, etc.
-  "https://github.com/nvim-treesitter/nvim-treesitter",
-  "https://github.com/nvim-treesitter/playground",
-  "https://github.com/hedengran/fga.nvim", -- fga syntax
+  {
+    "https://github.com/nvim-treesitter/nvim-treesitter",
+    branch = "main",
+  },
+  --"https://github.com/hedengran/fga.nvim", -- fga syntax
   "https://github.com/pappasam/papercolor-theme-slim", -- color scheme
 })
 
@@ -171,9 +173,9 @@ require("diffview").setup({
   },
 })
 
-require("fga").setup({
-  install_treesitter_grammar = true,
-})
+--require("fga").setup({
+  --install_treesitter_grammar = true,
+--})
 
 require("gitsigns").setup({
   signcolumn = true,
@@ -221,36 +223,56 @@ require("nvim-tree").setup({
 
 -- https://github.com/latex-lsp/tree-sitter-latex/issues/64
 vim.g.tex_indent_items=0
-require("nvim-treesitter.configs").setup({
-  highlight = {
-    enable = true,
-    disable = function(lang, bufnr)
-      if lang == "javascript"
-        or lang == "javascriptreact"
-        or lang == "typescript"
-        or lang == "typescriptreact"
-        or lang == "svelte"
-      then
-        return vim.api.nvim_buf_line_count(bufnr) > 10000
-      end
-      return vim.api.nvim_buf_line_count(bufnr) > 50000
-    end,
-  },
-  indent = {
-    enable = true,
-    ---@diagnostic disable-next-line: unused-local
-    disable = function(lang, bufnr)
-      return vim.api.nvim_buf_line_count(bufnr) > 10000
-    end,
-  },
-  ensure_installed = "all",
-  ignore_install = {
-    -- avoids compilation error
-    -- https://github.com/nvim-treesitter/nvim-treesitter/issues/8029
-    "ipkg",
-  },
+require("nvim-treesitter").setup()
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TSUpdate",
+  callback = function()
+    require("nvim-treesitter.parsers").fga = {
+      install_info = {
+        url = "https://github.com/matoous/tree-sitter-fga",
+      }
+    }
+  end
 })
-
+require("nvim-treesitter").install({ "all", "fga" })
+-- Add openfga file types and treesitter setup
+vim.filetype.add({
+  extension = {
+    fga = "fga"
+  }
+})
 vim.treesitter.language.register("terraform", "terraform-vars")
 vim.treesitter.language.register("bash", "zsh")
 vim.treesitter.language.register("bash", "shell")
+vim.treesitter.language.register("tsx", "typescriptreact")
+vim.treesitter.language.register("jsx", "javascriptreact")
+
+local function get_ts_fts()
+  local result_table = {}
+  -- Consider implications of using parsers instead
+  local queries = require("nvim-treesitter").get_installed('queries')
+  for _, lang in ipairs(queries) do
+    local fts = vim.treesitter.language.get_filetypes(lang)
+    for _, ft in ipairs(fts) do
+      result_table[ft] = true
+    end
+  end
+  -- initialize with fga
+  local result = { 'fga' }
+  for key in pairs(result_table) do
+    table.insert(result, key)
+  end
+  return result
+end
+
+local ts_fts = get_ts_fts()
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = ts_fts,
+  callback = function()
+    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    vim.treesitter.start()
+  end
+})
+
