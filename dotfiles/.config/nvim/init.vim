@@ -191,7 +191,6 @@ function s:formatter_python()
 endfunction
 let g:vim_filetype_formatter_commands = {
       \ 'python':  function('s:formatter_python'),
-      \ 'zig': 'zig fmt --stdin',
       \ }
 " }}}
 " Buffer reloads {{{
