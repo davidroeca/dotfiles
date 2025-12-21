@@ -53,6 +53,7 @@ vim.lsp.enable("terraformls")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("vimls")
 vim.lsp.enable("yamlls")
+vim.lsp.enable("zls")
 
 vim.lsp.config("*", {
   capabilities = {
