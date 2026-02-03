@@ -2,6 +2,9 @@
 idiomatic_version_file_enable_tools = []
 experimental = true
 
+[settings.npm]
+package_manager = "bun"
+
 [tools]
 awscli = "latest"
 cargo-binstall = "latest"
@@ -19,8 +22,9 @@ k9s = "latest"
 kubectl = "latest"
 lua-language-server = "latest"
 minikube = "latest"
-nodejs = ["22.18.0", "22.14.0"]
-python = ["3.13.6", "3.12.3", "3.11.4", "3.13.1", "3.9.23"]
+nodejs = ["24.13.0"]
+pnpm = "latest"
+python = ["3.14.2", "3.13.11", "3.12.12"]
 ripgrep = "latest"
 sqlite = "latest"
 terraform = "latest"
@@ -30,13 +34,10 @@ yarn = "1.22.22"
 zig = "0.15"
 zls = "0.15"
 "cargo:dioxus-cli" = "latest"
-"go:github.com/openfga/cli/cmd/fga" = "latest"
+"go:github.com/openfga/cli/cmd/fga" = { version = "latest" }
 "github:neovim/neovim" = "nightly"
-"npm:pnpm" = "latest"
 "npm:bash-language-server" = "latest"
 "npm:svelte-language-server" = "latest"
-"npm:@modelcontextprotocol/server-filesystem" = "latest"
-"npm:@modelcontextprotocol/server-sequential-thinking" = "latest"
 "npm:mint" = "latest"
 "npm:@mermaid-js/mermaid-cli" = "latest"
 "npm:prettier" = "latest"
@@ -49,10 +50,6 @@ zls = "0.15"
 "pipx:grip" = "latest"
 "pipx:poetry" = { version = "latest", uvx_args = "--with poetry-plugin-export" }
 "pipx:pre-commit" = "latest"
-"pipx:mcp-server-git" = "latest"
 "pipx:doc2dash" = "latest"
 "pipx:mkdocs" = { version = "latest", uvx_args = "--with mkdocs-material" }
 "pipx:poethepoet" = "latest"
-
-[tasks]
-install-playwright-mcp = "npm install -g @playwright/mcp"

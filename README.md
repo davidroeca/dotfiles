@@ -16,3 +16,4 @@ Depends on `stow` - `sudo apt install stow`
 * [uv](https://docs.astral.sh/uv/getting-started/installation/)
 * [mise](https://mise.jdx.dev/installing-mise.html)
 * [rustup](https://rustup.rs/)
+* [bun](https://bun.com/docs/installation)

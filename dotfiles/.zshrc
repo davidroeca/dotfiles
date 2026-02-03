@@ -61,6 +61,12 @@ then
   . "$CARGO_ENV"
 fi
 
+export BUN_INSTALL="$HOME/.bun"
+if [ -d "$BUN_INSTALL/bin" ]
+then
+  path_radd "$BUN_INSTALL/bin"
+fi
+
 HOME_LOCAL_BIN="$HOME/.local/bin"
 if [ ! -d "$HOME_LOCAL_BIN" ]; then
   mkdir -p "$HOME_LOCAL_BIN"
