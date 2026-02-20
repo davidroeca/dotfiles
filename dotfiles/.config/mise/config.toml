@@ -22,6 +22,7 @@ k9s = "latest"
 kubectl = "latest"
 lua-language-server = "latest"
 minikube = "latest"
+neovim = "nightly"
 nodejs = ["24.13.0"]
 pnpm = "latest"
 python = ["3.14.2", "3.13.11", "3.12.12"]
@@ -35,7 +36,6 @@ zig = "0.15"
 zls = "0.15"
 "cargo:dioxus-cli" = "latest"
 "go:github.com/openfga/cli/cmd/fga" = { version = "latest" }
-"github:neovim/neovim" = "nightly"
 "npm:bash-language-server" = "latest"
 "npm:svelte-language-server" = "latest"
 "npm:mint" = "latest"
