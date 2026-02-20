@@ -47,6 +47,7 @@ zls = "0.15"
 "npm:vim-language-server" = "latest"
 "pipx:aider-chat" = { version = "latest", uvx_args = "--python 3.12 --with boto3" }
 "pipx:basedpyright" = "latest"
+"pipx:ty" = "latest"
 "pipx:grip" = "latest"
 "pipx:poetry" = { version = "latest", uvx_args = "--with poetry-plugin-export" }
 "pipx:pre-commit" = "latest"
