@@ -1,6 +1,5 @@
 filetype plugin indent on
 " Require packages {{{
-lua require('initlua')
 lua require('packages')
 " }}}
 command! UpdateAll execute ':PaqUpdate' | execute ':TSUpdate'
@@ -150,14 +149,22 @@ function! GlobalKeyRemap()
   nnoremap <Leader>ad <cmd>ClaudeCodeDiffDeny<cr>
   " Deviates from standard docs
   nnoremap <Leader>at <cmd>ClaudeCodeTreeAdd<cr>
+
+  " Custom rooting
+  " Root to the highest .git (The whole monorepo)
+  nnoremap <Leader>gr :lua require('rooter').cd_global()<CR>
+
+  " Force a refresh of the directory cache (bypass cache)
+  nnoremap <Leader>gR :lua require('rooter').cd_global(true)<CR>
+
+  " Root to the nearest workspace (The specific package)
+  nnoremap <Leader>lr :lua require('rooter').cd_local()<CR>
+
+  " Force a refresh of the directory cache (bypass cache)
+  nnoremap <Leader>lR :lua require('rooter').cd_local(true)<CR>
 endfunction
 
 call GlobalKeyRemap()
-" }}}
-" Vim Rooter {{{
-" silence the cwd
-"let g:rooter_silent_chdir = 1
-let g:rooter_patterns = ['Cargo.toml', 'package.json', 'pyproject.toml', 'setup.py', 'requirements.txt', '.git', '.git/']
 " }}}
 " NvimTree {{{
 let g:loaded_netrw = 1
