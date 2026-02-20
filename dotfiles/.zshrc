@@ -395,10 +395,10 @@ function upgrade() {
   mise upgrade -y
   mise uninstall "github:neovim/neovim@nightly"
   mise install -y
-  mise run install-playwright-mcp
   rustup self update
   rustup update
   uv self update
+  bun upgrade
   zinit self-update
   zinit update
 }
