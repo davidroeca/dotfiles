@@ -72,13 +72,22 @@ unlink-dotfiles: dot_config ## removes stow-managed sym links
 	git clone https://github.com/zdharma-continuum/zinit ~/.zinit
 
 .PHONY: install-fonts
-install-fonts:
+install-fonts: ## install nice dev fonts for Alacritty
 	./scripts/install-fonts.sh
 
 .PHONY: install-curl
-install-curl:
+install-curl: ## install latest curl
 	./scripts/install-curl.sh
 
 # Check that these versions are the latest that you want
 .PHONY: init-envs
-init-envs: ~/.zinit # sets up zinit
+init-envs: ~/.zinit ## sets up zinit
+
+.PHONY: link-home-work-bash
+link-home-work-bash: ## links home-work-bash to ~/.bash via stow
+	mkdir -p ~/.bash
+	stow -t ~/.bash -R home-work-bash
+
+.PHONY: unlink-home-work-bash
+unlink-home-work-bash: ## removes stow-managed symlinks for home-work-bash
+	stow -t ~/.bash -D home-work-bash

@@ -136,6 +136,8 @@ include () {
 }
 include ~/.shrc_local
 include ~/.bash/sensitive
+# Add bedrock-claude configuration if it exists
+include ~/.bash/bedrock-claude.sh
 # }}}
 # Custom aliases/sources {{{
 
