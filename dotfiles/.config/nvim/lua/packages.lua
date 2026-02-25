@@ -39,6 +39,8 @@ require("paq")({
     "https://github.com/nvim-treesitter/nvim-treesitter",
     branch = "main",
   },
+  -- mdx treesitter support
+  "https://github.com/davidmh/mdx.nvim",
   --"https://github.com/hedengran/fga.nvim", -- fga syntax
   "https://github.com/pappasam/papercolor-theme-slim", -- color scheme
 })
@@ -284,3 +286,9 @@ vim.api.nvim_create_autocmd('FileType', {
   end
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "mdx",
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
