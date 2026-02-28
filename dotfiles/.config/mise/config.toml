@@ -7,6 +7,7 @@ package_manager = "bun"
 
 [tools]
 awscli = "latest"
+biome = "latest"
 cargo-binstall = "latest"
 "cargo:alacritty" = "latest"
 "aqua:claude" = "latest"
@@ -26,6 +27,7 @@ neovim = "nightly"
 nodejs = ["24.13.0"]
 pnpm = "latest"
 python = ["3.14.2", "3.13.11", "3.12.12"]
+prek = "latest"
 ripgrep = "latest"
 sqlite = "latest"
 terraform = "latest"

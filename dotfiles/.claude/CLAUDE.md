@@ -2,7 +2,7 @@
 
 - Use 2 spaces for indentation
 - Prefer ES Modules (import) syntax over CommonJS (require) syntax. If it's known that certain configuration files need `require`, then those exceptions are allowed.
-- Try to run `prettier` on generated code, first attempting with the local `npx` prettier and then with the global prettier if not found.
+- Try to run `biome format --write` on generated code if biome is available, otherwise fall back to `prettier` (first `npx prettier`, then global).
 - Prefer TypeScript/TSX over JavaScript/JSX whenever possible
 - When using TypeScript, avoid `any` if at all possible; use `unknown` instead if needed
 - TypeScript generics are encouraged if they help avoid repetition
