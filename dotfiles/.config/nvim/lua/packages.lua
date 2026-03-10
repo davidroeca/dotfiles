@@ -46,14 +46,14 @@ require("paq")({
 })
 
 
-vim.lsp.enable("basedpyright")
+--vim.lsp.enable("basedpyright")
 vim.lsp.enable("bashls")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("rust_analyzer")
 vim.lsp.enable("svelte")
 vim.lsp.enable("terraformls")
 vim.lsp.enable("ts_ls")
---vim.lsp.enable("ty")
+vim.lsp.enable("ty")
 vim.lsp.enable("vimls")
 vim.lsp.enable("yamlls")
 vim.lsp.enable("zls")
@@ -68,33 +68,8 @@ vim.lsp.config("*", {
   },
 })
 
-vim.lsp.config("basedpyright", {
-  cmd = { "basedpyright-langserver", "--stdio" },
-  root_markers = { "uv.lock", ".git" },
-  on_new_config = function(config, root_dir)
-    local venv = root_dir .. "/.venv/bin/python"
-    if vim.fn.executable(venv) == 1 then
-      config.cmd = { "ty", "server", "--python", venv }
-    end
-  end,
-  settings = {
-    basedpyright = {
-      analysis = {
-        diagnosticSeverityOverrides = {
-          reportAny = "none",
-          reportExplicitAny = "none",
-          reportUnannotatedClassAttribute = "none",
-          reportUninitializedInstanceVariable = "none",
-          reportUnnecessaryIsInstance = "none",
-          reportUnusedCallResult = "none",
-        },
-      },
-    },
-  },
-})
-
---vim.lsp.config("ty", {
-  --cmd = { "ty", "server" },
+--vim.lsp.config("basedpyright", {
+  --cmd = { "basedpyright-langserver", "--stdio" },
   --root_markers = { "uv.lock", ".git" },
   --on_new_config = function(config, root_dir)
     --local venv = root_dir .. "/.venv/bin/python"
@@ -102,7 +77,32 @@ vim.lsp.config("basedpyright", {
       --config.cmd = { "ty", "server", "--python", venv }
     --end
   --end,
+  --settings = {
+    --basedpyright = {
+      --analysis = {
+        --diagnosticSeverityOverrides = {
+          --reportAny = "none",
+          --reportExplicitAny = "none",
+          --reportUnannotatedClassAttribute = "none",
+          --reportUninitializedInstanceVariable = "none",
+          --reportUnnecessaryIsInstance = "none",
+          --reportUnusedCallResult = "none",
+        --},
+      --},
+    --},
+  --},
 --})
+
+vim.lsp.config("ty", {
+  cmd = { "ty", "server" },
+  root_markers = { "uv.lock", ".git" },
+  on_new_config = function(config, root_dir)
+    local venv = root_dir .. "/.venv/bin/python"
+    if vim.fn.executable(venv) == 1 then
+      config.cmd = { "ty", "server", "--python", venv }
+    end
+  end,
+})
 
 vim.lsp.config("lua_ls", {
   settings = {
