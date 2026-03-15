@@ -21,6 +21,11 @@
 - If the project has `pyproject.toml`, check the contents to understand the package management and command runner tool.
 - If `poetry` is used, make sure to prefix comands with `poetry run`. Otherwise, assume `uv` is the default tool, and prefix commands with `uv run`.
 
+# Writing preferences
+
+- Use American English spelling and dialect (e.g. "color" not "colour", "analyze" not "analyse")
+- Do not use em dashes in prose. This includes both the Unicode em dash character and the double-hyphen (--) convention. Use a comma, colon, semicolon, or period to restructure the sentence instead.
+
 # Browser Automation Preferences
 
 - Always use Firefox browser for Playwright automation
