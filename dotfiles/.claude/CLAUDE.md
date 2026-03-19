@@ -23,8 +23,8 @@
 
 # Writing preferences
 
-- Use American English spelling and dialect (e.g. "color" not "colour", "analyze" not "analyse")
-- Do not use em dashes in prose. This includes both the Unicode em dash character and the double-hyphen (--) convention. Use a comma, colon, semicolon, or period to restructure the sentence instead.
+- Use American English spelling and dialect everywhere: prose, documentation, code comments, and identifiers/variable names (e.g. "color" not "colour", "analyze" not "analyse")
+- Do not use em dashes in prose or code comments. This includes both the Unicode em dash character and the double-hyphen (--) convention. Use a comma, colon, semicolon, or period to restructure the sentence instead.
 
 # Browser Automation Preferences
 
