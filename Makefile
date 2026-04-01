@@ -82,12 +82,3 @@ install-curl: ## install latest curl
 # Check that these versions are the latest that you want
 .PHONY: init-envs
 init-envs: ~/.zinit ## sets up zinit
-
-.PHONY: link-home-work-bash
-link-home-work-bash: ## links home-work-bash to ~/.bash via stow
-	mkdir -p ~/.bash
-	stow -t ~/.bash -R home-work-bash
-
-.PHONY: unlink-home-work-bash
-unlink-home-work-bash: ## removes stow-managed symlinks for home-work-bash
-	stow -t ~/.bash -D home-work-bash
