@@ -52,7 +52,9 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 		unixodbc-dev \
 		unzip \
 		libpsl-dev \
-		curl
+		curl \
+		clang \
+		libclang-dev
 
 .PHONY: dot_config
 dot_config: $(DOT_CONFIG_DIRS_LINK)

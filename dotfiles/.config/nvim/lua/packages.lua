@@ -1,4 +1,4 @@
-require("paq")({
+vim.pack.add({
   "https://github.com/tpope/vim-scriptease", -- color scheme debugging
   "https://github.com/itchyny/lightline.vim", -- Airline/Powerline replacement
   "https://github.com/tronikelis/ts-autotag.nvim", -- auto-close tags
@@ -7,8 +7,8 @@ require("paq")({
   "https://github.com/neovim/nvim-lspconfig",
   -- Autocompletion
   {
-    "https://github.com/Saghen/blink.cmp",
-    build = "cargo build --release",
+    src = "https://github.com/Saghen/blink.cmp",
+    version = vim.version.range("*"),
   },
 
   -- git
@@ -35,15 +35,28 @@ require("paq")({
   -- helpers
   "https://github.com/nvim-lua/plenary.nvim",
   -- Syntax highlight support, as well as text objects, etc.
-  {
-    "https://github.com/nvim-treesitter/nvim-treesitter",
-    branch = "main",
-  },
+  "https://github.com/nvim-treesitter/nvim-treesitter",
   -- mdx treesitter support
   "https://github.com/davidmh/mdx.nvim",
   --"https://github.com/hedengran/fga.nvim", -- fga syntax
   "https://github.com/pappasam/papercolor-theme-slim", -- color scheme
 })
+
+vim.api.nvim_create_autocmd({ "PackChanged" }, {
+  group = vim.api.nvim_create_augroup("TreesitterUpdated", { clear = true }),
+  ---@param event {data: {kind: "install" | "update" | "delete", path: string, spec: vim.pack.Spec}}
+  callback = function(event)
+    if
+      event.data.spec.name == "nvim-treesitter"
+      and event.data.kind == "update"
+    then
+      vim.schedule(function()
+        vim.cmd("TSUpdate")
+      end)
+    end
+  end,
+})
+
 
 
 --vim.lsp.enable("basedpyright")
@@ -160,7 +173,18 @@ vim.lsp.config("yamlls", {
 
 vim.diagnostic.config({
   jump = {
-    float = true,
+    on_jump = function(info)
+      local buf = info.bufnr
+      vim.api.nvim_open_win(buf, true, {
+        relative = 'editor',
+        width = 80,
+        height = 20,
+        row = 5,
+        col = 10,
+        style = 'minimal',
+        border = 'rounded'
+      })
+    end
   },
 })
 

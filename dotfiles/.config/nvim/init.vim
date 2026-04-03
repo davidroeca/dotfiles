@@ -1,8 +1,5 @@
 filetype plugin indent on
-" Require packages {{{
-lua require('packages')
-" }}}
-command! UpdateAll execute ':PaqUpdate' | execute ':TSUpdate'
+command! PackUpdate execute ':lua vim.pack.update()'
 "Non-Plugin Personal Customization {{{
 let &colorcolumn=join(range(80, 5000), ",") " highlight line 81-on
 let mapleader="," " change command leader from \ to ,
@@ -92,8 +89,7 @@ function! GlobalKeyRemap()
   nnoremap H 0
   nnoremap L $
 
-  " Remove arrow keys - currently cannot remove them because claude code needs
-  " them
+  " Remove arrow keys
   "nnoremap <Up> <nop>
   "nnoremap <Down> <nop>
   "nnoremap <Left> <nop>
@@ -127,28 +123,6 @@ function! GlobalKeyRemap()
 
   " lsp mappings
   nnoremap <Leader>d <Cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>
-
-  " fzf
-  nnoremap <C-\> <Cmd>lua require"fzf-lua".buffers()<CR>
-  nnoremap <C-k> <Cmd>lua require"fzf-lua".builtin()<CR>
-  nnoremap <C-p> <Cmd>lua require"fzf-lua".files()<CR>
-  nnoremap <C-l> <Cmd>lua require"fzf-lua".live_grep_glob()<CR>
-  nnoremap <C-g> <Cmd>lua require"fzf-lua".grep_project()<CR>
-  nnoremap <F1> <Cmd>lua require"fzf-lua".help_tags()<CR>
-
-  " claudecode
-  " Waiting on https://github.com/coder/claudecode.nvim/issues/100
-  nnoremap <Leader>ac <cmd>CustomClaudeCode<cr>
-  nnoremap <Leader>af <cmd>ClaudeCodeFocus<cr>
-  nnoremap <Leader>ar <cmd>ClaudeCode --resume<cr>
-  nnoremap <Leader>aC <cmd>ClaudeCode --continue<cr>
-  nnoremap <Leader>am <cmd>ClaudeCodeSelectModel<cr>
-  nnoremap <Leader>ab <cmd>ClaudeCodeAdd %<cr>
-  xnoremap <Leader>as <cmd>ClaudeCodeSend<cr>
-  nnoremap <Leader>aa <cmd>ClaudeCodeDiffAccept<cr>
-  nnoremap <Leader>ad <cmd>ClaudeCodeDiffDeny<cr>
-  " Deviates from standard docs
-  nnoremap <Leader>at <cmd>ClaudeCodeTreeAdd<cr>
 
   " Custom rooting
   " Root to the highest .git (The whole monorepo)
@@ -281,42 +255,39 @@ augroup strip_whitespace
 augroup END
 
 " }}}
-" VimEnter call {{{
-function! HandleSyntaxSetup()
-  syntax enable
-  set t_Co=256 " sets color count for terminal
-  if has('termguicolors')
-    set termguicolors
-  endif
-  "let g:sonokai_enable_italic = 1
-  "let g:sonokai_transparent_background = 1
-  "colorscheme sonokai
+" Setup colorscheme {{{
+syntax enable
+set t_Co=256 " sets color count for terminal
+if has('termguicolors')
+  set termguicolors
+endif
+"let g:sonokai_enable_italic = 1
+"let g:sonokai_transparent_background = 1
+"colorscheme sonokai
 
-  set background=dark
-  let g:PaperColor_Theme_Options = {
-        \ 'theme': {
-        \   'default.dark': {
-        \     'override': {
-        \       'color00': ['#000a1c', ''],
-        \       'linenumber_bg': ['#000a1c', ''],
-        \     }
-        \   }
-        \ },
-        \ 'language': {
-        \   'python': {
-        \     'highlight_builtins': 1
-        \    }
-        \  }
-        \ }
+set background=dark
+let g:PaperColor_Theme_Options = {
+      \ 'theme': {
+      \   'default.dark': {
+      \     'override': {
+      \       'color00': ['#000a1c', ''],
+      \       'linenumber_bg': ['#000a1c', ''],
+      \     }
+      \   }
+      \ },
+      \ 'language': {
+      \   'python': {
+      \     'highlight_builtins': 1
+      \    }
+      \  }
+      \ }
 
-  colorscheme PaperColorSlim
-  "colorscheme PaperColor
-  " vim-better-whitespace highlight config, after paper color setup
-  highlight ExtraWhitespace guibg='Red'
-endfunction
-augroup syntax_setup
-  autocmd! VimEnter * call HandleSyntaxSetup()
-augroup END
+colorscheme PaperColorSlim
+" vim-better-whitespace highlight config, after paper color setup
+highlight ExtraWhitespace guibg='Red'
+" }}}
+" Require packages {{{
+lua require('packages')
 " }}}
 " Disable mouse {{{
 set mouse=
