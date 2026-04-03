@@ -124,6 +124,14 @@ function! GlobalKeyRemap()
   " lsp mappings
   nnoremap <Leader>d <Cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>
 
+  " fzf
+  nnoremap <C-\> <Cmd>lua require"fzf-lua".buffers()<CR>
+  nnoremap <C-k> <Cmd>lua require"fzf-lua".builtin()<CR>
+  nnoremap <C-p> <Cmd>lua require"fzf-lua".files()<CR>
+  nnoremap <C-l> <Cmd>lua require"fzf-lua".live_grep_glob()<CR>
+  nnoremap <C-g> <Cmd>lua require"fzf-lua".grep_project()<CR>
+  nnoremap <F1> <Cmd>lua require"fzf-lua".help_tags()<CR>
+
   " Custom rooting
   " Root to the highest .git (The whole monorepo)
   nnoremap <Leader>gr :lua require('rooter').cd_global()<CR>
