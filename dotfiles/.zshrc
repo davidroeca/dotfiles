@@ -91,6 +91,12 @@ export PATH
 # AWS setup {{{
 export AWS_REGION="us-east-1"
 # }}}
+# Claude Code {{{
+# Should be a catch-all for below, but setting them just in case
+export DISABLE_TELEMETRY=1
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+export CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1
+# }}}
 # zsh cache directory {{{
 ZSH_CACHE_DIR=$HOME/.zsh_cache
 if [ ! -e "$ZSH_CACHE_DIR" ]; then

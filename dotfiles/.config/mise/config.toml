@@ -40,6 +40,7 @@ zls = "0.15"
 "cargo:mdbook" = "latest"
 "cargo:mdbook-mermaid" = "latest"
 "cargo:tree-sitter-cli" = "latest"
+"cargo:https://github.com/bruits/sampo" = { version = "tag:sampo-v0.17.3", crate = "sampo" }
 "go:github.com/openfga/cli/cmd/fga" = { version = "latest" }
 "npm:bash-language-server" = "latest"
 "npm:svelte-language-server" = "latest"
