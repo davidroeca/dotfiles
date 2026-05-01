@@ -25,7 +25,9 @@ lua-language-server = "latest"
 minikube = "latest"
 neovim = "nightly"
 nodejs = ["24.13.0"]
+opencode = "latest"
 pnpm = "latest"
+pandoc = "latest"
 python = ["3.14.2", "3.13.11", "3.12.12"]
 prek = "latest"
 ripgrep = "latest"
@@ -36,11 +38,12 @@ yarn = "1.22.22"
 zig = "0.15"
 zls = "0.15"
 "cargo:alacritty" = "latest"
+"cargo:cargo-deny" = "latest"
 "cargo:dioxus-cli" = "latest"
 "cargo:mdbook" = "latest"
 "cargo:mdbook-mermaid" = "latest"
 "cargo:tree-sitter-cli" = "latest"
-"cargo:https://github.com/bruits/sampo" = { version = "tag:sampo-v0.17.3", crate = "sampo" }
+"cargo:https://github.com/bruits/sampo" = { version = "tag:sampo-v0.17.4", crate = "sampo" }
 "go:github.com/openfga/cli/cmd/fga" = { version = "latest" }
 "npm:bash-language-server" = "latest"
 "npm:svelte-language-server" = "latest"
