@@ -9,7 +9,8 @@ package_manager = "bun"
 awscli = "latest"
 biome = "latest"
 cargo-binstall = "latest"
-"aqua:claude" = "latest"
+# https://github.com/anthropics/claude-code/issues/55434#issuecomment-4361889362
+"aqua:claude" = "2.1.118"
 delta = "latest"
 deno = "2.2.12"
 bat = "latest"
@@ -42,6 +43,7 @@ zls = "0.15"
 "cargo:dioxus-cli" = "latest"
 "cargo:mdbook" = "latest"
 "cargo:mdbook-mermaid" = "latest"
+"cargo:worktrunk" = "latest"
 "cargo:tree-sitter-cli" = "latest"
 "cargo:https://github.com/bruits/sampo" = { version = "tag:sampo-v0.17.4", crate = "sampo" }
 "go:github.com/openfga/cli/cmd/fga" = { version = "latest" }
