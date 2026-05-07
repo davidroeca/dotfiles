@@ -1,10 +1,6 @@
 # Code Review Principles
 
-Core principles for producing effective, balanced code review feedback.
-
-**Based on**: [Google's Engineering Practices - Handling Pushback](https://google.github.io/eng-practices/review/reviewer/pushback.html)
-
-These principles have been adapted for first-pass written reviews where follow-up discussion happens separately.
+Core principles for effective, balanced reviews. Based on [Google's Engineering Practices - Handling Pushback](https://google.github.io/eng-practices/review/reviewer/pushback.html), adapted for first-pass written reviews.
 
 ## The Goal of Code Review
 
@@ -55,30 +51,18 @@ These are optional improvements - use the "Nit:" prefix:
 
 ## Progressive Code Health
 
-Code health improves through many small steps, not giant rewrites.
+Code health improves through small steps, not rewrites.
 
-### The Philosophy
-
-- **Perfect is the enemy of good**: Code doesn't need to be perfect
-- **Better than before**: Each change should leave code healthier than it found it
-- **Small, consistent improvements**: Tiny quality gains compound over time
-- **Don't let quality slide**: Maintain the bar that's been set
-
-### In Practice
-
-- **Accept**: "This is 80% of ideal but better than current code"
-- **Flag**: "This makes the codebase worse" (blocking)
-- **Note**: "This is lateral - neither better nor worse" (nit at most)
+- Each change should leave code healthier than it found it
+- Accept "80% of ideal but better than current code"
+- Flag "this makes the codebase worse" (blocking)
+- Note "lateral — neither better nor worse" (nit at most)
 
 ## The "Clean Up Later" Problem
 
-When code contains something that should be cleaned up:
-
-- **Flag it clearly** in the review as a should-fix item
-- Note that cleanup deferred usually means cleanup forgotten
-- If the code is functional but messy, categorize appropriately - don't inflate severity, but don't minimize it either
-
-The review's job is to document the issue clearly. Whether to insist on immediate cleanup is a decision for whoever acts on the review.
+- Flag cleanup items clearly as should-fix; deferred cleanup is usually forgotten
+- Categorize functional-but-messy code accurately: don't inflate or minimize severity
+- Document the issue clearly; whether to insist on immediate cleanup is for the reviewer to decide
 
 ## Writing Effective Feedback
 
@@ -106,17 +90,15 @@ Reason: Easier to test and understand in isolation
 
 ### Tone Guidelines
 
-- **Be specific**: "This function is too complex" -> "This 80-line function does 4 different things"
-- **Be constructive**: "This won't work" -> "This fails when X=null. Consider adding a null check"
-- **Acknowledge good work**: "Nice error handling here" or "Clever optimization"
-- **Explain why**: Always include reasoning for non-obvious feedback
-- **Focus on the code, not the author**: "This function could be simpler" not "You made this too complicated"
+- **Specific**: "too complex" -> "this 80-line function does 4 things"
+- **Constructive**: "won't work" -> "fails when X=null; consider a null check"
+- **Acknowledge good work**: "nice error handling" or "clever optimization"
+- **Explain why**: include reasoning for non-obvious feedback
+- **Code, not author**: "this function could be simpler" not "you made this too complicated"
 
 ### Avoid
 
-- Sarcasm or snark
-- "Obviously..." or "Everyone knows..."
-- "Just..." (minimizes difficulty)
+- Sarcasm, "Obviously...", "Everyone knows...", "Just..."
 - Demands without explanation
 - Nitpicking without the "Nit:" prefix
 
@@ -131,4 +113,4 @@ Is this issue...
   Different but equally valid?   -> Skip or brief nit at most
 ```
 
-When in doubt: **Will this matter in 6 months?** If yes, mark it as blocking or should-fix. If no, mark it as a nit or skip it entirely.
+When in doubt: will this matter in 6 months? If yes, blocking or should-fix. If no, nit or skip.

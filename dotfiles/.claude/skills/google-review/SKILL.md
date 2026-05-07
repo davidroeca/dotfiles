@@ -2,7 +2,7 @@
 name: google-review
 description: Review code following Google's engineering practices. Use when reviewing pull requests, evaluating code quality, or when asked to review changes using Google's standards.
 disable-model-invocation: false
-allowed-tools: Read, Grep, Glob, Bash(git *)
+allowed-tools: Read, Grep, Glob, Bash(git *), AskUserQuestion
 argument-hint: [branch or files]
 ---
 
@@ -18,15 +18,11 @@ This skill is based on **Google's Engineering Practices Documentation**:
 - [Navigating a CL](https://google.github.io/eng-practices/review/reviewer/navigate.html)
 - [What to look for in a code review](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
 
-These principles have been adapted for use with Claude Code and expanded with additional context-handling capabilities.
-
 ## Context Detection & Setup
 
-**CRITICAL**: Before starting the review, determine what you're reviewing and gather necessary context.
+Before starting, determine what to review and gather context.
 
 ### Step 0: Detect Review Context
-
-Run these checks in parallel to understand the environment:
 
 ```bash
 # Check if we're in a git repo
@@ -70,9 +66,9 @@ git diff $DEFAULT_BRANCH...HEAD --stat
 
 **Decision logic**:
 
-1. If there are commits ahead of the default branch -> Review branch changes
-2. If on the default branch with uncommitted changes -> Review uncommitted changes only
-3. If on the default branch with no changes -> State that there is nothing to review and stop
+1. Commits ahead of default branch: review branch changes
+2. On default branch with uncommitted changes: review those changes
+3. On default branch with no changes: nothing to review, stop
 
 #### Scenario C: File Paths Provided
 
@@ -80,7 +76,7 @@ If `$ARGUMENTS` contains file paths, review those specific files.
 
 #### Scenario D: Not in a Git Repo or No Changes
 
-If there is no git context and no code was provided inline, state that there is nothing to review and stop.
+No git context and no inline code: nothing to review, stop.
 
 ### Step 2: Gather Context
 
@@ -145,7 +141,7 @@ First, evaluate whether this change should happen at all:
 - Run `git diff --stat` to understand the scope
 - **If fundamental issues exist, note them prominently** - they take priority over details
 
-**Decision point**: If the change shouldn't happen or needs major redesign, state this clearly in the review and explain why. Still complete the review of what exists.
+If the change shouldn't happen or needs major redesign, say so clearly and why. Still complete the review of what exists.
 
 ### Step 2: Examine Core Components
 
@@ -188,7 +184,7 @@ Review every change against these categories (see [checklist.md](checklist.md) f
 - Can other developers understand this code quickly?
 - Is each piece doing too much?
 - Watch for over-engineering and "future-proofing"
-- **"Can't be understood quickly by code readers" = too complex**
+- If readers can't understand it quickly, it's too complex
 
 ### 4. Tests
 
@@ -227,91 +223,102 @@ Review every change against these categories (see [checklist.md](checklist.md) f
 - Are there obvious performance issues?
 - Is user input properly validated?
 
+## Clarification Interview (Before Writing)
+
+After completing the analysis but before writing the file, identify findings where the correct suggestion depends on intent or context you cannot determine from the code alone. For each such finding, use `AskUserQuestion` to ask one focused question at a time and wait for the answer before proceeding to the next.
+
+Ask when:
+- Two equally valid approaches exist and the choice depends on project conventions or future plans
+- A naming change has multiple reasonable options
+- The right fix depends on whether a behavior is intentional
+
+Do not ask when:
+- The fix is unambiguous (e.g., a null check is clearly missing)
+- It's a nit — note both options in the suggestion block instead
+- The code is clearly wrong in only one way
+
+Use each answer to write a concrete suggestion before moving to the next question. Do not write the file until all clarifications are complete.
+
 ## Output Format
 
-Structure your review as:
+Write the review to a new file named `review_{context}.md` in the current directory, where `{context}` is derived from the branch name (e.g., `feature/add-auth` -> `review_add-auth.md`) or, for uncommitted/file reviews, a short descriptor of what's being reviewed (e.g., `review_auth-login.md`). Never overwrite an existing file; append a numeric suffix (`_2`, `_3`) if needed.
 
-```markdown
+Every finding — in any section — must use this exact format inline, no exceptions:
+
+````markdown
+**[Severity]** `path/to/file.ts:42`
+
+```language
+// the problematic lines exactly as they appear in the file
+```
+
+```language
+// concrete suggested replacement; omit this block only if no specific fix is possible
+```
+
+Why: one sentence explaining the problem or benefit.
+````
+
+Structure the file as:
+
+````markdown
 ## Review Scope
 
-[What was reviewed, branch info, files changed]
+[branch, commits ahead, files changed; note any missing context]
 
 ## Summary
 
-[2-3 sentence overview: what changes, overall assessment]
+[2-3 sentences: what the change does, overall assessment]
 
 ## Blocking Issues
 
-[Issues that MUST be fixed before merge - empty if none]
+[Each finding in the format above. Omit section if none.]
 
 ## Design Feedback
 
-[Architectural or design concerns - empty if none]
+[Each finding in the format above. Omit section if none.]
 
 ## Code Quality
 
-[Specific improvements organized by file]
+[Each finding in the format above, grouped by file.]
 
-## Suggestions (Non-blocking)
+## Suggestions
 
-[Nice-to-have improvements, marked with "Nit:"]
+[Each finding in the format above, prefixed "Nit:".]
 
 ## Positives
 
-[What was done well - be specific]
-```
+[Specific callouts with file:line refs where relevant.]
+````
 
 ### Categorizing Findings
 
-Use these categories consistently:
+- **Blocking**: Correctness bugs, security vulnerabilities, design flaws, critical test gaps
+- **Should Fix**: Poor naming, missing error handling, notable complexity, style violations
+- **Nit**: Personal preferences, minor style, equally valid alternatives
 
-- **Blocking**: Correctness bugs, security vulnerabilities, design flaws that will cause future problems, critical test gaps
-- **Should Fix**: Poor naming that obscures intent, missing error handling, notable complexity, style violations against codebase standards
-- **Nit**: Personal preferences, minor style points, alternative approaches that are equally valid
-
-When in doubt: **Will this matter in 6 months?** If yes, mark it blocking or should-fix. If no, mark it as a nit or skip it.
+When in doubt: will this matter in 6 months? If yes, blocking or should-fix. If no, nit or skip.
 
 ## Review Principles
 
-Follow these principles when writing findings (see [principles.md](principles.md)):
+(See [principles.md](principles.md) for detail.)
 
-- **Focus on code health**: The goal is to maintain and gradually improve codebase quality
-- **Be specific**: "This function is too complex" -> "This 80-line function does 4 different things"
-- **Be constructive**: "This won't work" -> "This fails when X=null. Consider adding a null check"
-- **Explain why**: Always include reasoning for non-obvious feedback
-- **Acknowledge good work**: Call out clever solutions or improvements
-- **Objective over subjective**: Focus on code health, not personal preferences
-- **Proportional depth**: Match review thoroughness to the risk and size of the change
+- **Code health first**: maintain and gradually improve quality
+- **Be specific**: "too complex" -> "this 80-line function does 4 things"
+- **Be constructive**: "won't work" -> "fails when X=null; consider a null check"
+- **Explain why**: include reasoning for non-obvious feedback
+- **Acknowledge good work**: call out clever solutions
+- **Objective over subjective**: code health, not personal preferences
+- **Proportional depth**: match thoroughness to risk and change size
 
 ## Adaptation to Available Context
 
-Your review depth should match available context:
+Match review depth to what's available:
 
-### Branch Changes Available
-
-- Review code changes vs. default branch
-- Infer intent from commit messages
-- Full file:line references
-
-### Uncommitted Changes Only
-
-- Review staged/unstaged changes
-- Note: "Reviewing uncommitted changes without commit context"
-- Focus on the diff itself
-
-### Specific Files (No Diff)
-
-- Review current code state
-- Note: "Reviewing current file state without change context"
-- Focus on code quality, patterns, security
-- Cannot assess if change achieves intended goal
-
-### Code Snippets (Inline)
-
-- Review provided code in isolation
-- Note: "Reviewing provided snippet without codebase context"
-- General code quality and security feedback
-- Cannot assess integration or completeness
+- **Branch changes**: review vs. default branch; infer intent from commit messages; use file:line refs
+- **Uncommitted changes only**: note missing commit context; focus on the diff
+- **Specific files (no diff)**: note missing change context; focus on quality, patterns, security; can't assess goal achievement
+- **Inline snippet**: note missing codebase context; general quality and security; can't assess integration
 
 ## Command Usage Examples
 
@@ -328,7 +335,7 @@ Your review depth should match available context:
 
 ## Remember
 
-- Every line matters, but not every issue is blocking
-- The goal is to improve code health incrementally
-- Be strict on design, flexible on style
-- This is a first pass - flag everything worth noting, follow-up happens separately
+- Not every issue is blocking
+- Improve code health incrementally
+- Strict on design, flexible on style
+- First pass only: flag everything worth noting; follow-up is separate

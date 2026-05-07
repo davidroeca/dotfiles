@@ -1,10 +1,6 @@
 # Code Review Detailed Checklist
 
-Use this checklist during the systematic review step. Not every item applies to every change.
-
-**Based on**: [Google's Engineering Practices - What to Look For](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
-
-Categories and criteria have been expanded with specific checkboxes and detailed guidance.
+Use during the systematic review step. Not every item applies to every change. Based on [Google's Engineering Practices - What to Look For](https://google.github.io/eng-practices/review/reviewer/looking-for.html).
 
 ## Design
 
@@ -64,9 +60,7 @@ Categories and criteria have been expanded with specific checkboxes and detailed
 - [ ] Is configuration complexity warranted?
 - [ ] Could this be simpler and still work?
 
-### Signal: "I need to read this 3 times to understand it"
-
-If you have this feeling, the code is too complex. Request simplification.
+**Signal**: if you need to read it 3 times, it's too complex — request simplification.
 
 ## Tests
 
