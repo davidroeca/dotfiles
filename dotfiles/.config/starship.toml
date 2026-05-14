@@ -1,5 +1,57 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# Inserts a blank line between shell prompts
+format = '''
+[┌─](bold #626262)$directory$git_branch$git_status$python$rust$nodejs$bun$golang$lua
+[└─](bold #626262)$character'''
+
 add_newline = true
+
+[character]
+success_symbol = '[ ❯](bold #32FF32)'
+error_symbol = '[ ❯](bold #FF5F00)'
+
+[directory]
+format = '[ \[ $path \] ]($style)'
+style = 'bold #FFB000'
+truncation_length = 3
+truncation_symbol = '…/'
+
+[git_branch]
+symbol = ' '
+style = 'bold #32FF32'
+format = '[ \[ $symbol$branch \] ]($style)'
+
+[git_status]
+style = 'bold #FF5F00'
+format = '[ \[ $all_status$ahead_behind \] ]($style)'
+
+[python]
+symbol = ' '
+style = 'bold #FFB000'
+format = '[ \[ $symbol($virtualenv) \] ]($style)'
+
+[rust]
+symbol = ' '
+style = 'bold #FF5F00'
+format = '[ \[ $symbol($version) \] ]($style)'
+
+[nodejs]
+symbol = ''
+style = 'bold #32FF32'
+format = '[ \[ $symbol($version) \] ]($style)'
+
+[bun]
+symbol = ' '
+style = 'bold #FFB000'
+format = '[ \[ $symbol($version) \] ]($style)'
+
+[golang]
+symbol = ' '
+style = 'bold #32FF32'
+format = '[ \[ $symbol($version) \] ]($style)'
+
+[lua]
+symbol = ' '
+style = 'bold #32FF32'
+format = '[ \[ $symbol($version) \] ]($style)'
