@@ -60,7 +60,7 @@ linux-bootstrap: ## Installs a bunch of utilized system dependencies
 dot_config: $(DOT_CONFIG_DIRS_LINK)
 
 ~/.config/%: dotfiles/.config/%
-	mkdir -p $@
+	@if [ -d $< ]; then mkdir -p $@; else mkdir -p $(dir $@); fi
 
 .PHONY: link-dotfiles
 link-dotfiles: dot_config ## links dotfiles to home directory via stow
