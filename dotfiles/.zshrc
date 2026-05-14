@@ -1,14 +1,6 @@
 #############################################################
 # David's zshrc file |
 #---------------------
-# {{{ powerlevel10k-specific initialization
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# }}}
 # Edit paths {{{
 path_ladd () {
   # Takes 1 argument and adds it to the beginning of the PATH
@@ -280,9 +272,6 @@ then
   fpath+=~/.zfunc
 fi
 # }}}
-# {{{ Customize powerlevel10k
-include ~/.p10k.zsh
-# }}}
 # plugins {{{
 ZINIT_HOME="$HOME/.zinit"
 
@@ -295,7 +284,6 @@ then
   zinit snippet OMZ::lib/history.zsh
   zinit light mafredri/zsh-async
   zinit ice depth"1"
-  zinit light romkatv/powerlevel10k
   zinit light zsh-users/zsh-syntax-highlighting
   zinit ice as"completion"
   zinit snippet \
@@ -422,4 +410,11 @@ eval "$(~/.local/bin/mise activate zsh)"
 # }}}
 # worktrunk {{{
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+# }}}
+# starship {{{
+if type "starship" > /dev/null; then
+  eval "$(starship init zsh)"
+else
+  echo "Please install starship"
+fi
 # }}}
