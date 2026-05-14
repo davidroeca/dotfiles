@@ -284,7 +284,7 @@ then
   zinit snippet OMZ::lib/history.zsh
   zinit light mafredri/zsh-async
   zinit ice depth"1"
-  zinit light zsh-users/zsh-syntax-highlighting
+  zinit light zdharma-continuum/fast-syntax-highlighting
   zinit ice as"completion"
   zinit snippet \
     https://github.com/git/git/tree/master/contrib/completion/git-completion.zsh
@@ -402,19 +402,37 @@ function upgrade() {
 # Run compinit and bashcompinit {{{
 # Taken from https://stackoverflow.com/a/67161186
 autoload -Uz compinit bashcompinit
-compinit
+if [[ -n "$ZSH_CACHE_DIR/zcompdump"(#qN.mh+24) ]]; then
+  compinit -d "$ZSH_CACHE_DIR/zcompdump"
+else
+  compinit -C -d "$ZSH_CACHE_DIR/zcompdump"
+fi
 bashcompinit
 # }}}
+# _eval_cached: source cached init output, regenerating when binary is newer {{{
+function _eval_cached() {
+  local _cache="$1"; shift
+  local _bin
+  if [[ "$1" == /* ]]; then
+    _bin="$1"
+  elif [[ "$1" == '~'* ]]; then
+    _bin="${1/#\~/$HOME}"
+  else
+    _bin="$(whence -p "$1" 2>/dev/null)" || return 0
+  fi
+  [[ -x "$_bin" ]] || return 0
+  if [[ ! -f "$_cache" || "$_bin" -nt "$_cache" ]]; then
+    "$@" >| "$_cache"
+  fi
+  source "$_cache"
+}
+# }}}
 # mise includes {{{
-eval "$(~/.local/bin/mise activate zsh)"
+_eval_cached "$ZSH_CACHE_DIR/mise_init.zsh" ~/.local/bin/mise activate zsh
 # }}}
 # worktrunk {{{
-if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+_eval_cached "$ZSH_CACHE_DIR/wt_init.zsh" wt config shell init zsh
 # }}}
 # starship {{{
-if type "starship" > /dev/null; then
-  eval "$(starship init zsh)"
-else
-  echo "Please install starship"
-fi
+_eval_cached "$ZSH_CACHE_DIR/starship_init.zsh" starship init zsh || echo "Please install starship"
 # }}}

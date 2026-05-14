@@ -1,3 +1,1 @@
-if [ -f ~/.zshrc ]; then
-  source ~/.zshrc
-fi
+# zsh sources .zshrc automatically for interactive shells
