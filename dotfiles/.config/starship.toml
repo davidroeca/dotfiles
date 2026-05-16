@@ -37,7 +37,7 @@ style = 'bold #FF5F00'
 format = '[ \[ $symbol($version) \] ]($style)'
 
 [nodejs]
-symbol = ''
+symbol = ' '
 style = 'bold #32FF32'
 format = '[ \[ $symbol($version) \] ]($style)'
 
