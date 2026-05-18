@@ -29,29 +29,29 @@ format = '[ \[ $all_status$ahead_behind \] ]($style)'
 [python]
 symbol = ' '
 style = 'bold #FFB000'
-format = '[ \[ $symbol($virtualenv) \] ]($style)'
+format = '[$symbol($virtualenv)]($style)'
 
 [rust]
 symbol = ' '
 style = 'bold #FF5F00'
-format = '[ \[ $symbol($version) \] ]($style)'
+format = '[$symbol($version)]($style)'
 
 [nodejs]
 symbol = ' '
 style = 'bold #32FF32'
-format = '[ \[ $symbol($version) \] ]($style)'
+format = '[$symbol($version)]($style)'
 
 [bun]
 symbol = ' '
 style = 'bold #FFB000'
-format = '[ \[ $symbol($version) \] ]($style)'
+format = '[$symbol($version)]($style)'
 
 [golang]
 symbol = ' '
 style = 'bold #32FF32'
-format = '[ \[ $symbol($version) \] ]($style)'
+format = '[$symbol($version)]($style)'
 
 [lua]
 symbol = ' '
 style = 'bold #32FF32'
-format = '[ \[ $symbol($version) \] ]($style)'
+format = '[$symbol($version)]($style)'
