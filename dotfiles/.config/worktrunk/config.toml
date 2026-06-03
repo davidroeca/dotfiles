@@ -1,5 +1,6 @@
 [pre-start]
-copy = "wt step copy-ignored"
-
-[step.copy-ignored]
-exclude = [".venv/", "__pycache__/"]
+deps = """
+if [ -d "{{ primary_worktree_path }}/node_modules" ]; then
+  ln -sf {{ primary_worktree_path }}/node_modules .
+fi
+"""
