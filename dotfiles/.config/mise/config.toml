@@ -60,6 +60,7 @@ zls = "0.15"
 "pipx:basedpyright" = "latest"
 "pipx:ty" = "latest"
 "pipx:grip" = "latest"
+"pipx:openhands" = { version = "latest", uvx_args = "--with boto3" }
 "pipx:poetry" = { version = "latest", uvx_args = "--with poetry-plugin-export" }
 "pipx:pre-commit" = "latest"
 "pipx:doc2dash" = "latest"
