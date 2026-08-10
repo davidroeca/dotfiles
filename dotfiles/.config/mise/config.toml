@@ -28,7 +28,7 @@ nodejs = ["24.13.0"]
 opencode = "latest"
 pnpm = "latest"
 pandoc = "latest"
-python = ["3.14.2", "3.13.11", "3.12.12"]
+python = ["3.13.11", "3.14.2", "3.12.12", "3.11.15"]
 prek = "latest"
 ripgrep = "latest"
 sqlite = "latest"
@@ -47,6 +47,7 @@ zls = "0.15"
 "cargo:tree-sitter-cli" = "latest"
 "cargo:https://github.com/bruits/sampo" = { version = "tag:sampo-v0.17.4", crate = "sampo" }
 "go:github.com/openfga/cli/cmd/fga" = { version = "latest" }
+"npm:@openhands/agent-canvas" = "latest"
 "npm:bash-language-server" = "latest"
 "npm:svelte-language-server" = "latest"
 "npm:mint" = "latest"
@@ -60,8 +61,7 @@ zls = "0.15"
 "pipx:basedpyright" = "latest"
 "pipx:ty" = "latest"
 "pipx:grip" = "latest"
-"pipx:openhands" = { version = "latest", uvx_args = "--with boto3" }
-"pipx:poetry" = { version = "latest", uvx_args = "--with poetry-plugin-export" }
+"pipx:poetry" = [{ version = "1.6.1" }, { version = "1.8.3" }]
 "pipx:pre-commit" = "latest"
 "pipx:doc2dash" = "latest"
 "pipx:mkdocs" = { version = "latest", uvx_args = "--with mkdocs-material" }
