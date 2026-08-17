@@ -10,13 +10,21 @@ argument-hint: [branch or files]
 
 Conduct thorough first-pass code reviews following Google's engineering practices and principles. This review produces a complete written assessment; any follow-up discussion happens separately.
 
-## Attribution
+## The Goal of Code Review
 
-This skill is based on **Google's Engineering Practices Documentation**:
+**Primary Goal**: Maintain and gradually improve code health
 
-- [How to do a code review](https://google.github.io/eng-practices/review/reviewer/)
-- [Navigating a CL](https://google.github.io/eng-practices/review/reviewer/navigate.html)
-- [What to look for in a code review](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
+**Secondary Goals**:
+
+- Ensure code is maintainable by others
+- Catch bugs and design issues early
+- Maintain consistency across the codebase
+
+**NOT the Goal**:
+
+- Making code perfect
+- Enforcing personal preferences
+- Blocking progress on minor issues
 
 ## Context Detection & Setup
 
@@ -24,99 +32,29 @@ Before starting, determine what to review and gather context.
 
 ### Step 0: Detect Review Context
 
+- If available, and working for the given repo, use the gh cli to pull in relevant review context
+- Otherwise:
+  - Determine default branch (main, master, something else?)
+
+### Step 1: Determine What to Review & Gather Context
+
 ```bash
-# Check if we're in a git repo
-git rev-parse --git-dir 2>/dev/null && echo "Git repo: yes" || echo "Git repo: no"
+# First check high-level diff counts
+git diff <default_branch>...HEAD --stat
 
-# Check current branch
-git branch --show-current 2>/dev/null
+# If counts are small do a full 
+git diff <default_branch>...HEAD
 
-# Check for uncommitted changes
-git status --short
-
-# Check for a default branch
-git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@'
+# Otherwise, batch the diffs to reduce context bloat
 ```
 
-### Step 1: Determine What to Review
-
-Based on the invocation and context, identify what needs review:
-
-#### Scenario A: Branch Name Provided (`$ARGUMENTS` contains a branch name)
+Also gather commit messages for context
 
 ```bash
-# Check changes on the specified branch vs default branch
-DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
-DEFAULT_BRANCH=${DEFAULT_BRANCH:-main}
-
-git diff $DEFAULT_BRANCH...$ARGUMENTS --stat
-```
-
-#### Scenario B: No Arguments, In a Git Repo
-
-Infer what to review:
-
-```bash
-# Check for changes against the default branch
-DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
-DEFAULT_BRANCH=${DEFAULT_BRANCH:-main}
-
-git diff $DEFAULT_BRANCH...HEAD --stat
-```
-
-**Decision logic**:
-
-1. Commits ahead of default branch: review branch changes
-2. On default branch with uncommitted changes: review those changes
-3. On default branch with no changes: nothing to review, stop
-
-#### Scenario C: File Paths Provided
-
-If `$ARGUMENTS` contains file paths, review those specific files.
-
-#### Scenario D: Not in a Git Repo or No Changes
-
-No git context and no inline code: nothing to review, stop.
-
-### Step 2: Gather Context
-
-Once you know what to review, gather the necessary information:
-
-#### For Branch Reviews:
-
-```bash
-DEFAULT_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
-DEFAULT_BRANCH=${DEFAULT_BRANCH:-main}
-
-# Changes since branching
-git diff $DEFAULT_BRANCH...HEAD --stat
-
-# Full diff
-git diff $DEFAULT_BRANCH...HEAD
-
-# Commit messages for context
 git log $DEFAULT_BRANCH..HEAD --oneline
 ```
 
-#### For Uncommitted Changes:
-
-```bash
-# Staged and unstaged changes
-git diff HEAD --stat
-git diff HEAD
-```
-
-#### For File-Specific Reviews:
-
-```bash
-# If files are specified, check for changes
-git diff $FILE_PATH
-
-# Or read the current file state
-# Use Read tool for specific files
-```
-
-### Step 3: Review Scope Header
+### Step 2: Review Scope Header
 
 Begin the review output with a scope summary so the reader knows exactly what was reviewed:
 
@@ -138,7 +76,7 @@ First, evaluate whether this change should happen at all:
 
 - Read commit messages to understand the stated goal
 - Check if the change makes sense for the codebase
-- Run `git diff --stat` to understand the scope
+- Run/reference `git diff --stat` to understand the scope
 - **If fundamental issues exist, note them prominently** - they take priority over details
 
 If the change shouldn't happen or needs major redesign, say so clearly and why. Still complete the review of what exists.
@@ -157,13 +95,13 @@ Focus on the most significant files first:
 Review all remaining files thoroughly:
 
 - Go file by file in logical order
-- Use the detailed checklist (see [checklist.md](checklist.md))
+- Use the detailed checklist (see [checklist.md](./checklist.md))
 - Document findings with specific file:line references
 - Distinguish blocking issues from suggestions
 
 ## What to Look For
 
-Review every change against these categories (see [checklist.md](checklist.md) for details):
+Review every change against these categories (see [checklist.md](./checklist.md) for details):
 
 ### 1. Design
 
@@ -248,6 +186,8 @@ Every finding — in any section — must use this exact format inline, no excep
 ````markdown
 **[Severity]** `path/to/file.ts:42`
 
+Problem: [1-2 sentence explanation of problem]
+
 ```language
 // the problematic lines exactly as they appear in the file
 ```
@@ -256,7 +196,7 @@ Every finding — in any section — must use this exact format inline, no excep
 // concrete suggested replacement; omit this block only if no specific fix is possible
 ```
 
-Why: one sentence explaining the problem or benefit.
+[1-2 sentence explanation of what the fix improves OR 1-2 sentence explanation of high-level fix if no fix provided]
 ````
 
 Structure the file as:
@@ -291,6 +231,12 @@ Structure the file as:
 [Specific callouts with file:line refs where relevant.]
 ````
 
+In the review document:
+- Avoid multiline paragraphs and list items.
+- Use only typable characters on a qwerty keyboard.
+- Speak in plain language, and avoid unnecessary jargon.
+
+
 ### Categorizing Findings
 
 - **Blocking**: Correctness bugs, security vulnerabilities, design flaws, critical test gaps
@@ -299,9 +245,22 @@ Structure the file as:
 
 When in doubt: will this matter in 6 months? If yes, blocking or should-fix. If no, nit or skip.
 
-## Review Principles
+### Progressive Code Health
 
-(See [principles.md](principles.md) for detail.)
+Code health improves through small steps, not rewrites.
+
+- Each change should leave code healthier than it found it
+- Accept "80% of ideal but better than current code"
+- Flag "this makes the codebase worse" (blocking)
+- Note "lateral — neither better nor worse" (nit at most)
+
+### The "Clean Up Later" Problem
+
+- Flag cleanup items clearly as should-fix; deferred cleanup is usually forgotten
+- Categorize functional-but-messy code accurately: don't inflate or minimize severity
+- Document the issue clearly; whether to insist on immediate cleanup is for the reviewer to decide
+
+## Review Principles
 
 - **Code health first**: maintain and gradually improve quality
 - **Be specific**: "too complex" -> "this 80-line function does 4 things"

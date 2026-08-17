@@ -1,6 +1,6 @@
 # Code Review Detailed Checklist
 
-Use during the systematic review step. Not every item applies to every change. Based on [Google's Engineering Practices - What to Look For](https://google.github.io/eng-practices/review/reviewer/looking-for.html).
+Use during the systematic review step. Not every item applies to every change.
 
 ## Design
 
