@@ -302,7 +302,7 @@ fi
 # fixme - the load process here seems a bit bizarre
 zmodload -i zsh/complist
 
-WORDCHARS=''
+WORDCHARS='*?_-.[]~&;!#$%^(){}<>' # delete function characters to include (omitted /=)
 
 unsetopt menu_complete   # do not autoselect the first completion entry
 unsetopt flowcontrol
