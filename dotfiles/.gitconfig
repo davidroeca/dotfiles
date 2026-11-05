@@ -6,7 +6,9 @@
 [alias]
   hist = log --pretty=format:'%h %ad | %s%d[%an]' --graph --date=short
 [credential "https://github.com"]
-  username = davidroeca
+  helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+  helper = !gh auth git-credential
 [credential "https://bitbucket.org"]
   username = davidroeca
 [credential]
